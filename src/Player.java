@@ -4,7 +4,11 @@ public class Player implements Participant {
     private Hand hand;
 
     @Override
-    public void pickCard(CardsDeck cardsDeck) {
+    public void hitting(CardsDeck cardsDeck) {
         hand.addCard(cardsDeck);
+    }
+
+    public void standing(){
+
     }
 }

@@ -5,5 +5,6 @@
  */
 
 public interface Participant {
-    void pickCard(CardsDeck cardsDeck);
+    void hitting(CardsDeck cardsDeck);
+    void standing();
 }
