@@ -2,12 +2,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-/**
- * Da fare:
- * - verificare l'uso di quel iteratore
- * - capire quale sia la giusta eccezione
- */
-
 public class CardsDeck {
     private static final String[] suits = {"club", "diamond", "heart", "spade"};
     private static final String[] ranks = {"ace", "deuce", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"};
@@ -33,14 +27,9 @@ public class CardsDeck {
     }
 
     /**
-     * DA TESTARE e probabilmente esiste una implementazione più semplice
-     * Probabilemnte hai usato anche l'eccezione sbagliata
+     * Eliminato il try e catch;
+     * La funzione quando veniva chiamata lanciava subito l'eccezione, adesso non c'è più questo problema
+     * e funziona correttamente;
     */
-    public Card pickCard(){
-        try {
-            return cards.get((Integer) iterator.next());
-        } catch (Exception e){
-            throw new RuntimeException("il mazzo è finito");
-        }
-    }
+    public Card pickCard(){ return (Card)iterator.next(); }
 }

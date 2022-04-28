@@ -12,7 +12,6 @@ public class TestApp {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setVisible(true);
-
         blackJackPanel.init();
     }
 }
