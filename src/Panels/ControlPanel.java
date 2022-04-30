@@ -1,22 +1,33 @@
 package Panels;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+
+/**
+ * E' il pannello dei pulsanti e dei controlli, nella mia testa ci va:
+ * - pulsante per chiedere un'altra carta: "hit a card"
+ * - pulsante per dire che sei a posto: "stay"
+ * - tutti i pulsanti delle fiches per puntare --> https://stackoverflow.com/questions/8680189/clickable-images-in-java
+ */
 
 public class ControlPanel extends JPanel {
-    private JButton hitButton;
-    private JButton standButton;
+    private final JButton hitButton;
+    private final JButton standButton;
+    private final FichesPanel fichesPanel;
 
-    public ControlPanel(){
+    public ControlPanel() throws IOException {
         super();
-        setPreferredSize(new Dimension(1280, 60));
+        setPreferredSize(new Dimension(1280, 100));
+        setLayout(new GridLayout(1,3));
+
         hitButton = new JButton("Hit a Card");
         standButton = new JButton("Stand");
+        fichesPanel = new FichesPanel();
 
-        JPanel p1 = new JPanel(new GridLayout(1, 3));
-        p1.add(hitButton);
-        p1.add(standButton);
-
-        this.add(p1);
+        add(hitButton);
+        add(standButton);
+        add(fichesPanel);
     }
 }

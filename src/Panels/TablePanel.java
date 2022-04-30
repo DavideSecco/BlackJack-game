@@ -10,7 +10,7 @@ public class TablePanel extends JPanel {
 
     public TablePanel(){
         super();
-        setPreferredSize(new Dimension(1280,550));
+        setPreferredSize(new Dimension(1280,600));
         try{
             backgroundImage = ImageIO.read(getClass().getResource("/images/background.png"));
         } catch (IOException e) {

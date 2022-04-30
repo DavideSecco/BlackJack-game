@@ -9,10 +9,10 @@ public class TestApp {
 
         GamePanel gamePanel = new GamePanel();
         frame.setContentPane(gamePanel);
-        // frame.setSize(508, 339);
-        frame.setSize(1280, 720);
+
+        frame.setSize(1280, 800);   // nota che penso comprenda anche la barra di sistema: da me toglie 40px
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setVisible(true);
         gamePanel.init();
     }

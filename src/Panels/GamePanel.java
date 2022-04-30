@@ -8,8 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 /**
- * E' pensato come la classe che rappresenta tutta l'interfaccia durante il gioco
- * Penso andrebbe fatto cosi:
+ * GamePanel: è il pannello visualizzato durante la partita, ed è composto da 3 pannelli:
  * -------------------------------------------------------------------------------
  *              DisplayPanel: Pannello dove si spiega cosa succede all'utente
  * -------------------------------------------------------------------------------
@@ -25,13 +24,14 @@ import java.io.IOException;
 public class GamePanel extends JPanel implements ActionListener {
     private JPanel totalPanel;
 
+    private DisplayPanel displayPanel;
     private TablePanel tablePanel;
     private ControlPanel controlPanel;
-    private DisplayPanel displayPanel;
+
 
     public GamePanel() throws IOException {
         super();
-
+        setPreferredSize(new Dimension(1280, 780));
         JPanel totalPanel = new JPanel(new BorderLayout());
 
         DisplayPanel displayPanel = new DisplayPanel();
