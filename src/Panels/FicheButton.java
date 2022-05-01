@@ -7,7 +7,6 @@ import java.io.IOException;
 
 public class FicheButton extends JButton {
     private Image img;
-    private JButton button;
 
     public FicheButton(String pathImage) throws IOException {
         super();

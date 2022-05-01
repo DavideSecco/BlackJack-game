@@ -1,6 +1,9 @@
 package Panels;
 
-import javax.imageio.ImageIO;
+import Cards.CardsDeck;
+import Participant.Dealer;
+import Participant.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,7 +24,7 @@ import java.io.IOException;
  * -------------------------------------------------------------------------------
  */
 
-public class GamePanel extends JPanel implements ActionListener {
+public class GamePanel extends JPanel implements ActionListener{
     private JPanel totalPanel;
 
     private DisplayPanel displayPanel;
@@ -29,7 +32,7 @@ public class GamePanel extends JPanel implements ActionListener {
     private ControlPanel controlPanel;
 
 
-    public GamePanel() throws IOException {
+    public GamePanel(Player player, Dealer dealer) throws IOException {
         super();
         setPreferredSize(new Dimension(1280, 780));
         JPanel totalPanel = new JPanel(new BorderLayout());
@@ -37,19 +40,25 @@ public class GamePanel extends JPanel implements ActionListener {
         DisplayPanel displayPanel = new DisplayPanel();
         totalPanel.add(BorderLayout.PAGE_START, displayPanel);
 
-        TablePanel tablePanel = new TablePanel();
+        TablePanel tablePanel = new TablePanel(player, dealer);
         totalPanel.add(BorderLayout.CENTER, tablePanel);
 
         ControlPanel controlPanel = new ControlPanel();
         totalPanel.add(BorderLayout.PAGE_END,controlPanel);
 
+        controlPanel.setButtonListener(new ButtonListener() {
+            @Override
+            public void buttonAction(ActionEvent e) {
+                System.out.println("GAME PANEL/TABLE PANEL: Hai premuto il tasto:" + e.getSource());
+            }
+        });
+
+
         this.add(totalPanel);
     }
 
 
-    public void init(){
 
-    }
 
     public void actionPerformed(ActionEvent e){
 

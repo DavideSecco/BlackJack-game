@@ -1,10 +1,14 @@
+package Cards;
+
+import Cards.Card;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
 public class CardsDeck {
-    private static final String[] suits = {"club", "diamond", "heart", "spade"};
-    private static final String[] ranks = {"ace", "deuce", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"};
+    private static final String[] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
+    private static final String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
     private static final int[] values = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
 
     private final ArrayList<Card> cards;
