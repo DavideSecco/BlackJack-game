@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import static Main.TestApp.dimension;
+
 /**
  * GamePanel: è il pannello visualizzato durante la partita, ed è composto da 3 pannelli:
  * -------------------------------------------------------------------------------
@@ -32,10 +34,9 @@ public class GamePanel extends JPanel implements ActionListener{
     private TablePanel tablePanel;
     private ControlPanel controlPanel;
 
-
-    public GamePanel(Player player, Dealer dealer) throws IOException {
+    public GamePanel(Player player, Dealer dealer, CardsDeck cardsDeck) throws IOException {
         super();
-        setPreferredSize(new Dimension(1280, 780));
+        setPreferredSize(dimension);
         JPanel totalPanel = new JPanel(new BorderLayout());
 
         displayPanel = new DisplayPanel();
@@ -44,15 +45,15 @@ public class GamePanel extends JPanel implements ActionListener{
         tablePanel = new TablePanel(player, dealer);
         totalPanel.add(BorderLayout.CENTER, tablePanel);
 
+<<<<<<< HEAD
         controlPanel = new ControlPanel();
+=======
+        controlPanel = new ControlPanel(player, cardsDeck);
+>>>>>>> ebb3bab56cb7dd304c47c78a474fb8da2bb5d178
         totalPanel.add(BorderLayout.PAGE_END,controlPanel);
 
-        controlPanel.setButtonListener(new ButtonListener() {
-            @Override
-            public void buttonAction(ActionEvent e) {
-                System.out.println("GAME PANEL/TABLE PANEL: Hai premuto il tasto:" + e.getSource());
-            }
-        });
+        controlPanel.addButtonListener(tablePanel);
+        controlPanel.addButtonListener(displayPanel);
 
 
 

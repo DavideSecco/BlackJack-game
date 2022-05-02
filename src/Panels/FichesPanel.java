@@ -6,9 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import static Main.TestApp.dimension;
+
 public class FichesPanel extends JPanel{
     private String path100 = "/images/fiche100.jpg";
-    private FicheButton button100;
+    private final FicheButton button100;
 
     private String path50 = "/images/fiche50.png";
     private FicheButton button50;
@@ -18,7 +20,7 @@ public class FichesPanel extends JPanel{
 
     public FichesPanel() throws IOException {
         super();
-        setPreferredSize(new Dimension(600,60));
+        setPreferredSize(new Dimension(dimension.width/12,dimension.height/9));
         setLayout(new GridLayout(1,3));
 
         button100 = new FicheButton(path100);
