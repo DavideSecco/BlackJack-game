@@ -24,7 +24,7 @@ public class TestApp {
         /* setto interfaccia grafica */
         JFrame frame = new JFrame("Pong");
 
-        GamePanel gamePanel = new GamePanel(player, dealer);
+        GamePanel gamePanel = new GamePanel(player, dealer, cardsDeck);
         frame.setContentPane(gamePanel);
 
         frame.setSize(1280, 800);   // nota che penso comprenda anche la barra di sistema: da me toglie 40px

@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements ActionListener{
     private ControlPanel controlPanel;
 
 
-    public GamePanel(Player player, Dealer dealer) throws IOException {
+    public GamePanel(Player player, Dealer dealer, CardsDeck cardsDeck) throws IOException {
         super();
         setPreferredSize(new Dimension(1280, 780));
         JPanel totalPanel = new JPanel(new BorderLayout());
@@ -43,7 +43,7 @@ public class GamePanel extends JPanel implements ActionListener{
         TablePanel tablePanel = new TablePanel(player, dealer);
         totalPanel.add(BorderLayout.CENTER, tablePanel);
 
-        ControlPanel controlPanel = new ControlPanel();
+        ControlPanel controlPanel = new ControlPanel(player, cardsDeck);
         totalPanel.add(BorderLayout.PAGE_END,controlPanel);
 
         controlPanel.setButtonListener(new ButtonListener() {

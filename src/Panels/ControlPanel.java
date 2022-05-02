@@ -1,5 +1,8 @@
 package Panels;
 
+import Cards.CardsDeck;
+import Participant.Player;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +24,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 
     private ButtonListener buttonListener;
 
-    public ControlPanel() throws IOException {
+    public ControlPanel(Player player, CardsDeck cardsDeck) throws IOException {
         super();
         setPreferredSize(new Dimension(1280, 100));
         setLayout(new GridLayout(1,3));
@@ -46,6 +49,7 @@ public class ControlPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == hitButton){
             System.out.println("PULSANTE HIT: sono stato premuto");
+            player.addKnownCard(cardsDeck);
             buttonListener.buttonAction(e);
         }
         if(e.getSource() == standButton){
