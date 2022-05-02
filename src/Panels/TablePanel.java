@@ -19,7 +19,7 @@ public class TablePanel extends JPanel {
 
     public TablePanel(Player player, Dealer dealer){
         super();
-        setPreferredSize(new Dimension(1280,600));
+        setPreferredSize(new Dimension(848,480));
         try{
             backgroundImage = ImageIO.read(getClass().getResource("/images/background.png"));
             faceDownCard = ImageIO.read(getClass().getResource("/images/CardsDeck1/BackHorizontal.png"));

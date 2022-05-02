@@ -4,10 +4,13 @@ import Cards.*;
 
 import java.util.ArrayList;
 
-public abstract class Parcitipant{
+public abstract class Participant {
     protected Hand hand;
 
-    public Parcitipant(){
+
+    public abstract void hitting(CardsDeck cardsDeck);
+
+    public Participant(){
         hand = new Hand();
     }
 

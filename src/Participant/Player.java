@@ -1,10 +1,8 @@
 package Participant;
 
-import Participant.Parcitipant;
+import Cards.*;
 
-import javax.naming.PartialResultException;
-
-public class Player extends Parcitipant {
+public class Player extends Participant {
     private String name;
     private int wins;
     private int fiches;     // potrebbe andare anche in participant ?
@@ -14,6 +12,11 @@ public class Player extends Parcitipant {
         this.name = "Pippo";
         this.wins = 0;
         this.fiches = 1000;
+    }
+
+
+    public void hitting(CardsDeck cardsDeck) {
+        hand.addKnownCard(cardsDeck);
     }
 
     @Override
