@@ -2,6 +2,7 @@ package Panels;
 
 import Cards.Card;
 import Participant.Dealer;
+import Participant.Participant;
 import Participant.Player;
 
 import javax.imageio.ImageIO;
@@ -53,9 +54,6 @@ public class TablePanel extends JPanel {
             else{
                 g.drawImage(faceDownCard, cardDealerPos.x, cardDealerPos.y, cardDimension.x, cardDimension.y, this);
             }
-
         }
     }
-
-
 }

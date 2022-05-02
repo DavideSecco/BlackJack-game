@@ -2,6 +2,7 @@ package Panels;
 
 import Cards.CardsDeck;
 import Participant.Dealer;
+import Participant.Participant;
 import Participant.Player;
 
 import javax.swing.*;
@@ -37,13 +38,13 @@ public class GamePanel extends JPanel implements ActionListener{
         setPreferredSize(new Dimension(1280, 780));
         JPanel totalPanel = new JPanel(new BorderLayout());
 
-        DisplayPanel displayPanel = new DisplayPanel();
+        displayPanel = new DisplayPanel();
         totalPanel.add(BorderLayout.PAGE_START, displayPanel);
 
-        TablePanel tablePanel = new TablePanel(player, dealer);
+        tablePanel = new TablePanel(player, dealer);
         totalPanel.add(BorderLayout.CENTER, tablePanel);
 
-        ControlPanel controlPanel = new ControlPanel();
+        controlPanel = new ControlPanel();
         totalPanel.add(BorderLayout.PAGE_END,controlPanel);
 
         controlPanel.setButtonListener(new ButtonListener() {
@@ -52,6 +53,10 @@ public class GamePanel extends JPanel implements ActionListener{
                 System.out.println("GAME PANEL/TABLE PANEL: Hai premuto il tasto:" + e.getSource());
             }
         });
+
+
+
+
 
 
         this.add(totalPanel);

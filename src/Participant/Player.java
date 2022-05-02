@@ -14,6 +14,12 @@ public class Player extends Participant {
         this.fiches = 1000;
     }
 
+    public void checkHand(){
+        if(hand.getTotalValue() > 21){
+            System.exit(1);
+        }
+    }
+
 
     public void hitting(CardsDeck cardsDeck) {
         hand.addKnownCard(cardsDeck);

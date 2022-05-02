@@ -31,7 +31,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 
 
 
-        hitButton = new JButton("Hit a Cards.Card");
+        hitButton = new JButton("Hit a Card");
         standButton = new JButton("Stand");
         fichesPanel = new FichesPanel();
 
@@ -54,10 +54,14 @@ public class ControlPanel extends JPanel implements ActionListener {
             TestApp.player.hitting(TestApp.cardsDeck);
             TestApp.gamePanel.revalidate();
             TestApp.gamePanel.repaint();
+            TestApp.player.checkHand();
             buttonListener.buttonAction(e);
         }
         if(e.getSource() == standButton){
             System.out.println("STAND BUTTON: sono stato premuto");
+            TestApp.dealer.play(TestApp.cardsDeck);
+            TestApp.gamePanel.revalidate();
+            TestApp.gamePanel.repaint();
             buttonListener.buttonAction(e);
         }
     }

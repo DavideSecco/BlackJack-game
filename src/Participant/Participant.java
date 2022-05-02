@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public abstract class Participant {
     protected Hand hand;
 
+    public int getValueHand(){ return hand.getTotalValue(); }
 
     public abstract void hitting(CardsDeck cardsDeck);
 

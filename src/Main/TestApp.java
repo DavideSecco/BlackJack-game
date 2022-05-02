@@ -3,6 +3,7 @@ package Main;
 import Cards.CardsDeck;
 import Panels.GamePanel;
 import Participant.Dealer;
+import Participant.Participant;
 import Participant.Player;
 
 import javax.swing.*;
@@ -16,6 +17,7 @@ public class TestApp {
     public static CardsDeck cardsDeck = new CardsDeck();
 
     public static GamePanel gamePanel;
+    public static boolean win;
 
     static {
         try {
