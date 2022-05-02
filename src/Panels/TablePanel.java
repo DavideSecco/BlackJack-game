@@ -1,16 +1,18 @@
 package Panels;
 
 import Cards.Card;
-import Participant.Dealer;
-import Participant.Player;
+import Participant.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TablePanel extends JPanel {
+import static Main.TestApp.*;
+
+public class TablePanel extends JPanel implements ButtonListener {
     private Image backgroundImage;
     private Image faceDownCard;
 
@@ -19,7 +21,7 @@ public class TablePanel extends JPanel {
 
     public TablePanel(Player player, Dealer dealer){
         super();
-        setPreferredSize(new Dimension(1280,600));
+        setPreferredSize(new Dimension(dimension.width, (int) (dimension.height/(1.4))));
         try{
             backgroundImage = ImageIO.read(getClass().getResource("/images/background.png"));
             faceDownCard = ImageIO.read(getClass().getResource("/images/CardsDeck1/BackHorizontal.png"));
@@ -27,19 +29,20 @@ public class TablePanel extends JPanel {
             System.out.println("Can't read image file");
         }
 
-        playerCards = player.getHand();
-        dealerCards = dealer.getHand();
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Point cardPlayerPos = new Point(100, 350);
-        Point cardDealerPos = new Point(100, 50);
+        Point cardPlayerPos = new Point(dimension.width/10, (int) (dimension.height/2.2));
+        Point cardDealerPos = new Point(dimension.width/10, dimension.height/13);
 
-        Point cardDimension = new Point(90, 135);
+        Point cardDimension = new Point(dimension.width/13, dimension.height/5);
 
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+
+        playerCards = player.getHand();
+        dealerCards = dealer.getHand();
 
         for (Card card : playerCards){
             cardPlayerPos.x = cardPlayerPos.x + 110;
@@ -53,9 +56,13 @@ public class TablePanel extends JPanel {
             else{
                 g.drawImage(faceDownCard, cardDealerPos.x, cardDealerPos.y, cardDimension.x, cardDimension.y, this);
             }
-
         }
     }
 
-
+    @Override
+    public void buttonAction(ActionEvent e) {
+        System.out.println("Sono il TablePanel e ho ricevuto l'ordine di ridisegnarmi");
+        this.revalidate();
+        this.repaint();
+    }
 }
