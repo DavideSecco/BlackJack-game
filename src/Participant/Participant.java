@@ -4,42 +4,48 @@ import Cards.*;
 
 import java.util.ArrayList;
 
-import static Main.TestApp.player;
+import static Main.TestApp.cardsDeck;
 
 public abstract class Participant {
-    protected Hand hand;
+    ArrayList<Card> cards;
 
-    protected boolean bust = false;
+    public Participant() {
+        this.cards = new ArrayList<Card>();
+    }
 
-    public int getValueHand(){ return hand.getTotalValue(); }
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
 
-    public void changeValue(){ hand.changeAce(); }
+    public void addKnownCard(){
+        cards.add(cardsDeck.pickCard());
+    }
 
-    public void checkHand(){
-        if(hand.getTotalValue() > 21){
-            bust=true;
+    public boolean isBust(){
+        if(this.getValueCards() > 21)
+            return true;
+        else
+            return false;
+    }
+
+    public int getValueCards(){
+        int totalValue = 0;
+        for(Card card : cards)
+            totalValue = totalValue + card.getValue();
+
+        if(isThereAce() && totalValue >= 21)
+            return totalValue - 10;
+        else
+            return totalValue;
+    }
+
+    private boolean isThereAce() {
+        for(Card card : this.getCards()){
+            if(card.getRank()=="Ace")
+                return true;
         }
-    }
-    public void hitting(CardsDeck cardsDeck) {
-
-        hand.addKnownCard(cardsDeck);
-
-        for(Card card : hand.getCards()){
-            if(card.getRank()=="Ace" && hand.getTotalValue()>21){
-                card.changeAceValue();
-            }
-        }
-
-
+        return false;
     }
 
-    public Participant(){
-        hand = new Hand();
-    }
 
-    public boolean getBust(){ return bust; }
-
-    public ArrayList<Card> getHand() {
-        return hand.getCards();
-    }
 }

@@ -7,12 +7,13 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import static Main.TestApp.*;
 
-public class TablePanel extends JPanel implements ButtonListener {
+public class TablePanel extends JPanel implements ActionListener {
     private Image backgroundImage;
     private Image faceDownCard;
 
@@ -28,7 +29,6 @@ public class TablePanel extends JPanel implements ButtonListener {
         } catch (IOException e) {
             System.out.println("Can't read image file");
         }
-
     }
 
     public void paintComponent(Graphics g) {
@@ -41,8 +41,8 @@ public class TablePanel extends JPanel implements ButtonListener {
 
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
 
-        playerCards = player.getHand();
-        dealerCards = dealer.getHand();
+        playerCards = player.getCards();
+        dealerCards = dealer.getCards();
 
         for (Card card : playerCards){
             cardPlayerPos.x = cardPlayerPos.x + 110;
@@ -60,9 +60,13 @@ public class TablePanel extends JPanel implements ButtonListener {
     }
 
     @Override
-    public void buttonAction(ActionEvent e, JButton button) {
-
+    public void actionPerformed(ActionEvent e) {
         System.out.println("Sono il TablePanel e ho ricevuto l'ordine di ridisegnarmi");
+
+        if(e.getSource() == ControlPanel.standButton || player.isBust())
+            dealer.discoverAll();   //scopro la carta scoperta
+
+
         this.revalidate();
         this.repaint();
     }

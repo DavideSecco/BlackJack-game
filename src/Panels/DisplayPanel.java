@@ -1,16 +1,13 @@
 package Panels;
 
-import Main.TestApp;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import static Main.TestApp.*;
 
-
-import static Main.TestApp.dimension;
-
-public class DisplayPanel extends JPanel implements ButtonListener {
+public class DisplayPanel extends JPanel implements ActionListener {
     private JLabel label;
 
     public DisplayPanel(){
@@ -22,19 +19,19 @@ public class DisplayPanel extends JPanel implements ButtonListener {
     }
 
     @Override
-    public void buttonAction(ActionEvent e, JButton button) {
-
-        if(e.getSource() == button){
-            if(TestApp.win==1)
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == ControlPanel.standButton){
+            if(whoWon() == 1)
                 label.setText("Hai vinto");
-            else if(TestApp.win==0)
+            else if(whoWon() == 0)
                 label.setText("Pareggio");
-            else label.setText("Hai perso");
+            else
+                label.setText("Hai perso");
         }
-        if(TestApp.player.getBust()==true) label.setText("Hai Sballato");
 
-
+        if(e.getSource() == ControlPanel.hitButton){
+            if(player.isBust())
+                label.setText("Hai Sballato");
+        }
     }
-
-
 }

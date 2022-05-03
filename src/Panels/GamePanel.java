@@ -26,12 +26,12 @@ import static Main.TestApp.dimension;
  * -------------------------------------------------------------------------------
  */
 
-public class GamePanel extends JPanel implements ActionListener{
-    private JPanel totalPanel;
+public class GamePanel extends JPanel {
+    JPanel totalPanel;
 
-    private DisplayPanel displayPanel;
-    private TablePanel tablePanel;
-    private ControlPanel controlPanel;
+    DisplayPanel displayPanel;
+    TablePanel tablePanel;
+    ControlPanel controlPanel;
 
     public GamePanel(Player player, Dealer dealer, CardsDeck cardsDeck) throws IOException {
         super();
@@ -47,17 +47,21 @@ public class GamePanel extends JPanel implements ActionListener{
         controlPanel = new ControlPanel(player, cardsDeck);
         totalPanel.add(BorderLayout.PAGE_END,controlPanel);
 
-        controlPanel.addButtonListener(tablePanel);
-        controlPanel.addButtonListener(displayPanel);
-
+        controlPanel.addActionListener(tablePanel);
+        controlPanel.addActionListener(displayPanel);
 
         this.add(totalPanel);
     }
 
+    public DisplayPanel getDisplayPanel() {
+        return displayPanel;
+    }
 
+    public TablePanel getTablePanel() {
+        return tablePanel;
+    }
 
-
-    public void actionPerformed(ActionEvent e){
-
+    public ControlPanel getControlPanel() {
+        return controlPanel;
     }
 }

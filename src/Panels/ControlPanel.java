@@ -21,17 +21,17 @@ import static Main.TestApp.*;
  */
 
 public class ControlPanel extends JPanel implements ActionListener {
-    private final JButton hitButton;
-    private final JButton standButton;
+    protected static JButton hitButton;
+    protected static JButton standButton;
     private final FichesPanel fichesPanel;
 
-    private List<ButtonListener> buttonListeners;
+    private List<ActionListener> actionListener;
 
     public ControlPanel(Player player, CardsDeck cardsDeck) throws IOException {
         super();
         setPreferredSize(new Dimension(dimension.width, dimension.height/9));
         setLayout(new GridLayout(1,3));
-        buttonListeners = new ArrayList<ButtonListener>();
+        actionListener = new ArrayList<ActionListener>();
 
         hitButton = new JButton("Hit a Card");
         standButton = new JButton("Stand");
@@ -45,28 +45,35 @@ public class ControlPanel extends JPanel implements ActionListener {
         add(fichesPanel);
     }
 
-    public void addButtonListener(ButtonListener buttonListener) {
-        this.buttonListeners.add(buttonListener);
+    public void addActionListener(ActionListener actionListener) {
+        this.actionListener.add(actionListener);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == hitButton){
             System.out.println("PULSANTE HIT: sono stato premuto");
-            player.hitting(cardsDeck);
-            sendToButtonListeners(e, standButton);
+            player.addKnownCard();
+            sendToActionListeners(e);
+            if(player.isBust())
+                disableAll();
         }
         if(e.getSource() == standButton){
             System.out.println("STAND BUTTON: sono stato premuto");
             dealer.play(cardsDeck);
-            sendToButtonListeners(e,standButton);
+            sendToActionListeners(e);
+            disableAll();
         }
     }
 
-
-    public void sendToButtonListeners(ActionEvent e, JButton button){
-        for(ButtonListener buttonListener : buttonListeners){
-            buttonListener.buttonAction(e, button);
+    public void sendToActionListeners(ActionEvent e){
+        for(ActionListener actionListener : actionListener){
+            actionListener.actionPerformed(e);
         }
+    }
+
+    public void disableAll(){
+        hitButton.setEnabled(false);
+        standButton.setEnabled(false);
     }
 }

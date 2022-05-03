@@ -14,16 +14,4 @@ public class Player extends Participant {
         this.wins = 0;
         this.fiches = 1000;
     }
-
-
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "hand=" + hand +
-                ", name='" + name + '\'' +
-                ", wins=" + wins +
-                ", fiches=" + fiches +
-                '}';
-    }
 }

@@ -1,36 +1,42 @@
 package Panels;
 
+import Cards.Fiche;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import static Main.TestApp.dimension;
 
 public class FichesPanel extends JPanel{
-    private String path100 = "/images/fiche100.jpg";
-    private final Fiche button100;
-
-    private String path50 = "/images/fiche50.png";
-    private Fiche button50;
-
-    private String path10 = "/images/fiche10.png";
-    private Fiche button10;
+    private String[] files;
+    private int[] values;
+    static Fiche[] ficheButton;
 
     public FichesPanel() throws IOException {
         super();
+        files = new String[]{"fiche100.jpg", "fiche50.png", "fiche10.png" };
+        values = new int[] {100, 50, 10};
+        ficheButton = new Fiche[files.length];
+
         setPreferredSize(new Dimension(dimension.width/12,dimension.height/9));
         setLayout(new GridLayout(1,3));
 
-        button100 = new Fiche(100, path100);
-        button50 = new Fiche(50, path50);
-        button10 = new Fiche(10, path10);
+        for(int i = 0; i < ficheButton.length; i++){
+            ficheButton[i] = new Fiche(values[i], files[i]);
+            add(ficheButton[i]);
+        }
+    }
 
-        // button100.addActionListener(this);
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
-        add(button100);
-        add(button50);
-        add(button10);
+        int pos = 0;
+
+        for(Fiche fichebutton : ficheButton){
+            fichebutton.setContentAreaFilled(false);
+            g.drawImage(fichebutton.getImg(), pos, 0, getWidth()/ficheButton.length, getHeight(), this);
+            pos += dimension.width/9;
+        }
     }
 }
