@@ -10,22 +10,22 @@ import static Main.TestApp.dimension;
 
 public class FichesPanel extends JPanel{
     private String path100 = "/images/fiche100.jpg";
-    private final FicheButton button100;
+    private final Fiche button100;
 
     private String path50 = "/images/fiche50.png";
-    private FicheButton button50;
+    private Fiche button50;
 
     private String path10 = "/images/fiche10.png";
-    private FicheButton button10;
+    private Fiche button10;
 
     public FichesPanel() throws IOException {
         super();
         setPreferredSize(new Dimension(dimension.width/12,dimension.height/9));
         setLayout(new GridLayout(1,3));
 
-        button100 = new FicheButton(path100);
-        button50 = new FicheButton(path50);
-        button10 = new FicheButton(path10);
+        button100 = new Fiche(100, path100);
+        button50 = new Fiche(50, path50);
+        button10 = new Fiche(10, path10);
 
         // button100.addActionListener(this);
 
