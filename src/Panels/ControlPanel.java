@@ -8,14 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
-import Main.TestApp;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static Main.TestApp.*;
-
 
 /**
  * E' il pannello dei pulsanti e dei controlli, nella mia testa ci va:
@@ -29,24 +25,13 @@ public class ControlPanel extends JPanel implements ActionListener {
     private final JButton standButton;
     private final FichesPanel fichesPanel;
 
-
-
-    private ButtonListener buttonListener;
-
-
-
-    public ControlPanel() throws IOException {
-
     private List<ButtonListener> buttonListeners;
 
     public ControlPanel(Player player, CardsDeck cardsDeck) throws IOException {
-
         super();
         setPreferredSize(new Dimension(dimension.width, dimension.height/9));
         setLayout(new GridLayout(1,3));
         buttonListeners = new ArrayList<ButtonListener>();
-
-
 
         hitButton = new JButton("Hit a Card");
         standButton = new JButton("Stand");
@@ -68,32 +53,20 @@ public class ControlPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == hitButton){
             System.out.println("PULSANTE HIT: sono stato premuto");
-
-            TestApp.player.hitting(TestApp.cardsDeck);
-            TestApp.gamePanel.revalidate();
-            TestApp.gamePanel.repaint();
-            TestApp.player.checkHand();
-            buttonListener.buttonAction(e);
+            player.hitting(cardsDeck);
+            sendToButtonListeners(e, standButton);
         }
         if(e.getSource() == standButton){
             System.out.println("STAND BUTTON: sono stato premuto");
-            TestApp.dealer.play(TestApp.cardsDeck);
-            TestApp.gamePanel.revalidate();
-            TestApp.gamePanel.repaint();
-
-            player.addKnownCard(cardsDeck);
-            sendToButtonListeners(e);
-        }
-        if(e.getSource() == standButton){
-            System.out.println("STAND BUTTON: sono stato premuto");
-            sendToButtonListeners(e);
+            dealer.play(cardsDeck);
+            sendToButtonListeners(e,standButton);
         }
     }
 
-    public void sendToButtonListeners(ActionEvent e){
-        for(ButtonListener buttonListener : buttonListeners){
 
-            buttonListener.buttonAction(e);
+    public void sendToButtonListeners(ActionEvent e, JButton button){
+        for(ButtonListener buttonListener : buttonListeners){
+            buttonListener.buttonAction(e, button);
         }
     }
 }

@@ -13,7 +13,7 @@ import java.io.IOException;
 public class Card {
     private final String suit;
     private final String rank;
-    private final int value;
+    private int value;
     private boolean known;
     private Image img;
 
@@ -28,6 +28,8 @@ public class Card {
             System.out.println("Non ho trovato l'immagine di " + getRank() + " " + getSuit());
         }
     }
+
+    public void changeAceValue(){ value = 1; }
 
     public String getSuit() {
         return suit;

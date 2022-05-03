@@ -2,7 +2,6 @@ package Panels;
 
 import Cards.CardsDeck;
 import Participant.Dealer;
-import Participant.Participant;
 import Participant.Player;
 
 import javax.swing.*;
@@ -37,7 +36,7 @@ public class GamePanel extends JPanel implements ActionListener{
     public GamePanel(Player player, Dealer dealer, CardsDeck cardsDeck) throws IOException {
         super();
         setPreferredSize(dimension);
-        JPanel totalPanel = new JPanel(new BorderLayout());
+        totalPanel = new JPanel(new BorderLayout());
 
         displayPanel = new DisplayPanel();
         totalPanel.add(BorderLayout.PAGE_START, displayPanel);
@@ -45,19 +44,11 @@ public class GamePanel extends JPanel implements ActionListener{
         tablePanel = new TablePanel(player, dealer);
         totalPanel.add(BorderLayout.CENTER, tablePanel);
 
-<<<<<<< HEAD
-        controlPanel = new ControlPanel();
-=======
         controlPanel = new ControlPanel(player, cardsDeck);
->>>>>>> ebb3bab56cb7dd304c47c78a474fb8da2bb5d178
         totalPanel.add(BorderLayout.PAGE_END,controlPanel);
 
         controlPanel.addButtonListener(tablePanel);
         controlPanel.addButtonListener(displayPanel);
-
-
-
-
 
 
         this.add(totalPanel);

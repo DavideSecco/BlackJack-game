@@ -5,9 +5,7 @@ import Main.TestApp;
 
 public class Dealer extends Participant {
 
-    public void hitting(CardsDeck cardsDeck) {
-        hand.addKnownCard(cardsDeck);
-    }
+
 
     public void play(CardsDeck cardsDeck){
 
@@ -19,8 +17,9 @@ public class Dealer extends Participant {
 
         //semplice confronto per capire chi ha vinto
 
-        if((hand.getTotalValue() < TestApp.player.getValueHand() && hand.getTotalValue() < 22) || hand.getTotalValue() > 21) TestApp.win=true;
-        else TestApp.win=false;
+        if((hand.getTotalValue() < TestApp.player.getValueHand() && hand.getTotalValue() < 22) || hand.getTotalValue() > 21) TestApp.win=1;
+        else if(hand.getTotalValue() == TestApp.player.getValueHand() && hand.getTotalValue() < 22) TestApp.win=0;
+        else TestApp.win=-1;
 
     }
 

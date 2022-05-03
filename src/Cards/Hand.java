@@ -13,6 +13,14 @@ public class Hand {
         cards.add(cardsDeck.pickCard());
     }
 
+    public void changeAce(){
+        for(Card card : cards){
+            if( card.getRank()=="ace" ){
+                card.changeAceValue();
+            }
+        }
+    }
+
     public void addUnknownCard(CardsDeck cardsDeck){
         Card card = cardsDeck.pickCard();
         card.setKnown(false);

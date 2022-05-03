@@ -1,13 +1,7 @@
 package Panels;
 
 import Cards.Card;
-<<<<<<< HEAD
-import Participant.Dealer;
-import Participant.Participant;
-import Participant.Player;
-=======
 import Participant.*;
->>>>>>> ebb3bab56cb7dd304c47c78a474fb8da2bb5d178
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -27,11 +21,7 @@ public class TablePanel extends JPanel implements ButtonListener {
 
     public TablePanel(Player player, Dealer dealer){
         super();
-<<<<<<< HEAD
-        setPreferredSize(new Dimension(848,480));
-=======
         setPreferredSize(new Dimension(dimension.width, (int) (dimension.height/(1.4))));
->>>>>>> ebb3bab56cb7dd304c47c78a474fb8da2bb5d178
         try{
             backgroundImage = ImageIO.read(getClass().getResource("/images/background.png"));
             faceDownCard = ImageIO.read(getClass().getResource("/images/CardsDeck1/BackHorizontal.png"));
@@ -68,14 +58,12 @@ public class TablePanel extends JPanel implements ButtonListener {
             }
         }
     }
-<<<<<<< HEAD
-=======
 
     @Override
-    public void buttonAction(ActionEvent e) {
+    public void buttonAction(ActionEvent e, JButton button) {
+
         System.out.println("Sono il TablePanel e ho ricevuto l'ordine di ridisegnarmi");
         this.revalidate();
         this.repaint();
     }
->>>>>>> ebb3bab56cb7dd304c47c78a474fb8da2bb5d178
 }
