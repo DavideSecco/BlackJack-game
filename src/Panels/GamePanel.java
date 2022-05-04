@@ -47,6 +47,7 @@ public class GamePanel extends JPanel {
 
         controlPanel.addActionListener(tablePanel);
         controlPanel.addActionListener(displayPanel);
+        controlPanel.addActionListener(displayPanel.betPanel);
 
         this.add(totalPanel);
     }

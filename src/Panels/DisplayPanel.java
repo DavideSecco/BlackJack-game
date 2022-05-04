@@ -9,13 +9,19 @@ import static Main.TestApp.*;
 
 public class DisplayPanel extends JPanel implements ActionListener {
     private JLabel label;
+    protected static BetPanel betPanel;
 
     public DisplayPanel(){
         super();
         setPreferredSize(new Dimension(dimension.width, dimension.height/10));
-        label = new JLabel("Pesca una carta o rimani con quelle che hai");
+        setLayout(new GridLayout(1,2));
+
+        label = new JLabel("Pesca una carta o rimani con quelle che hai", SwingConstants.CENTER);
+        label.setBorder(BorderFactory.createBevelBorder(1));
+        betPanel = new BetPanel();
 
         this.add(label);
+        this.add(betPanel);
     }
 
     @Override

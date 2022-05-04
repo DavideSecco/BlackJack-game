@@ -11,7 +11,7 @@ import static Main.TestApp.dimension;
 public class FichesPanel extends JPanel{
     private String[] files;
     private int[] values;
-    static Fiche[] ficheButton;
+    public static Fiche[] ficheButton;
 
     public FichesPanel() throws IOException {
         super();
@@ -27,7 +27,6 @@ public class FichesPanel extends JPanel{
             add(ficheButton[i]);
         }
     }
-
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 

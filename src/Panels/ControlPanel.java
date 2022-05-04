@@ -1,6 +1,7 @@
 package Panels;
 
 import GameElements.CardsDeck;
+import GameElements.Fiche;
 import Participant.Player;
 
 import javax.swing.*;
@@ -23,7 +24,7 @@ import static Main.TestApp.*;
 public class ControlPanel extends JPanel implements ActionListener {
     protected static JButton hitButton;
     protected static JButton standButton;
-    private final FichesPanel fichesPanel;
+    private FichesPanel fichesPanel;
 
     private List<ActionListener> actionListener;
 
@@ -39,6 +40,10 @@ public class ControlPanel extends JPanel implements ActionListener {
 
         hitButton.addActionListener(this);
         standButton.addActionListener(this);
+
+        for(Fiche fiche : fichesPanel.ficheButton){
+            fiche.addActionListener(this);
+        }
 
         add(hitButton);
         add(standButton);
@@ -63,6 +68,24 @@ public class ControlPanel extends JPanel implements ActionListener {
             dealer.play(cardsDeck);
             sendToActionListeners(e);
             disableAll();
+        }
+        if(e.getSource() == fichesPanel.ficheButton[0]){
+            System.out.println("FICHE 100: sono stato premuto");
+            player.setBet(100);
+            player.setAccount(100);
+            sendToActionListeners(e);
+        }
+        if(e.getSource() == fichesPanel.ficheButton[1]){
+            System.out.println("FICHE 50: sono stato premuto");
+            player.setBet(50);
+            player.setAccount(50);
+            sendToActionListeners(e);
+        }
+        if(e.getSource() == fichesPanel.ficheButton[2]){
+            System.out.println("FICHE 10: sono stato premuto");
+            player.setBet(10);
+            player.setAccount(10);
+            sendToActionListeners(e);
         }
     }
 
