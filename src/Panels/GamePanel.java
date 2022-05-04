@@ -1,13 +1,11 @@
 package Panels;
 
-import Cards.CardsDeck;
+import GameElements.CardsDeck;
 import Participant.Dealer;
 import Participant.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import static Main.TestApp.dimension;

@@ -1,6 +1,6 @@
 package Panels;
 
-import Cards.Card;
+import GameElements.Card;
 import Participant.*;
 
 import javax.imageio.ImageIO;

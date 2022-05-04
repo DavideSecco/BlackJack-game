@@ -1,6 +1,6 @@
 package Panels;
 
-import Cards.CardsDeck;
+import GameElements.CardsDeck;
 import Participant.Player;
 
 import javax.swing.*;

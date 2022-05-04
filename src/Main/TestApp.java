@@ -1,5 +1,5 @@
 package Main;
-import Cards.CardsDeck;
+import GameElements.CardsDeck;
 import Panels.MainFrame;
 import Participant.Dealer;
 import Participant.Player;
@@ -16,9 +16,12 @@ public class TestApp {
     public static void main(String[] args) throws IOException {
         player.addKnownCard();
         player.addKnownCard();
+        player.addKnownCard();
 
-        dealer.addUnkonwCard(cardsDeck);
-        dealer.addKnownCard();
+        System.out.println(player.getValueCards());
+
+        //dealer.addUnkonwCard(cardsDeck);
+        //dealer.addKnownCard();
 
         MainFrame mainFrame = new MainFrame();
     }

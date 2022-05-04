@@ -1,6 +1,6 @@
 package Participant;
 
-import Cards.*;
+import GameElements.*;
 
 import static Main.TestApp.player;
 

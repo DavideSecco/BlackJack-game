@@ -1,6 +1,6 @@
 package Panels;
 
-import Cards.Fiche;
+import GameElements.Fiche;
 
 import javax.swing.*;
 import java.awt.*;

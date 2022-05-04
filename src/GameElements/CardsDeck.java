@@ -1,6 +1,4 @@
-package Cards;
-
-import Cards.Card;
+package GameElements;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +7,7 @@ import java.util.Iterator;
 public class CardsDeck {
     private static final String[] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
     private static final String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
-    private static final int[] values = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 1};
+    private static final int[] values = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
 
     private final ArrayList<Card> cards;
     private Iterator iterator;
@@ -22,7 +20,7 @@ public class CardsDeck {
             }
         }
         //Shuffle after the creation
-        Collections.shuffle(this.cards);
+        //Collections.shuffle(this.cards);
         iterator = cards.iterator();
 
     }

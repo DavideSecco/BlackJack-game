@@ -1,4 +1,4 @@
-package Cards;
+package GameElements;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

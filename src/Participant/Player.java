@@ -1,8 +1,5 @@
 package Participant;
 
-import Cards.*;
-import Main.TestApp;
-
 public class Player extends Participant {
     private String name;
     private int wins;

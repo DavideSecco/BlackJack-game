@@ -1,6 +1,6 @@
 package Participant;
 
-import Cards.*;
+import GameElements.*;
 
 import java.util.ArrayList;
 
@@ -28,23 +28,31 @@ public abstract class Participant {
             return false;
     }
 
+    /**
+     * Ritorna il valore delle carte che si posseggono;
+     * gestisce anche il valore degli assi
+     * @return
+     */
+
     public int getValueCards(){
         int totalValue = 0;
         for(Card card : cards)
             totalValue = totalValue + card.getValue();
 
-        if(isThereAce() && totalValue >= 21)
-            return totalValue - 10;
-        else
-            return totalValue;
+       for(int i=0; i < isThereAce() && totalValue > 21; i++){
+            totalValue -= 10;
+        }
+
+        return totalValue;
     }
 
-    private boolean isThereAce() {
+    private int isThereAce() {
+        int numberAces=0;
         for(Card card : this.getCards()){
             if(card.getRank()=="Ace")
-                return true;
+                numberAces++;
         }
-        return false;
+        return numberAces;
     }
 
 

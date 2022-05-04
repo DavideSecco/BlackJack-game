@@ -1,8 +1,7 @@
-package Cards;
+package GameElements;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.IOException;
 
 /**
  * suit -->
