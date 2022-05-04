@@ -21,6 +21,8 @@ public class Fiche extends JButton {
         }
     }
 
+    public int getValue() { return value; }
+
     public Image getImg() {
         return img;
     }

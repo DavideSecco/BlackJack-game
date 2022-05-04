@@ -6,7 +6,6 @@ public class Player extends Participant {
     private int account;     // potrebbe andare anche in participant ?
     private int bet = 0;
 
-
     public Player(){
         super();
         this.name = "Pippo";
@@ -18,29 +17,33 @@ public class Player extends Participant {
         return bet;
     }
 
+    public int getAccount() {
+        return account;
+    }
 
-    //non è un vero setter, perchè aggiunge le fiche alla puntata che si vuole ottenere
+    public void setAccount(int account) {
+        this.account = account;
+    }
 
     public void setBet(int bet) {
-        this.bet += bet;
-    }
-
-
-    //stessa cosa di sopra, toglie i soldi scommessi dal conto
-
-    public void setAccount(int bet) {
-        this.account -= bet;
-    }
-
-    public String getName() {
-        return name;
+        this.bet = bet;
     }
 
     public int getWins() {
         return wins;
     }
 
-    public int getAccount() {
-        return account;
+    public String getName() {
+        return name;
     }
+
+    public void bet(int amount){
+        this.bet = this.bet + amount;
+        this.account = this.account - amount;
+    }
+
+    public void addToAccount(int amount){
+        this.account = this.account + amount;
+    }
+
 }

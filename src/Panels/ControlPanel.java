@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Main.TestApp.*;
+import static Panels.FichesPanel.ficheButton;
 
 /**
  * E' il pannello dei pulsanti e dei controlli, nella mia testa ci va:
@@ -24,7 +25,7 @@ import static Main.TestApp.*;
 public class ControlPanel extends JPanel implements ActionListener {
     protected static JButton hitButton;
     protected static JButton standButton;
-    private FichesPanel fichesPanel;
+    private static FichesPanel fichesPanel;
 
     private List<ActionListener> actionListener;
 
@@ -41,9 +42,11 @@ public class ControlPanel extends JPanel implements ActionListener {
         hitButton.addActionListener(this);
         standButton.addActionListener(this);
 
-        for(Fiche fiche : fichesPanel.ficheButton){
+        for(Fiche fiche : ficheButton)
             fiche.addActionListener(this);
-        }
+
+        hitButton.setEnabled(false);
+        standButton.setEnabled(false);
 
         add(hitButton);
         add(standButton);
@@ -59,35 +62,33 @@ public class ControlPanel extends JPanel implements ActionListener {
         if(e.getSource() == hitButton){
             System.out.println("PULSANTE HIT: sono stato premuto");
             player.addKnownCard();
-            sendToActionListeners(e);
+
             if(player.isBust())
-                disableAll();
+                buttonsEnable(false);
         }
         if(e.getSource() == standButton){
             System.out.println("STAND BUTTON: sono stato premuto");
             dealer.play(cardsDeck);
             dispenserMoney();
-            sendToActionListeners(e);
-            disableAll();
+            buttonsEnable(false);
         }
-        if(e.getSource() == fichesPanel.ficheButton[0]){
+        if(e.getSource() == ficheButton[0]){
             System.out.println("FICHE 100: sono stato premuto");
-            player.setBet(100);
-            player.setAccount(100);
-            sendToActionListeners(e);
+            buttonsEnable(true);
+            player.bet(ficheButton[0].getValue());
         }
-        if(e.getSource() == fichesPanel.ficheButton[1]){
+        if(e.getSource() == ficheButton[1]){
             System.out.println("FICHE 50: sono stato premuto");
-            player.setBet(50);
-            player.setAccount(50);
-            sendToActionListeners(e);
+            buttonsEnable(true);
+            player.bet(ficheButton[1].getValue());
         }
-        if(e.getSource() == fichesPanel.ficheButton[2]){
+        if(e.getSource() == ficheButton[2]){
             System.out.println("FICHE 10: sono stato premuto");
-            player.setBet(10);
-            player.setAccount(10);
-            sendToActionListeners(e);
+            buttonsEnable(true);
+            player.bet(ficheButton[2].getValue());
         }
+
+        sendToActionListeners(e);
     }
 
     public void sendToActionListeners(ActionEvent e){
@@ -96,8 +97,11 @@ public class ControlPanel extends JPanel implements ActionListener {
         }
     }
 
-    public void disableAll(){
-        hitButton.setEnabled(false);
-        standButton.setEnabled(false);
+    public void buttonsEnable(Boolean bool){
+        hitButton.setEnabled(bool);
+        standButton.setEnabled(bool);
+
+        for(Fiche fiche : ficheButton)
+            fiche.setEnabled(bool);
     }
 }

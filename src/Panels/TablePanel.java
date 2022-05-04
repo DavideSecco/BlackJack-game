@@ -66,7 +66,6 @@ public class TablePanel extends JPanel implements ActionListener {
         if(e.getSource() == ControlPanel.standButton || player.isBust())
             dealer.discoverAll();   //scopro la carta scoperta
 
-
         this.revalidate();
         this.repaint();
     }

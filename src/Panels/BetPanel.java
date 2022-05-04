@@ -27,7 +27,7 @@ public class BetPanel extends JPanel implements ActionListener {
         betLabel= new JLabel("Bet:");
         accountLabel= new JLabel("Account:");
 
-/*
+        /*
 
         //COLORI, per ora rimane commentato perchè non riesco a trovare dei colori che mi convincano
 
@@ -37,7 +37,6 @@ public class BetPanel extends JPanel implements ActionListener {
         account.setForeground(Color.WHITE);
 
         */
-
 
         //BORDI
 

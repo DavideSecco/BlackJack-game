@@ -17,7 +17,6 @@ public class TestApp {
         player.addKnownCard();
         player.addKnownCard();
 
-
         System.out.println(player.getValueCards());
 
         dealer.addUnkonwCard(cardsDeck);
@@ -30,7 +29,6 @@ public class TestApp {
      * 1 --> player ha vinto
      * 0 --> pareggio
      * -1 --> dealer ha vinto
-     * @return
      */
 
     public static int whoWon(){
@@ -48,17 +46,11 @@ public class TestApp {
             return -1;
     }
 
-
-
-
-
-
     //Non so se questa funzione vada qui nella TestApp
     //                    |
     //                    |
     //                    |
     //                    V
-
 
     /**
      * se il giocatore vince gli da i soldi della vincita nel conto più quelli scommessi
@@ -67,14 +59,11 @@ public class TestApp {
      */
 
     public static void dispenserMoney(){
-        if(whoWon() == 1)
-            player.setAccount(-2*player.getBet());       //ci sono i segni meno perchè ho sfruttato una
-        else if(whoWon() == 0)                           //funzione esistente di player che sottrae dal
-            player.setAccount(-player.getBet());         //conto, io invece devo aggiungere
-
-        player.setBet(-player.getBet());                 //questa linea serve ad azzerare la bet, togliendo
-                                                         //quello che si aveva scommesso prima
+        if(whoWon() == 1)                                   // player ha vinto
+            player.addToAccount(2*player.getBet());
+        else if(whoWon() == 0)                              // player ha pareggiato
+            player.addToAccount(player.getBet());
+        else                                                // player ha perso
+            player.addToAccount(0);
     }
-
-
 }

@@ -16,7 +16,7 @@ public class DisplayPanel extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(dimension.width, dimension.height/10));
         setLayout(new GridLayout(1,2));
 
-        label = new JLabel("Pesca una carta o rimani con quelle che hai", SwingConstants.CENTER);
+        label = new JLabel("Pesca una carta o rimani con quelle che hai (in realtàa prima devi purntare)", SwingConstants.CENTER);
         label.setBorder(BorderFactory.createBevelBorder(1));
         betPanel = new BetPanel();
 
