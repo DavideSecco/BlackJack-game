@@ -16,12 +16,12 @@ public class TestApp {
     public static void main(String[] args) throws IOException {
         player.addKnownCard();
         player.addKnownCard();
-        player.addKnownCard();
+
 
         System.out.println(player.getValueCards());
 
-        //dealer.addUnkonwCard(cardsDeck);
-        //dealer.addKnownCard();
+        dealer.addUnkonwCard(cardsDeck);
+        dealer.addKnownCard();
 
         MainFrame mainFrame = new MainFrame();
     }
@@ -47,5 +47,34 @@ public class TestApp {
         else
             return -1;
     }
+
+
+
+
+
+
+    //Non so se questa funzione vada qui nella TestApp
+    //                    |
+    //                    |
+    //                    |
+    //                    V
+
+
+    /**
+     * se il giocatore vince gli da i soldi della vincita nel conto più quelli scommessi
+     * se pareggia gli ridà solo quelli scommessi
+     * infine riporta a zero la scommessa per le prossime partite
+     */
+
+    public static void dispenserMoney(){
+        if(whoWon() == 1)
+            player.setAccount(-2*player.getBet());       //ci sono i segni meno perchè ho sfruttato una
+        else if(whoWon() == 0)                           //funzione esistente di player che sottrae dal
+            player.setAccount(-player.getBet());         //conto, io invece devo aggiungere
+
+        player.setBet(-player.getBet());                 //questa linea serve ad azzerare la bet, togliendo
+                                                         //quello che si aveva scommesso prima
+    }
+
 
 }

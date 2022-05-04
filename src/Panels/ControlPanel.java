@@ -66,6 +66,7 @@ public class ControlPanel extends JPanel implements ActionListener {
         if(e.getSource() == standButton){
             System.out.println("STAND BUTTON: sono stato premuto");
             dealer.play(cardsDeck);
+            dispenserMoney();
             sendToActionListeners(e);
             disableAll();
         }

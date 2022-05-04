@@ -63,6 +63,7 @@ public class BetPanel extends JPanel implements ActionListener {
         //a prescindere dalla fiche che si clicca bisogna
         //sempre fare queste due funzioni
 
+        System.out.println("BetPanel");
         bet.setText(Integer.toString(player.getBet()));
         account.setText(Integer.toString(player.getAccount()));
 
