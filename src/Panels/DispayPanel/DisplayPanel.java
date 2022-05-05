@@ -1,4 +1,7 @@
-package Panels;
+package Panels.DispayPanel;
+
+import Panels.ControlPanel.ControlPanel;
+import Panels.DispayPanel.BetPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +12,7 @@ import static Main.TestApp.*;
 
 public class DisplayPanel extends JPanel implements ActionListener {
     private JLabel label;
-    protected static BetPanel betPanel;
+    public static BetPanel betPanel;
 
     public DisplayPanel(){
         super();

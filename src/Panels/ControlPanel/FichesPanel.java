@@ -1,4 +1,4 @@
-package Panels;
+package Panels.ControlPanel;
 
 import GameElements.Fiche;
 
@@ -32,6 +32,13 @@ public class FichesPanel extends JPanel{
         }
         add(confirm);
     }
+
+    public void enable(boolean bool){
+        for(Fiche fiche : ficheButton)
+            fiche.setEnabled(bool);
+        confirm.setEnabled(bool);
+    }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -39,8 +46,8 @@ public class FichesPanel extends JPanel{
 
         for(Fiche fichebutton : ficheButton){
             fichebutton.setContentAreaFilled(false);
-            g.drawImage(fichebutton.getImg(), pos, 0, getWidth()/ficheButton.length, getHeight(), this);
-            pos += dimension.width/15;
+            g.drawImage(fichebutton.getImg(), pos, 0, getWidth()/ficheButton.length+1, getHeight(), this);
+            pos += dimension.width/10;
         }
     }
 }

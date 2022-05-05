@@ -1,4 +1,4 @@
-package Panels;
+package Panels.ControlPanel;
 
 import GameElements.CardsDeck;
 import GameElements.Fiche;
@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Main.TestApp.*;
-import static Panels.FichesPanel.confirm;
-import static Panels.FichesPanel.ficheButton;
+import static Panels.ControlPanel.FichesPanel.confirm;
+import static Panels.ControlPanel.FichesPanel.ficheButton;
 
 /**
  * E' il pannello dei pulsanti e dei controlli, nella mia testa ci va:
@@ -24,9 +24,11 @@ import static Panels.FichesPanel.ficheButton;
  */
 
 public class ControlPanel extends JPanel implements ActionListener {
-    protected static JButton hitButton;
-    protected static JButton standButton;
+    public static JButton hitButton;
+    public static JButton standButton;
+
     private static FichesPanel fichesPanel;
+    private static JPanel actionPanel;
 
     private List<ActionListener> actionListener;
 
@@ -36,9 +38,14 @@ public class ControlPanel extends JPanel implements ActionListener {
         setLayout(new GridLayout(1,2));
         actionListener = new ArrayList<ActionListener>();
 
+        fichesPanel = new FichesPanel();
+        actionPanel = new JPanel(new GridLayout(1,2));
+
         hitButton = new JButton("Hit a Card");
         standButton = new JButton("Stand");
-        fichesPanel = new FichesPanel();
+
+        actionPanel.add(hitButton);
+        actionPanel.add(standButton);
 
         hitButton.addActionListener(this);
         standButton.addActionListener(this);
@@ -51,8 +58,7 @@ public class ControlPanel extends JPanel implements ActionListener {
         hitButton.setEnabled(false);
         standButton.setEnabled(false);
 
-        add(hitButton);
-        add(standButton);
+        add(actionPanel);
         add(fichesPanel);
     }
 
@@ -69,17 +75,12 @@ public class ControlPanel extends JPanel implements ActionListener {
             System.out.println("PULSANTE HIT: sono stato premuto");
             player.addKnownCard();
 
-            buttonsEnable(false, ficheButton[0]);           //adesso che la funzione "buttonsEnable" lavora con un bottone alla volta
-            buttonsEnable(false, ficheButton[1]);           //ovviamente bisogna disabilitare un pulsante alla volta.
-            buttonsEnable(false, ficheButton[2]);           //essendo pochi quelli delle fiche ho preferito non usare il for
-            buttonsEnable(false, ficheButton[3]);           //ma si può semprde cambiare
+            fichesPanel.enable(false);
 
             if(player.isBust()){
                 buttonsEnable(false, standButton);
                 buttonsEnable(false, hitButton);
             }
-
-
         }
         if(e.getSource() == standButton){
             System.out.println("STAND BUTTON: sono stato premuto");
@@ -87,10 +88,7 @@ public class ControlPanel extends JPanel implements ActionListener {
             dispenserMoney();
             buttonsEnable(false, standButton);
             buttonsEnable(false, hitButton);
-            buttonsEnable(false, ficheButton[0]);
-            buttonsEnable(false, ficheButton[1]);
-            buttonsEnable(false, ficheButton[2]);
-            buttonsEnable(false, ficheButton[3]);
+            fichesPanel.enable(false);
         }
         if(e.getSource() == ficheButton[0]){
             buttonsEnable(true, confirm);
@@ -116,11 +114,8 @@ public class ControlPanel extends JPanel implements ActionListener {
             System.out.println("Conferma: sono stato premuto");            //abilitare "stand" e "hit"
             buttonsEnable(true, hitButton);
             buttonsEnable(true, standButton);
-            buttonsEnable(false, ficheButton[0]);
-            buttonsEnable(false, ficheButton[1]);
-            buttonsEnable(false, ficheButton[2]);
-            buttonsEnable(false, ficheButton[3]);
-            buttonsEnable(false, confirm);
+
+            fichesPanel.enable(false);
         }
 
         sendToActionListeners(e);
@@ -139,16 +134,19 @@ public class ControlPanel extends JPanel implements ActionListener {
      * Esempio:
      * Account --> 90
      * La fiche da 100 sarà disabilitata
-     * @param fiche
+     * @param
      */
 
-    public void checkEnableFiche(Fiche[] fiche){
-        for(Fiche f : fiche){
-            if(player.getAccount() < 2*f.getValue()){
-                buttonsEnable(false, f);
+
+    public void checkEnableFiche(Fiche[] fiches){
+        for(Fiche fiche : fiches){
+            if(player.getAccount() < 2*fiche.getValue()){
+                buttonsEnable(false, fiche);
             }
         }
     }
+
+
 
 
     /**

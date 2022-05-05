@@ -1,4 +1,4 @@
-package Panels;
+package Panels.DispayPanel;
 
 import javax.swing.*;
 import java.awt.*;

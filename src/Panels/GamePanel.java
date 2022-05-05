@@ -1,6 +1,8 @@
 package Panels;
 
 import GameElements.CardsDeck;
+import Panels.ControlPanel.ControlPanel;
+import Panels.DispayPanel.DisplayPanel;
 import Participant.Dealer;
 import Participant.Player;
 
