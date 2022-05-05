@@ -13,9 +13,10 @@ import java.util.List;
 import static Main.TestApp.dimension;
 import static Main.TestApp.player;
 
-public class FichesPanel extends JPanel {
+public class FichesPanel extends JPanel implements MyPanel{
     private String[] files;
     private int[] values;
+
     public static Fiche[] ficheButton;
     public static JButton confirm;
 
@@ -24,10 +25,10 @@ public class FichesPanel extends JPanel {
     public FichesPanel() throws IOException {
         super();
         files = new String[]{"fiche100.jpg", "fiche50.png", "fiche10.png", "ficheAI.jpg"};
-        values = new int[] {100, 50, 10, player.getAccount()};
+        values = new int[] {100, 50, 10, 0};
         ficheButton = new Fiche[files.length];
         confirm = new JButton("Conferma");
-        confirm.setEnabled(false);
+
         actionListener = new ArrayList<ActionListener>();
 
         setPreferredSize(new Dimension(dimension.width/12,dimension.height/9));
@@ -37,6 +38,8 @@ public class FichesPanel extends JPanel {
             ficheButton[i] = new Fiche(values[i], files[i]);
             add(ficheButton[i]);
         }
+
+        confirm.setEnabled(false);
         add(confirm);
     }
 
@@ -59,7 +62,9 @@ public class FichesPanel extends JPanel {
     }
 
     public void addActionListener(ActionListener actionListener) {
-        this.actionListener.add(actionListener);
-    }
+        for(Fiche fiche : ficheButton)
+            fiche.addActionListener(actionListener);
 
+        confirm.addActionListener(actionListener);
+    }
 }

@@ -1,18 +1,18 @@
 package Panels.ControlPanel;
 
+import GameElements.Fiche;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActionPanel extends JPanel {
+public class ActionPanel extends JPanel implements MyPanel{
     public static JButton hitButton;
     public static JButton standButton;
 
     private List<ActionListener> actionListener;
-
-    private static JPanel actionPanel;
 
     public ActionPanel() {
         super();
@@ -36,6 +36,7 @@ public class ActionPanel extends JPanel {
     }
 
     public void addActionListener(ActionListener actionListener) {
-        this.actionListener.add(actionListener);
+        hitButton.addActionListener(actionListener);
+        standButton.addActionListener(actionListener);
     }
 }

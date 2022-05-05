@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Main.TestApp.*;
-import static Panels.ControlPanel.ActionPanel.hitButton;
 import static Panels.ControlPanel.ActionPanel.standButton;
 import static Panels.ControlPanel.FichesPanel.confirm;
 import static Panels.ControlPanel.FichesPanel.ficheButton;
@@ -25,7 +24,7 @@ import static Panels.ControlPanel.FichesPanel.ficheButton;
  * - tutti i pulsanti delle fiches per puntare --> https://stackoverflow.com/questions/8680189/clickable-images-in-java
  */
 
-public class ControlPanel extends JPanel implements ActionListener {
+public class ControlPanel extends JPanel implements ActionListener, MyPanel {
     private static FichesPanel fichesPanel;
     public static ActionPanel actionPanel;
 
@@ -40,78 +39,66 @@ public class ControlPanel extends JPanel implements ActionListener {
         fichesPanel = new FichesPanel();
         actionPanel = new ActionPanel();
 
-        // actionPanel.addActionListener(this);
-        // fichesPanel.addActionListener(this);
-
-        for(Fiche fiche : ficheButton)
-            fiche.addActionListener(this);
-
-        confirm.addActionListener(this);
-
-        hitButton.addActionListener(this);
-        standButton.addActionListener(this);
+        actionPanel.addActionListener(this);
+        fichesPanel.addActionListener(this);
 
         add(actionPanel);
         add(fichesPanel);
     }
 
+    @Override
+    public void enablePanel(boolean bool) {
+        fichesPanel.enablePanel(bool);
+        actionPanel.enablePanel(bool);
+    }
+
     public void addActionListener(ActionListener actionListener) {
         this.actionListener.add(actionListener);
-        actionPanel.addActionListener(this);
-        fichesPanel.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        checkEnableFiche(ficheButton);              // <----        per comodità lo scrivo qui, ma potrei anche metterlo semplicemente nei pulsanti delle fiche
 
-        checkEnableFiche(ficheButton);              // <----        per comodità lo scrivo qui, ma potrei anche metterlo semplicemente
-                                                    //              nei pulsanti delle fiche
         if(e.getSource() == actionPanel.hitButton){
             System.out.println("PULSANTE HIT: sono stato premuto");
             player.addKnownCard();
 
             fichesPanel.enablePanel(false);
 
-            if(player.isBust()){
-                buttonsEnable(false, standButton);
-                buttonsEnable(false, hitButton);
-            }
+            if(player.isBust())
+                actionPanel.enablePanel(false);
         }
         if(e.getSource() == standButton){
             System.out.println("STAND BUTTON: sono stato premuto");
             dealer.play(cardsDeck);
             dispenserMoney();
-            buttonsEnable(false, standButton);
-            buttonsEnable(false, hitButton);
-
+            actionPanel.enablePanel(false);
         }
         if(e.getSource() == ficheButton[0]){
-            buttonsEnable(true, confirm);
+            confirm.setEnabled(true);
             System.out.println("FICHE 100: sono stato premuto");
             player.bet(ficheButton[0].getValue());
         }
         if(e.getSource() == ficheButton[1]){
-            buttonsEnable(true, confirm);
+            confirm.setEnabled(true);
             System.out.println("FICHE 50: sono stato premuto");
             player.bet(ficheButton[1].getValue());
         }
         if(e.getSource() == ficheButton[2]){
-            buttonsEnable(true, confirm);
+            confirm.setEnabled(true);
             System.out.println("FICHE 10: sono stato premuto");
             player.bet(ficheButton[2].getValue());
         }
         if(e.getSource() == ficheButton[3]){
-            buttonsEnable(true, confirm);
+            confirm.setEnabled(true);
             System.out.println("ALL-IN: sono stato premuto");
             player.bet(player.getAccount());
         }
         if(e.getSource() == confirm){                                      //essenzialmente questo deve solo disabilitare le fiche e
             System.out.println("Conferma: sono stato premuto");            //abilitare "stand" e "hit"
-            buttonsEnable(true, hitButton);
-            buttonsEnable(true, standButton);
 
             actionPanel.enablePanel(true);
-
             fichesPanel.enablePanel(false);
         }
 
@@ -124,7 +111,6 @@ public class ControlPanel extends JPanel implements ActionListener {
         }
     }
 
-
     /**
      * Serve a disabilitare una fiche nel caso non si abbiano abbastanza "soldi" nel conto
      *
@@ -133,26 +119,10 @@ public class ControlPanel extends JPanel implements ActionListener {
      * La fiche da 100 sarà disabilitata
      * @param
      */
-
-
     public void checkEnableFiche(Fiche[] fiches){
         for(Fiche fiche : fiches){
-            if(player.getAccount() < 2*fiche.getValue()){
-                buttonsEnable(false, fiche);
-            }
+            if(player.getAccount() < 2*fiche.getValue())
+                fiche.setEnabled(false);
         }
-    }
-
-
-
-
-    /**
-     * Serve ad abilitare/disabilitare il bottone che si passa
-     * @param bool
-     * @param button
-     */
-
-    public void buttonsEnable(Boolean bool, JButton button) {
-        button.setEnabled(bool);
     }
 }

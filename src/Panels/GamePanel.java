@@ -53,16 +53,4 @@ public class GamePanel extends JPanel {
 
         this.add(totalPanel);
     }
-
-    public DisplayPanel getDisplayPanel() {
-        return displayPanel;
-    }
-
-    public TablePanel getTablePanel() {
-        return tablePanel;
-    }
-
-    public ControlPanel getControlPanel() {
-        return controlPanel;
-    }
 }
