@@ -15,7 +15,7 @@ public class MainFrame extends JFrame {
 
         frame.setSize(dimension.width, dimension.height);   // nota che penso comprenda anche la barra di sistema: da me toglie 40px
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setVisible(true);
     }
 }

@@ -38,8 +38,10 @@ public class Player extends Participant {
     }
 
     public void bet(int amount){
-        this.bet = this.bet + amount;
-        this.account = this.account - amount;
+        if(amount <= this.account){
+            this.bet = this.bet + amount;
+            this.account = this.account - amount;
+        }
     }
 
     public void addToAccount(int amount){
