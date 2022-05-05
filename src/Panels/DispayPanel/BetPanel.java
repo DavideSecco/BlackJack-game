@@ -8,13 +8,9 @@ import java.awt.event.ActionListener;
 import static Main.TestApp.*;
 
 public class BetPanel extends JPanel implements ActionListener {
-
     private JTextArea bet;
-
     private JTextArea account;
-
     private JLabel betLabel;
-
     private JLabel accountLabel;
 
     public BetPanel() {

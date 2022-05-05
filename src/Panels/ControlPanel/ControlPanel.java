@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Main.TestApp.*;
+import static Panels.ControlPanel.ActionPanel.hitButton;
+import static Panels.ControlPanel.ActionPanel.standButton;
 import static Panels.ControlPanel.FichesPanel.confirm;
 import static Panels.ControlPanel.FichesPanel.ficheButton;
 
@@ -24,11 +26,8 @@ import static Panels.ControlPanel.FichesPanel.ficheButton;
  */
 
 public class ControlPanel extends JPanel implements ActionListener {
-    public static JButton hitButton;
-    public static JButton standButton;
-
     private static FichesPanel fichesPanel;
-    private static JPanel actionPanel;
+    public static ActionPanel actionPanel;
 
     private List<ActionListener> actionListener;
 
@@ -39,24 +38,18 @@ public class ControlPanel extends JPanel implements ActionListener {
         actionListener = new ArrayList<ActionListener>();
 
         fichesPanel = new FichesPanel();
-        actionPanel = new JPanel(new GridLayout(1,2));
+        actionPanel = new ActionPanel();
 
-        hitButton = new JButton("Hit a Card");
-        standButton = new JButton("Stand");
-
-        actionPanel.add(hitButton);
-        actionPanel.add(standButton);
-
-        hitButton.addActionListener(this);
-        standButton.addActionListener(this);
+        // actionPanel.addActionListener(this);
+        // fichesPanel.addActionListener(this);
 
         for(Fiche fiche : ficheButton)
             fiche.addActionListener(this);
 
         confirm.addActionListener(this);
 
-        hitButton.setEnabled(false);
-        standButton.setEnabled(false);
+        hitButton.addActionListener(this);
+        standButton.addActionListener(this);
 
         add(actionPanel);
         add(fichesPanel);
@@ -64,6 +57,8 @@ public class ControlPanel extends JPanel implements ActionListener {
 
     public void addActionListener(ActionListener actionListener) {
         this.actionListener.add(actionListener);
+        actionPanel.addActionListener(this);
+        fichesPanel.addActionListener(this);
     }
 
     @Override
@@ -71,11 +66,11 @@ public class ControlPanel extends JPanel implements ActionListener {
 
         checkEnableFiche(ficheButton);              // <----        per comodità lo scrivo qui, ma potrei anche metterlo semplicemente
                                                     //              nei pulsanti delle fiche
-        if(e.getSource() == hitButton){
+        if(e.getSource() == actionPanel.hitButton){
             System.out.println("PULSANTE HIT: sono stato premuto");
             player.addKnownCard();
 
-            fichesPanel.enable(false);
+            fichesPanel.enablePanel(false);
 
             if(player.isBust()){
                 buttonsEnable(false, standButton);
@@ -88,7 +83,7 @@ public class ControlPanel extends JPanel implements ActionListener {
             dispenserMoney();
             buttonsEnable(false, standButton);
             buttonsEnable(false, hitButton);
-            fichesPanel.enable(false);
+
         }
         if(e.getSource() == ficheButton[0]){
             buttonsEnable(true, confirm);
@@ -115,7 +110,9 @@ public class ControlPanel extends JPanel implements ActionListener {
             buttonsEnable(true, hitButton);
             buttonsEnable(true, standButton);
 
-            fichesPanel.enable(false);
+            actionPanel.enablePanel(true);
+
+            fichesPanel.enablePanel(false);
         }
 
         sendToActionListeners(e);

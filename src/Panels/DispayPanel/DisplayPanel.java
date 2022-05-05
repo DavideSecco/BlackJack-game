@@ -1,14 +1,13 @@
 package Panels.DispayPanel;
 
-import Panels.ControlPanel.ControlPanel;
-import Panels.DispayPanel.BetPanel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static Main.TestApp.*;
+import static Panels.ControlPanel.ActionPanel.hitButton;
+import static Panels.ControlPanel.ActionPanel.standButton;
 
 public class DisplayPanel extends JPanel implements ActionListener {
     private JLabel label;
@@ -29,7 +28,7 @@ public class DisplayPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == ControlPanel.standButton){
+        if(e.getSource() == standButton){
             if(whoWon() == 1)
                 label.setText("Hai vinto");
             else if(whoWon() == 0)
@@ -38,7 +37,7 @@ public class DisplayPanel extends JPanel implements ActionListener {
                 label.setText("Hai perso");
         }
 
-        if(e.getSource() == ControlPanel.hitButton){
+        if(e.getSource() == hitButton){
             if(player.isBust())
                 label.setText("Hai Sballato");
         }

@@ -4,16 +4,22 @@ import GameElements.Fiche;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static Main.TestApp.dimension;
 import static Main.TestApp.player;
 
-public class FichesPanel extends JPanel{
+public class FichesPanel extends JPanel {
     private String[] files;
     private int[] values;
     public static Fiche[] ficheButton;
     public static JButton confirm;
+
+    private List<ActionListener> actionListener;
 
     public FichesPanel() throws IOException {
         super();
@@ -22,6 +28,7 @@ public class FichesPanel extends JPanel{
         ficheButton = new Fiche[files.length];
         confirm = new JButton("Conferma");
         confirm.setEnabled(false);
+        actionListener = new ArrayList<ActionListener>();
 
         setPreferredSize(new Dimension(dimension.width/12,dimension.height/9));
         setLayout(new GridLayout(1,4));
@@ -33,7 +40,7 @@ public class FichesPanel extends JPanel{
         add(confirm);
     }
 
-    public void enable(boolean bool){
+    public void enablePanel(boolean bool){
         for(Fiche fiche : ficheButton)
             fiche.setEnabled(bool);
         confirm.setEnabled(bool);
@@ -50,4 +57,9 @@ public class FichesPanel extends JPanel{
             pos += dimension.width/10;
         }
     }
+
+    public void addActionListener(ActionListener actionListener) {
+        this.actionListener.add(actionListener);
+    }
+
 }

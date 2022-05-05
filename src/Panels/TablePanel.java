@@ -1,7 +1,6 @@
 package Panels;
 
 import GameElements.Card;
-import Panels.ControlPanel.ControlPanel;
 import Participant.*;
 
 import javax.imageio.ImageIO;
@@ -13,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static Main.TestApp.*;
+import static Panels.ControlPanel.ActionPanel.standButton;
 
 public class TablePanel extends JPanel implements ActionListener {
     private Image backgroundImage;
@@ -64,7 +64,7 @@ public class TablePanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println("Sono il TablePanel e ho ricevuto l'ordine di ridisegnarmi");
 
-        if(e.getSource() == ControlPanel.standButton || player.isBust())
+        if(e.getSource() == standButton || player.isBust())
             dealer.discoverAll();   //scopro la carta scoperta
 
         this.revalidate();
