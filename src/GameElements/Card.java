@@ -2,6 +2,7 @@ package GameElements;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * suit -->
@@ -22,7 +23,7 @@ public class Card {
         this.value = value;
         this.known = true;
         try{
-            this.img = ImageIO.read(getClass().getResource("/images/CardsDeck1/" + getRank() + getSuit() + ".png"));
+            this.img = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/CardsDeck1/" + getRank() + getSuit() + ".png")));
         } catch (Exception e){
             System.out.println("Non ho trovato l'immagine di " + getRank() + " " + getSuit());
         }

@@ -10,7 +10,7 @@ public class CardsDeck {
     private static final int[] values = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
 
     private final ArrayList<Card> cards;
-    private Iterator iterator;
+    private final Iterator iterator;
 
     public CardsDeck(){
         cards = new ArrayList<>();

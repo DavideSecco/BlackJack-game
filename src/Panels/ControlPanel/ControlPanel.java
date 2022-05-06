@@ -91,6 +91,7 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
             player.bet(ficheButton[2].getValue());
         }
         if(e.getSource() == ficheButton[3]){
+            fichesPanel.enablePanel(false);
             confirm.setEnabled(true);
             System.out.println("ALL-IN: sono stato premuto");
             player.bet(player.getAccount());
@@ -98,6 +99,7 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
         if(e.getSource() == confirm){                                      //essenzialmente questo deve solo disabilitare le fiche e
             System.out.println("Conferma: sono stato premuto");            //abilitare "stand" e "hit"
 
+            inizio();
             actionPanel.enablePanel(true);
             fichesPanel.enablePanel(false);
         }

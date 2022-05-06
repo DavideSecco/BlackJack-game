@@ -12,17 +12,15 @@ public class TestApp {
     public static Dealer dealer = new Dealer();
     public static CardsDeck cardsDeck = new CardsDeck();
     public static Dimension dimension = new Dimension(1200, 700);
-
+    public static MainFrame mainFrame;
     public static void main(String[] args) throws IOException {
-        player.addKnownCard();
-        player.addKnownCard();
+
 
         System.out.println(player.getValueCards());
 
-        dealer.addUnkonwCard(cardsDeck);
-        dealer.addKnownCard();
 
-        MainFrame mainFrame = new MainFrame();
+
+        mainFrame = new MainFrame();
     }
 
     /**
@@ -65,5 +63,16 @@ public class TestApp {
             player.addToAccount(player.getBet());
         else                                                // player ha perso
             player.addToAccount(0);
+    }
+
+    /**
+     * Crea l'inizio del gioco, ovvero distribuisce le carte iniziali del player e del dealer
+     */
+
+    public static void inizio(){
+        player.addKnownCard();
+        player.addKnownCard();
+        dealer.addUnkonwCard(cardsDeck);
+        dealer.addKnownCard();
     }
 }
