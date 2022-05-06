@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Main.TestApp.*;
-import static Panels.ControlPanel.ActionPanel.standButton;
+import static Panels.ControlPanel.ActionPanel.*;
 import static Panels.ControlPanel.FichesPanel.confirm;
 import static Panels.ControlPanel.FichesPanel.ficheButton;
 
@@ -103,7 +103,17 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
 
             actionPanel.enablePanel(true);
             fichesPanel.enablePanel(false);
+            checkEnableDouble();
             if(checkBlackjack()) standButton.doClick();
+        }
+        if(e.getSource() == doubleButton){
+            System.out.println("Double: sono stato premuto");
+            player.bet(player.getBet());
+            hitButton.doClick();
+            standButton.doClick();
+        }
+        if(e.getSource() == splitButton){
+            System.out.println("Split: sono stato premuto");
         }
 
         sendToActionListeners(e);
@@ -127,5 +137,9 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
             if(player.getAccount() < 2*fiche.getValue())
                 fiche.setEnabled(false);
         }
+    }
+    public void checkEnableDouble(){
+        if(player.getBet() > player.getAccount())
+            doubleButton.setEnabled(false);
     }
 }

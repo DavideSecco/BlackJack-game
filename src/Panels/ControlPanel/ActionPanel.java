@@ -1,7 +1,5 @@
 package Panels.ControlPanel;
 
-import GameElements.Fiche;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
