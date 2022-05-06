@@ -100,8 +100,10 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
             System.out.println("Conferma: sono stato premuto");            //abilitare "stand" e "hit"
 
             inizio();
+
             actionPanel.enablePanel(true);
             fichesPanel.enablePanel(false);
+            if(checkBlackjack()) standButton.doClick();
         }
 
         sendToActionListeners(e);
@@ -119,7 +121,6 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
      * Esempio:
      * Account --> 90
      * La fiche da 100 sarà disabilitata
-     * @param
      */
     public void checkEnableFiche(Fiche[] fiches){
         for(Fiche fiche : fiches){

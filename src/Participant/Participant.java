@@ -43,6 +43,14 @@ public abstract class Participant {
         return totalValue;
     }
 
+
+    /**
+     * Dice se la mano è un blackjack
+     * @return
+     */
+    public boolean blackjack(){
+        return cards.size() == 2 && getValueCards() == 21;                              //se con due carte ho il valore 21 sarà sicuramente blackjack
+    }
     private int isThereAce() {
         int numberAces=0;
         for(Card card : this.getCards()){

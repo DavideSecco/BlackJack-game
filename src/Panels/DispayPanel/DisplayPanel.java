@@ -29,8 +29,12 @@ public class DisplayPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == standButton){
-            if(whoWon() == 1)
-                label.setText("Hai vinto");
+            if(whoWon() == 1){
+                if(checkBlackjack()) label.setText("Complimenti, hai fatto BlackJack");
+                else
+                    label.setText("Hai vinto");
+            }
+
             else if(whoWon() == 0)
                 label.setText("Pareggio");
             else

@@ -5,8 +5,10 @@ import java.awt.*;
 import java.util.Objects;
 
 /**
- * suit -->
+ * suit --> seme della carta in formato stringa
+ *
  * rank --> valore nominale della carta in formato stringa ("Ace", ... jack", "queen", "king")
+ *
  * value --> valore della carta nel gioco del black Jack (Ace --> 11)
  */
 
