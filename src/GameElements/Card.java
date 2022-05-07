@@ -2,10 +2,13 @@ package GameElements;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.util.Objects;
 
 /**
- * suit -->
+ * suit --> seme della carta in formato stringa
+ *
  * rank --> valore nominale della carta in formato stringa ("Ace", ... jack", "queen", "king")
+ *
  * value --> valore della carta nel gioco del black Jack (Ace --> 11)
  */
 
@@ -22,7 +25,7 @@ public class Card {
         this.value = value;
         this.known = true;
         try{
-            this.img = ImageIO.read(getClass().getResource("/images/CardsDeck1/" + getRank() + getSuit() + ".png"));
+            this.img = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/CardsDeck1/" + getRank() + getSuit() + ".png")));
         } catch (Exception e){
             System.out.println("Non ho trovato l'immagine di " + getRank() + " " + getSuit());
         }

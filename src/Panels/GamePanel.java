@@ -49,7 +49,7 @@ public class GamePanel extends JPanel {
 
         controlPanel.addActionListener(tablePanel);
         controlPanel.addActionListener(displayPanel);
-        controlPanel.addActionListener(displayPanel.betPanel);
+        controlPanel.addActionListener(DisplayPanel.betPanel);
 
         this.add(totalPanel);
     }

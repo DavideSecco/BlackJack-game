@@ -1,5 +1,6 @@
 package Main;
 import GameElements.CardsDeck;
+import Panels.ControlPanel.ControlPanel;
 import Panels.MainFrame;
 import Participant.Dealer;
 import Participant.Player;
@@ -12,17 +13,15 @@ public class TestApp {
     public static Dealer dealer = new Dealer();
     public static CardsDeck cardsDeck = new CardsDeck();
     public static Dimension dimension = new Dimension(1200, 700);
-
+    public static MainFrame mainFrame;
     public static void main(String[] args) throws IOException {
-        player.addKnownCard();
-        player.addKnownCard();
+
 
         System.out.println(player.getValueCards());
 
-        dealer.addUnkonwCard(cardsDeck);
-        dealer.addKnownCard();
 
-        MainFrame mainFrame = new MainFrame();
+
+        mainFrame = new MainFrame();
     }
 
     /**
@@ -59,11 +58,34 @@ public class TestApp {
      */
 
     public static void dispenserMoney(){
-        if(whoWon() == 1)                                   // player ha vinto
-            player.addToAccount(2*player.getBet());
-        else if(whoWon() == 0)                              // player ha pareggiato
+        if(whoWon() == 1) {                                   // player ha vinto
+            player.addToAccount(2 * player.getBet());
+
+            if (checkBlackjack())                               //se ha fatto blackjack si aggiunge la metà della bet
+                player.addToAccount(player.getBet() / 2);
+
+        }else if(whoWon() == 0)                              // player ha pareggiato
             player.addToAccount(player.getBet());
         else                                                // player ha perso
             player.addToAccount(0);
+    }
+
+    /**
+     * Crea l'inizio del gioco, ovvero distribuisce le carte iniziali del player e del dealer
+     */
+
+    public static void inizio(){
+        player.addKnownCard();
+        player.addKnownCard();
+        dealer.addUnkonwCard(cardsDeck);
+        dealer.addKnownCard();
+    }
+
+    /**
+     * Dice se il giocatore ha un blackjack
+     * @return
+     */
+    public static boolean checkBlackjack(){
+        return player.blackjack();
     }
 }

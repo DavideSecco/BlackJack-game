@@ -3,9 +3,9 @@ package Participant;
 import GameElements.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static Main.TestApp.cardsDeck;
-
 public abstract class Participant {
     ArrayList<Card> cards;
 
@@ -22,16 +22,13 @@ public abstract class Participant {
     }
 
     public boolean isBust(){
-        if(this.getValueCards() > 21)
-            return true;
-        else
-            return false;
+        return this.getValueCards() > 21;
     }
 
     /**
      * Ritorna il valore delle carte che si posseggono;
      * gestisce anche il valore degli assi
-     * @return
+     * @return totalValue
      */
 
     public int getValueCards(){
@@ -46,10 +43,18 @@ public abstract class Participant {
         return totalValue;
     }
 
+
+    /**
+     * Dice se la mano è un blackjack
+     * @return
+     */
+    public boolean blackjack(){
+        return cards.size() == 2 && getValueCards() == 21;                              //se con due carte ho il valore 21 sarà sicuramente blackjack
+    }
     private int isThereAce() {
         int numberAces=0;
         for(Card card : this.getCards()){
-            if(card.getRank()=="Ace")
+            if(Objects.equals(card.getRank(), "Ace"))
                 numberAces++;
         }
         return numberAces;

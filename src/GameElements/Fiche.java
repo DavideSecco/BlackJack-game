@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Fiche extends JButton {
     private int value;
@@ -15,7 +16,7 @@ public class Fiche extends JButton {
         this.value = value;
         this.file = file;
         try{
-            this.img = ImageIO.read(getClass().getResource("/images/" + file));
+            this.img = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/" + file)));
         } catch (IOException e){
             System.out.println("Errore nel caricamento dell'immagine " + file);
         }

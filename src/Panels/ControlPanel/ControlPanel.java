@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Main.TestApp.*;
-import static Panels.ControlPanel.ActionPanel.standButton;
+import static Panels.ControlPanel.ActionPanel.*;
 import static Panels.ControlPanel.FichesPanel.confirm;
 import static Panels.ControlPanel.FichesPanel.ficheButton;
 
@@ -91,6 +91,7 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
             player.bet(ficheButton[2].getValue());
         }
         if(e.getSource() == ficheButton[3]){
+            fichesPanel.enablePanel(false);
             confirm.setEnabled(true);
             System.out.println("ALL-IN: sono stato premuto");
             player.bet(player.getAccount());
@@ -98,8 +99,21 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
         if(e.getSource() == confirm){                                      //essenzialmente questo deve solo disabilitare le fiche e
             System.out.println("Conferma: sono stato premuto");            //abilitare "stand" e "hit"
 
+            inizio();
+
             actionPanel.enablePanel(true);
             fichesPanel.enablePanel(false);
+            checkEnableDouble();
+            if(checkBlackjack()) standButton.doClick();
+        }
+        if(e.getSource() == doubleButton){
+            System.out.println("Double: sono stato premuto");
+            player.bet(player.getBet());
+            hitButton.doClick();
+            standButton.doClick();
+        }
+        if(e.getSource() == splitButton){
+            System.out.println("Split: sono stato premuto");
         }
 
         sendToActionListeners(e);
@@ -117,12 +131,15 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
      * Esempio:
      * Account --> 90
      * La fiche da 100 sarà disabilitata
-     * @param
      */
     public void checkEnableFiche(Fiche[] fiches){
         for(Fiche fiche : fiches){
             if(player.getAccount() < 2*fiche.getValue())
                 fiche.setEnabled(false);
         }
+    }
+    public void checkEnableDouble(){
+        if(player.getBet() > player.getAccount())
+            doubleButton.setEnabled(false);
     }
 }
