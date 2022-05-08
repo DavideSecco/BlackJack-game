@@ -48,4 +48,9 @@ public class Player extends Participant {
         this.account = this.account + amount;
     }
 
+    public void clear(){
+        this.cards.clear();
+        this.bet = 0;
+    }
+
 }

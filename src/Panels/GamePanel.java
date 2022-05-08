@@ -2,7 +2,7 @@ package Panels;
 
 import GameElements.CardsDeck;
 import Panels.ControlPanel.ControlPanel;
-import Panels.DispayPanel.DisplayPanel;
+import Panels.DisplayPanel.DisplayPanel;
 import Participant.Dealer;
 import Participant.Player;
 
@@ -11,6 +11,8 @@ import java.awt.*;
 import java.io.IOException;
 
 import static Main.TestApp.dimension;
+import static Panels.DisplayPanel.DisplayPanel.betPanel;
+import static Panels.DisplayPanel.DisplayPanel.optionsPanel;
 
 /**
  * GamePanel: è il pannello visualizzato durante la partita, ed è composto da 3 pannelli:
@@ -29,9 +31,9 @@ import static Main.TestApp.dimension;
 public class GamePanel extends JPanel {
     JPanel totalPanel;
 
-    DisplayPanel displayPanel;
+    public static DisplayPanel displayPanel;
     TablePanel tablePanel;
-    ControlPanel controlPanel;
+    public static ControlPanel controlPanel;
 
     public GamePanel(Player player, Dealer dealer, CardsDeck cardsDeck) throws IOException {
         super();
@@ -49,7 +51,11 @@ public class GamePanel extends JPanel {
 
         controlPanel.addActionListener(tablePanel);
         controlPanel.addActionListener(displayPanel);
-        controlPanel.addActionListener(DisplayPanel.betPanel);
+        controlPanel.addActionListener(betPanel);
+
+        optionsPanel.addActionListener(tablePanel);
+        optionsPanel.addActionListener(displayPanel);
+        optionsPanel.addActionListener(betPanel);
 
         this.add(totalPanel);
     }

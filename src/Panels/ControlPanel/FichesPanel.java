@@ -34,13 +34,22 @@ public class FichesPanel extends JPanel implements MyPanel{
         setPreferredSize(new Dimension(dimension.width/12,dimension.height/9));
         setLayout(new GridLayout(1,4));
 
-        for(int i = 0; i < ficheButton.length; i++){
+
+
+        for(int i = 0; i < ficheButton.length; i++) {
             ficheButton[i] = new Fiche(values[i], files[i]);
             add(ficheButton[i]);
         }
-
-        confirm.setEnabled(false);
         add(confirm);
+
+        inizialize();
+    }
+
+    public void inizialize(){
+        for(int i = 0; i < ficheButton.length; i++){
+            ficheButton[i].setEnabled(true);
+        }
+        confirm.setEnabled(false);
     }
 
     public void enablePanel(boolean bool){

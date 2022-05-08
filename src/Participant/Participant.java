@@ -30,27 +30,22 @@ public abstract class Participant {
      * gestisce anche il valore degli assi
      * @return totalValue
      */
-
     public int getValueCards(){
         int totalValue = 0;
         for(Card card : cards)
             totalValue = totalValue + card.getValue();
 
-       for(int i=0; i < isThereAce() && totalValue > 21; i++){
+       for(int i=0; i < isThereAce() && totalValue > 21; i++)
             totalValue -= 10;
-        }
 
         return totalValue;
     }
 
-
-    /**
-     * Dice se la mano è un blackjack
-     * @return
-     */
+    /**  Dice se la mano è un blackjack  */
     public boolean blackjack(){
         return cards.size() == 2 && getValueCards() == 21;                              //se con due carte ho il valore 21 sarà sicuramente blackjack
     }
+
     private int isThereAce() {
         int numberAces=0;
         for(Card card : this.getCards()){
@@ -60,5 +55,7 @@ public abstract class Participant {
         return numberAces;
     }
 
-
+    public void clear(){
+        cards.clear();
+    }
 }

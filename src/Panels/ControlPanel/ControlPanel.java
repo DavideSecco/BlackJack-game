@@ -52,6 +52,11 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
         actionPanel.enablePanel(bool);
     }
 
+    public void inizialize(){
+        actionPanel.enablePanel(false);
+        fichesPanel.inizialize();
+    }
+
     public void addActionListener(ActionListener actionListener) {
         this.actionListener.add(actionListener);
     }
@@ -60,10 +65,9 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
     public void actionPerformed(ActionEvent e) {
         checkEnableFiche(ficheButton);              // <----        per comodità lo scrivo qui, ma potrei anche metterlo semplicemente nei pulsanti delle fiche
 
-        if(e.getSource() == actionPanel.hitButton){
+        if(e.getSource() == hitButton){
             System.out.println("PULSANTE HIT: sono stato premuto");
             player.addKnownCard();
-
             fichesPanel.enablePanel(false);
 
             if(player.isBust())
@@ -96,15 +100,15 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
             System.out.println("ALL-IN: sono stato premuto");
             player.bet(player.getAccount());
         }
-        if(e.getSource() == confirm){                                      //essenzialmente questo deve solo disabilitare le fiche e
-            System.out.println("Conferma: sono stato premuto");            //abilitare "stand" e "hit"
-
+        if(e.getSource() == confirm){
+            System.out.println("Conferma: sono stato premuto");
             inizio();
-
             actionPanel.enablePanel(true);
             fichesPanel.enablePanel(false);
             checkEnableDouble();
-            if(checkBlackjack()) standButton.doClick();
+
+            if(checkBlackjack())
+                standButton.doClick();
         }
         if(e.getSource() == doubleButton){
             System.out.println("Double: sono stato premuto");
@@ -125,19 +129,15 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
         }
     }
 
-    /**
-     * Serve a disabilitare una fiche nel caso non si abbiano abbastanza "soldi" nel conto
-     *
-     * Esempio:
-     * Account --> 90
-     * La fiche da 100 sarà disabilitata
-     */
+    /** Serve a disabilitare una fiche nel caso non si abbiano abbastanza "soldi" nel conto
+     * Es: Account = 90 --> La fiche da 100 sarà disabilitata  */
     public void checkEnableFiche(Fiche[] fiches){
         for(Fiche fiche : fiches){
             if(player.getAccount() < 2*fiche.getValue())
                 fiche.setEnabled(false);
         }
     }
+
     public void checkEnableDouble(){
         if(player.getBet() > player.getAccount())
             doubleButton.setEnabled(false);

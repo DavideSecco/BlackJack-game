@@ -1,4 +1,4 @@
-package Panels.DispayPanel;
+package Panels.DisplayPanel;
 
 import javax.swing.*;
 import java.awt.*;

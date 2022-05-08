@@ -9,11 +9,8 @@ import java.util.List;
 public class ActionPanel extends JPanel implements MyPanel{
     public static JButton hitButton;
     public static JButton standButton;
-
     public static JButton splitButton;
-
     public static JButton doubleButton;
-
 
     private List<ActionListener> actionListener;
 
