@@ -4,14 +4,12 @@ import GameElements.Fiche;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static Main.TestApp.dimension;
-import static Main.TestApp.player;
 
 public class FichesPanel extends JPanel implements MyPanel{
     private String[] files;

@@ -2,8 +2,6 @@ package Participant;
 
 import GameElements.*;
 
-import static Main.TestApp.player;
-
 public class Dealer extends Participant {
     public Dealer(){
         super();

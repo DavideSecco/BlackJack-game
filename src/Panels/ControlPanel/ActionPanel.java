@@ -6,6 +6,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Comprende i pulsanti di azione del gioco:
+ * - pulsante per chiedere un'altra carta: "hit a card"
+ * - pulsante per dire che sei a posto: "stay"
+ * - pulsante per fare il double: "double"
+ * - pulsante per fare lo split: "split"
+ */
 public class ActionPanel extends JPanel implements MyPanel{
     public static JButton hitButton;
     public static JButton standButton;

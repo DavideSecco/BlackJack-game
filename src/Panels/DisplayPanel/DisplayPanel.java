@@ -41,6 +41,7 @@ public class DisplayPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == standButton){
+            optionsPanel.newGame.setEnabled(true);
             if(whoWon() == 1){
                 if(checkBlackjack())
                     label.setText("Complimenti, hai fatto BlackJack");
@@ -53,12 +54,15 @@ public class DisplayPanel extends JPanel implements ActionListener {
             else
                 label.setText("Hai perso");
 
-            optionsPanel.newGame.setEnabled(true);
+
         }
 
         if(e.getSource() == hitButton){
-            if(player.isBust())
+            if(player.isBust()){
+                optionsPanel.newGame.setEnabled(true);
                 label.setText("Hai Sballato");
+            }
+
         }
     }
 }

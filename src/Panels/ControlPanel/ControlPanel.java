@@ -19,8 +19,7 @@ import static Panels.ControlPanel.FichesPanel.ficheButton;
 
 /**
  * E' il pannello dei pulsanti e dei controlli, nella mia testa ci va:
- * - pulsante per chiedere un'altra carta: "hit a card"
- * - pulsante per dire che sei a posto: "stay"
+ * - tutti i pulsanti di azione di gioco (dell'ActionPanel)
  * - tutti i pulsanti delle fiches per puntare --> https://stackoverflow.com/questions/8680189/clickable-images-in-java
  */
 
