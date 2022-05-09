@@ -1,6 +1,7 @@
 package Main;
 import GameElements.CardsDeck;
-import Panels.GameFrame;
+import Panels.Game.GameFrame;
+import Panels.Menu.MenuFrame;
 import Participant.Dealer;
 import Participant.Player;
 
@@ -11,15 +12,16 @@ public class TestApp {
     public static Player player = new Player();
     public static Dealer dealer = new Dealer();
     public static CardsDeck cardsDeck = new CardsDeck();
-    public static Dimension dimension = new Dimension(1200, 700);
-    public static GameFrame gameFrame;
+
+    public static Dimension gameDimension = new Dimension(1200, 700);
+    public static Dimension menuDimension = new Dimension(400, 700);
+
+    public static MenuFrame menuFrame;
 
     public static void main(String[] args) throws IOException {
         System.out.println(player.getValueCards());
 
-
-        gameFrame = new GameFrame();
-
+        menuFrame = new MenuFrame();
     }
 
     /**

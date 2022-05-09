@@ -1,4 +1,4 @@
-package Panels.ControlPanel;
+package Panels.Game.ControlPanel;
 
 import GameElements.Fiche;
 
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Main.TestApp.dimension;
+import static Main.TestApp.gameDimension;
 
 public class FichesPanel extends JPanel implements MyPanel{
     private String[] files;
@@ -29,7 +29,7 @@ public class FichesPanel extends JPanel implements MyPanel{
 
         actionListener = new ArrayList<ActionListener>();
 
-        setPreferredSize(new Dimension(dimension.width/12,dimension.height/9));
+        setPreferredSize(new Dimension(gameDimension.width/12, gameDimension.height/9));
         setLayout(new GridLayout(1,4));
 
 
@@ -64,7 +64,7 @@ public class FichesPanel extends JPanel implements MyPanel{
         for(Fiche fichebutton : ficheButton){
             fichebutton.setContentAreaFilled(false);
             g.drawImage(fichebutton.getImg(), pos, 0, getWidth()/ficheButton.length+1, getHeight(), this);
-            pos += dimension.width/10;
+            pos += gameDimension.width/10;
         }
     }
 

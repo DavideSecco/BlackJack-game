@@ -1,7 +1,6 @@
-package Panels.DisplayPanel;
+package Panels.Game.DisplayPanel;
 
-import Panels.ControlPanel.ControlPanel;
-import Panels.GamePanel;
+import Panels.Game.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;

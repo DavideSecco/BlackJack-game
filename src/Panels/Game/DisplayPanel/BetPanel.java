@@ -1,4 +1,4 @@
-package Panels.DisplayPanel;
+package Panels.Game.DisplayPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +15,7 @@ public class BetPanel extends JPanel implements ActionListener {
 
     public BetPanel() {
         super();
-        setPreferredSize(new Dimension(dimension.width/12, dimension.height/10));
+        setPreferredSize(new Dimension(gameDimension.width/12, gameDimension.height/10));
         setLayout(new GridLayout(2,2));
 
         bet = new JTextArea("0");                                        //Ho scelto delle textaree per estetica,

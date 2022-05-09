@@ -1,4 +1,4 @@
-package Panels.ControlPanel;
+package Panels.Game.ControlPanel;
 
 import GameElements.CardsDeck;
 import GameElements.Fiche;
@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Main.TestApp.*;
-import static Panels.ControlPanel.ActionPanel.*;
-import static Panels.ControlPanel.FichesPanel.confirm;
-import static Panels.ControlPanel.FichesPanel.ficheButton;
+import static Panels.Game.ControlPanel.ActionPanel.*;
+import static Panels.Game.ControlPanel.FichesPanel.confirm;
+import static Panels.Game.ControlPanel.FichesPanel.ficheButton;
 
 /**
  * E' il pannello dei pulsanti e dei controlli, nella mia testa ci va:
@@ -31,7 +31,7 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
 
     public ControlPanel(Player player, CardsDeck cardsDeck) throws IOException {
         super();
-        setPreferredSize(new Dimension(dimension.width, dimension.height/9));
+        setPreferredSize(new Dimension(gameDimension.width, gameDimension.height/9));
         setLayout(new GridLayout(1,2));
         actionListener = new ArrayList<ActionListener>();
 

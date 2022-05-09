@@ -1,4 +1,4 @@
-package Panels;
+package Panels.Game;
 
 import GameElements.Card;
 import Participant.*;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static Main.TestApp.*;
-import static Panels.ControlPanel.ActionPanel.standButton;
+import static Panels.Game.ControlPanel.ActionPanel.standButton;
 
 public class TablePanel extends JPanel implements ActionListener {
     private Image backgroundImage;
@@ -23,7 +23,7 @@ public class TablePanel extends JPanel implements ActionListener {
 
     public TablePanel(Player player, Dealer dealer){
         super();
-        setPreferredSize(new Dimension(dimension.width, (int) (dimension.height/(1.4))));
+        setPreferredSize(new Dimension(gameDimension.width, (int) (gameDimension.height/(1.4))));
         try{
             backgroundImage = ImageIO.read(getClass().getResource("/images/background.png"));
             faceDownCard = ImageIO.read(getClass().getResource("/images/CardsDeck1/BackHorizontal.png"));
@@ -35,10 +35,10 @@ public class TablePanel extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Point cardPlayerPos = new Point(dimension.width/10, (int) (dimension.height/2.2));
-        Point cardDealerPos = new Point(dimension.width/10, dimension.height/13);
+        Point cardPlayerPos = new Point(gameDimension.width/10, (int) (gameDimension.height/2.2));
+        Point cardDealerPos = new Point(gameDimension.width/10, gameDimension.height/13);
 
-        Point cardDimension = new Point(dimension.width/13, dimension.height/5);
+        Point cardDimension = new Point(gameDimension.width/13, gameDimension.height/5);
 
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
 

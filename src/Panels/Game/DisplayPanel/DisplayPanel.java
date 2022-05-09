@@ -1,15 +1,14 @@
-package Panels.DisplayPanel;
+package Panels.Game.DisplayPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import static Main.TestApp.*;
-import static Panels.ControlPanel.ActionPanel.hitButton;
-import static Panels.ControlPanel.ActionPanel.standButton;
-import static Panels.ControlPanel.FichesPanel.confirm;
+import static Panels.Game.ControlPanel.ActionPanel.hitButton;
+import static Panels.Game.ControlPanel.ActionPanel.standButton;
+import static Panels.Game.ControlPanel.FichesPanel.confirm;
 
 public class DisplayPanel extends JPanel implements ActionListener {
     private JLabel label;
@@ -20,11 +19,11 @@ public class DisplayPanel extends JPanel implements ActionListener {
 
     public DisplayPanel(){
         super();
-        setPreferredSize(new Dimension(dimension.width, dimension.height/10));
+        setPreferredSize(new Dimension(gameDimension.width, gameDimension.height/10));
         setLayout(new BorderLayout());
 
         labelPanel = new JPanel();
-        labelPanel.setPreferredSize(new Dimension(dimension.width/4,dimension.height/10));
+        labelPanel.setPreferredSize(new Dimension(gameDimension.width/4, gameDimension.height/10));
         label = new JLabel();
         inizialize();
 

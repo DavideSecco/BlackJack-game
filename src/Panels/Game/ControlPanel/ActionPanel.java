@@ -1,4 +1,4 @@
-package Panels.ControlPanel;
+package Panels.Game.ControlPanel;
 
 import javax.swing.*;
 import java.awt.*;
