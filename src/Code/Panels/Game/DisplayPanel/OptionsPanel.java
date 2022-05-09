@@ -44,6 +44,7 @@ public class OptionsPanel extends JPanel implements ActionListener{
         if(e.getSource() == newGame){
             TestApp.player.clear();
             TestApp.dealer.clear();
+            TestApp.cardsDeck.inizialize();
 
             GamePanel.displayPanel.inizialize();
             GamePanel.controlPanel.inizialize();

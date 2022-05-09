@@ -1,5 +1,7 @@
 package Code.GameElements;
 
+import Code.Panels.Game.GamePanel;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -9,8 +11,8 @@ public class CardsDeck {
     private static final String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
     private static final int[] values = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
 
-    private final ArrayList<Card> cards;
-    private final Iterator iterator;
+    private static ArrayList<Card> cards;
+    private static Iterator iterator;
 
     public CardsDeck(){
         cards = new ArrayList<>();
@@ -22,7 +24,12 @@ public class CardsDeck {
         //Shuffle after the creation
         Collections.shuffle(this.cards);
         iterator = cards.iterator();
+    }
 
+    public void inizialize(){
+        Collections.shuffle(this.cards);
+        this.iterator = cards.iterator();
+        System.out.println("Il prossimo è: " + iterator.next().toString());
     }
 
     public ArrayList<Card> getCards() {
