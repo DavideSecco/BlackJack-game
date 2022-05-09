@@ -1,8 +1,6 @@
 package Panels.Game.ControlPanel;
 
-import GameElements.CardsDeck;
 import GameElements.Fiche;
-import Participant.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +27,7 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
 
     private List<ActionListener> actionListener;
 
-    public ControlPanel(Player player, CardsDeck cardsDeck) throws IOException {
+    public ControlPanel() throws IOException {
         super();
         setPreferredSize(new Dimension(gameDimension.width, gameDimension.height/9));
         setLayout(new GridLayout(1,2));

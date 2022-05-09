@@ -1,16 +1,13 @@
 package Panels.Game;
 
-import GameElements.CardsDeck;
 import Panels.Game.ControlPanel.ControlPanel;
 import Panels.Game.DisplayPanel.DisplayPanel;
-import Participant.Dealer;
-import Participant.Player;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-import static Main.TestApp.gameDimension;
+import static Main.TestApp.*;
 import static Panels.Game.DisplayPanel.DisplayPanel.betPanel;
 import static Panels.Game.DisplayPanel.DisplayPanel.optionsPanel;
 
@@ -35,7 +32,7 @@ public class GamePanel extends JPanel {
     TablePanel tablePanel;
     public static ControlPanel controlPanel;
 
-    public GamePanel(Player player, Dealer dealer, CardsDeck cardsDeck) throws IOException {
+    public GamePanel() throws IOException {
         super();
         setPreferredSize(gameDimension);
         totalPanel = new JPanel(new BorderLayout());
@@ -43,10 +40,10 @@ public class GamePanel extends JPanel {
         displayPanel = new DisplayPanel();
         totalPanel.add(BorderLayout.PAGE_START, displayPanel);
 
-        tablePanel = new TablePanel(player, dealer);
+        tablePanel = new TablePanel();
         totalPanel.add(BorderLayout.CENTER, tablePanel);
 
-        controlPanel = new ControlPanel(player, cardsDeck);
+        controlPanel = new ControlPanel();
         totalPanel.add(BorderLayout.PAGE_END,controlPanel);
 
         controlPanel.addActionListener(tablePanel);

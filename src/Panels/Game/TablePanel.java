@@ -1,7 +1,6 @@
 package Panels.Game;
 
 import GameElements.Card;
-import Participant.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -21,7 +20,7 @@ public class TablePanel extends JPanel implements ActionListener {
     private ArrayList<Card> playerCards;
     private ArrayList<Card> dealerCards;
 
-    public TablePanel(Player player, Dealer dealer){
+    public TablePanel(){
         super();
         setPreferredSize(new Dimension(gameDimension.width, (int) (gameDimension.height/(1.4))));
         try{
