@@ -6,9 +6,9 @@ import java.io.IOException;
 
 import static Main.TestApp.*;
 
-public class MainFrame extends JFrame {
+public class GameFrame extends JFrame {
     public static GamePanel gamePanel;
-    public MainFrame() throws IOException {
+    public GameFrame() throws IOException {
         JFrame frame = new JFrame("Pong");
 
         gamePanel = new GamePanel(player, dealer, cardsDeck);

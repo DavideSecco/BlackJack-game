@@ -1,6 +1,6 @@
 package Main;
 import GameElements.CardsDeck;
-import Panels.MainFrame;
+import Panels.GameFrame;
 import Participant.Dealer;
 import Participant.Player;
 
@@ -12,15 +12,14 @@ public class TestApp {
     public static Dealer dealer = new Dealer();
     public static CardsDeck cardsDeck = new CardsDeck();
     public static Dimension dimension = new Dimension(1200, 700);
-    public static MainFrame mainFrame;
+    public static GameFrame gameFrame;
+
     public static void main(String[] args) throws IOException {
-
-
         System.out.println(player.getValueCards());
 
 
+        gameFrame = new GameFrame();
 
-        mainFrame = new MainFrame();
     }
 
     /**

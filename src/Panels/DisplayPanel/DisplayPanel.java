@@ -9,9 +9,12 @@ import java.util.List;
 import static Main.TestApp.*;
 import static Panels.ControlPanel.ActionPanel.hitButton;
 import static Panels.ControlPanel.ActionPanel.standButton;
+import static Panels.ControlPanel.FichesPanel.confirm;
 
 public class DisplayPanel extends JPanel implements ActionListener {
     private JLabel label;
+
+    public static JPanel labelPanel;
     public static BetPanel betPanel;
     public static OptionsPanel optionsPanel;
 
@@ -20,22 +23,25 @@ public class DisplayPanel extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(dimension.width, dimension.height/10));
         setLayout(new BorderLayout());
 
+        labelPanel = new JPanel();
+        labelPanel.setPreferredSize(new Dimension(dimension.width/4,dimension.height/10));
         label = new JLabel();
         inizialize();
+
+        labelPanel.add(label);
 
         betPanel = new BetPanel();
 
         optionsPanel = new OptionsPanel();
 
-        this.add(BorderLayout.LINE_START, label);
+        this.add(BorderLayout.LINE_START, labelPanel);
         this.add(BorderLayout.CENTER, betPanel);
         this.add(BorderLayout.LINE_END, optionsPanel);
     }
 
     public void inizialize(){
-        label.setText("Pesca una carta o rimani con quelle che hai (in realtà prima devi purntare)");
+        label.setText("Punta");
         label.setHorizontalAlignment(JLabel.CENTER);
-        label.setBorder(BorderFactory.createBevelBorder(1));
     }
 
     @Override
@@ -53,8 +59,6 @@ public class DisplayPanel extends JPanel implements ActionListener {
                 label.setText("Pareggio");
             else
                 label.setText("Hai perso");
-
-
         }
 
         if(e.getSource() == hitButton){
@@ -62,7 +66,10 @@ public class DisplayPanel extends JPanel implements ActionListener {
                 optionsPanel.newGame.setEnabled(true);
                 label.setText("Hai Sballato");
             }
+        }
 
+        if(e.getSource() == confirm){
+            label.setText("Fai la tua giocata");
         }
     }
 }
