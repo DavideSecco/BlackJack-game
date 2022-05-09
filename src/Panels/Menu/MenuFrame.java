@@ -8,8 +8,11 @@ import static Main.TestApp.menuFrame;
 
 public class MenuFrame extends JFrame {
     public static MenuPanel menuPanel;
+    public static SelectPlayerPanel selectPlayerPanel;
+    public static RulesPanel rulesPanel;
 
     public MenuFrame() throws IOException {
+        super();
         JFrame frame = new JFrame("Menu");
 
         menuPanel = new MenuPanel();
@@ -21,6 +24,7 @@ public class MenuFrame extends JFrame {
         frame.setVisible(true);
     }
 
+    // Non funziona...
     public void delete(){
         menuPanel.removeAll();
         this.removeAll();

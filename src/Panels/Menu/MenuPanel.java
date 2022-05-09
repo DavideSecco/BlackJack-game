@@ -1,5 +1,6 @@
 package Panels.Menu;
 
+import Main.TestApp;
 import Panels.Game.GameFrame;
 
 import javax.swing.*;
@@ -11,6 +12,8 @@ import java.io.IOException;
 
 import static Main.TestApp.menuDimension;
 import static Main.TestApp.menuFrame;
+import static Panels.Menu.MenuFrame.rulesPanel;
+import static Panels.Menu.MenuFrame.selectPlayerPanel;
 
 public class MenuPanel extends JPanel implements ActionListener {
     public JButton playButton;
@@ -41,20 +44,21 @@ public class MenuPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Non sono riuscito a far si che si elimini il frame
         if(e.getSource() == playButton){
-            menuFrame.delete();
+            menuFrame.dispose();
             try {
                 gameFrame = new GameFrame();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            menuFrame.delete();
         }
 
         if(e.getSource() == selectPlayer){
-
+            menuFrame.setContentPane(selectPlayerPanel);
         }
 
         if(e.getSource() == viewRules){
-
+            menuFrame.setContentPane(rulesPanel);
         }
     }
 }

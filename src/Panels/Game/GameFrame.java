@@ -17,7 +17,7 @@ public class GameFrame extends JFrame {
 
         frame.setSize(gameDimension.width, gameDimension.height);   // nota che penso comprenda anche la barra di sistema: da me toglie 40px
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setVisible(true);
     }
 
