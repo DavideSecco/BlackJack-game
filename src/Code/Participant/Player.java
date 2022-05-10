@@ -8,9 +8,23 @@ public class Player extends Participant {
 
     public Player(){
         super();
-        this.name = "Pippo";
+        this.name = "Anonymous";
         this.wins = 0;
         this.account = 1000;
+    }
+
+    public Player(String name){
+        super();
+        this.name = name;
+        this.wins = 0;
+        this.account = 1000;
+    }
+
+    public Player(String name, int wins, int account){
+        super();
+        this.name = name;
+        this.wins = wins;
+        this.account = account;
     }
 
     public int getBet() {

@@ -7,9 +7,7 @@ import Utils.DBManager;
 
 import java.awt.*;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class TestApp {
     public static Player player = new Player();
@@ -23,8 +21,6 @@ public class TestApp {
 
     public static MainFrame mainFrame;
 
-    public static Statement s;
-
     public static void main(String[] args) throws IOException, SQLException {
         System.out.println(player.getValueCards());
 
@@ -35,64 +31,10 @@ public class TestApp {
         mainFrame = new MainFrame();
 
         // DBTEST:
-        createDB();
-        inserisciUser();
-        System.out.println(getPlayerDaDB());
-
+        MyDB.setUpDB();
+        System.out.println(MyDB.getPlayersFromDB());
         DBManager.close();
     }
-
-
-    //-------------------------------------parte DATABASE------------------------------------//
-
-    // secondo me va in un'altra classe questa parte, però non saprei dato che faccio riferimento ai video vecchi
-
-
-
-
-    /**
-     * Crea il database di nome Blackjack.db usando sqlite,
-     * instaura una connessione
-     * e crea la tabella dove verranno inseriti i dati di ogni giocatore
-     * @throws SQLException
-     */
-    public static void createDB() throws SQLException {
-        DBManager.setConnection(DBManager.JDBC_Driver_SQLite, DBManager.JDBC_URL_SQLite);
-        DBManager.getConnection();
-        DBManager.showMetadata();
-        s = DBManager.connection.createStatement();
-        s.executeUpdate("CREATE TABLE IF NOT EXISTS Persons (" +
-                "FirstName TEXT PRIMARY KEY," +
-                "Wins INTEGER," +
-                "Account INTEGER" +
-                ");");
-    }
-
-
-
-    /**
-     * inserisce i dati dell'utente corrente nel database
-     * @throws SQLException
-     */
-    public static void inserisciUser() throws SQLException {
-        s.executeUpdate("INSERT INTO Persons (FirstName, Wins, Account) " +
-                "VALUES('" + player.getName() + "'," + player.getWins() + "," + player.getAccount() + ");");
-    }
-
-
-
-    /**
-     * preleva dal database i dati del player corrente
-     * @return
-     * @throws SQLException
-     */
-    public static String getPlayerDaDB() throws SQLException {
-        return s.executeQuery("SELECT * FROM Persons").getString("FirstName") + " " +
-                s.executeQuery("SELECT * FROM Persons").getString("Wins") + " " +
-                s.executeQuery("SELECT * FROM Persons").getString("Account");
-    }
-
-
 
     //------------------------------------PARTE LOGICA------------------------------------//
 
