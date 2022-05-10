@@ -1,6 +1,7 @@
 package Code.Panels.Game.DisplayPanel;
 
 import Code.Panels.Game.GamePanel;
+import Code.Panels.MainPanel;
 import Code.TestApp;
 
 import javax.swing.*;
@@ -9,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+
+import static Code.Panels.MainFrame.mainPanel;
+import static Code.Panels.MainPanel.menuPanel;
 
 public class OptionsPanel extends JPanel implements ActionListener{
     public JButton menu;
@@ -52,7 +56,7 @@ public class OptionsPanel extends JPanel implements ActionListener{
             newGame.setEnabled(false);
         }
         if(e.getSource() == menu){
-
+            mainPanel.changePanel(menuPanel);
         }
 
         sendToActionListeners(e);
