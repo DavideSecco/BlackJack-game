@@ -7,9 +7,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static Code.TestApp.*;
+
 public class BetPanel extends JPanel implements ActionListener {
     private JTextArea bet;
-    private JTextArea account;
+    private static JTextArea account;
     private JLabel betLabel;
     private JLabel accountLabel;
 
@@ -19,7 +21,7 @@ public class BetPanel extends JPanel implements ActionListener {
         setLayout(new GridLayout(2,2));
 
         bet = new JTextArea("0");                                        //Ho scelto delle textaree per estetica,
-        account = new JTextArea(Integer.toString(TestApp.player.getAccount()));  //mi sembrava più carino
+        account = new JTextArea(Integer.toString(player.getAccount()));  //mi sembrava più carino
         betLabel= new JLabel("Bet:");
         accountLabel= new JLabel("Account:");
 
@@ -59,8 +61,12 @@ public class BetPanel extends JPanel implements ActionListener {
         //sempre fare queste due funzioni
 
         System.out.println("BetPanel");
-        bet.setText(Integer.toString(TestApp.player.getBet()));
-        account.setText(Integer.toString(TestApp.player.getAccount()));
+        bet.setText(Integer.toString(player.getBet()));
+        account.setText(Integer.toString(player.getAccount()));
 
+    }
+
+    public static void changeAccount(int playerAccount){
+        account.setText(Integer.toString(playerAccount));
     }
 }

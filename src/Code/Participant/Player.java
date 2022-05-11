@@ -1,5 +1,7 @@
 package Code.Participant;
 
+import Code.Panels.Game.DisplayPanel.BetPanel;
+
 public class Player extends Participant {
     private String name;
     private int wins;
@@ -37,6 +39,7 @@ public class Player extends Participant {
 
     public void setAccount(int account) {
         this.account = account;
+        BetPanel.changeAccount(account);
     }
 
     public void setBet(int bet) {
@@ -50,6 +53,8 @@ public class Player extends Participant {
     public String getName() {
         return name;
     }
+
+    public void setName(String name) { this.name = name; }
 
     public void bet(int amount){
         if(amount <= this.account){
