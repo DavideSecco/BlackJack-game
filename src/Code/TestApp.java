@@ -33,7 +33,7 @@ public class TestApp {
         // DBTEST:
         MyDB.setUpDB();
         System.out.println(MyDB.getPlayersFromDB());
-        DBManager.close();
+        //DBManager.close();
     }
 
     //------------------------------------PARTE LOGICA------------------------------------//

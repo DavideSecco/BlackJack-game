@@ -1,5 +1,7 @@
 package Code.Panels.Menu;
 
+import Code.Panels.MainFrame;
+import Code.Panels.Menu.Login.LoginDialog;
 import Code.TestApp;
 
 import javax.swing.*;
@@ -10,6 +12,7 @@ import java.awt.event.ActionListener;
 
 import static Code.Panels.MainFrame.*;
 import static Code.Panels.MainPanel.*;
+import static Code.TestApp.mainFrame;
 
 public class MenuPanel extends JPanel implements ActionListener {
     public JButton playButton;
@@ -39,7 +42,10 @@ public class MenuPanel extends JPanel implements ActionListener {
         // Non sono riuscito a far si che si elimini il frame
         if(e.getSource() == playButton){
             System.out.println("Play a Game!");
-            mainPanel.changePanel(gamePanel);
+            LoginDialog loginDlg = new LoginDialog(mainFrame);
+            loginDlg.setVisible(true);
+            if(loginDlg.isSucceeded())
+                mainPanel.changePanel(gamePanel);   //cambia il panel se il login è andato a buon fine
         }
 
         if(e.getSource() == selectPlayer){

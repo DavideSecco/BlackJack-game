@@ -1,6 +1,5 @@
 package Utils;
 
-import java.nio.file.Paths;
 import java.sql.*;
 import java.util.TimeZone;
 
@@ -27,7 +26,7 @@ public class DBManager {
         JDBC_URL = URL;
     }
 
-    public static Connection getConnection() throws SQLException {
+    public static void getConnection() throws SQLException {
         if (connection == null) {
             if (JDBC_Driver == null || JDBC_URL == null) {
                 throw new SQLException("Illegal request. Call setConnection() before.");
@@ -41,7 +40,6 @@ public class DBManager {
 
             connection = DriverManager.getConnection(JDBC_URL);
         }
-        return connection;
     }
 
     public static void showMetadata() throws SQLException {

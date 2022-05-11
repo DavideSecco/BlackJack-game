@@ -14,6 +14,10 @@ import java.util.List;
 import static Code.Panels.MainFrame.mainPanel;
 import static Code.Panels.MainPanel.menuPanel;
 
+import static Code.Panels.MainFrame.mainPanel;
+import static Code.Panels.MainPanel.gamePanel;
+import static Code.Panels.MainPanel.menuPanel;
+
 public class OptionsPanel extends JPanel implements ActionListener{
     public JButton menu;
     public JButton newGame;
@@ -26,7 +30,7 @@ public class OptionsPanel extends JPanel implements ActionListener{
 
         actionListener = new ArrayList<ActionListener>();
 
-        menu = new JButton("Menu principale");
+        menu = new JButton("Menu principale (Logout)");
         newGame = new JButton("Gioca ancora");
 
         menu.addActionListener(this);

@@ -72,6 +72,9 @@ public class MyDB {
         }
         return sb.toString();
     }
+    public static ResultSet getDataFromDB() throws SQLException{
+        return statement.executeQuery("SELECT * FROM " + table + " LIMIT 100");
+    }
 
     public static String rowToString(ResultSet rs) throws SQLException {
         return String.format("Name=%s, Wins=%d, Account=%d",
