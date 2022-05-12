@@ -5,11 +5,12 @@ import Code.TestApp;
 import javax.swing.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class MainFrame extends JFrame {
     public static MainPanel mainPanel;
 
-    public MainFrame() throws IOException {
+    public MainFrame() throws IOException, SQLException {
         JFrame frame = new JFrame("Pong");
 
         mainPanel = new MainPanel();
