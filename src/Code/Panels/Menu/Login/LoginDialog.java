@@ -14,7 +14,6 @@ import static Code.Panels.MainPanel.gamePanel;
 import static Code.TestApp.*;
 
 public class LoginDialog extends JDialog {
-
     private JTextField tfUsername;
     private JPasswordField pfPassword;
     private JLabel lbUsername;
@@ -122,6 +121,7 @@ public class LoginDialog extends JDialog {
     public boolean isSucceeded() {
         return succeeded;
     }
+
     public void setPlayer(){
         player.setAccount(Login.account);
     }

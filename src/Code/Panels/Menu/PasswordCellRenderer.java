@@ -11,9 +11,7 @@ import java.awt.*;
  *
  * visto da: https://stackoverflow.com/questions/10679786/how-to-create-a-column-cell-for-entering-password-in-jtable
  */
-class PasswordCellRenderer extends JPasswordField
-        implements TableCellRenderer {
-
+class PasswordCellRenderer extends JPasswordField implements TableCellRenderer {
     public PasswordCellRenderer() {
         super();
         this.setText("filler123");

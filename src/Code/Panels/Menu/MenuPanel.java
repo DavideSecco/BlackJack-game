@@ -39,9 +39,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Non sono riuscito a far si che si elimini il frame
         if(e.getSource() == playButton){
-            System.out.println("Play a Game!");
             LoginDialog loginDlg = new LoginDialog(mainFrame);
             loginDlg.setVisible(true);
             if(loginDlg.isSucceeded())
