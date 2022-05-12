@@ -37,10 +37,7 @@ public class Player extends Participant {
         return account;
     }
 
-    public void setAccount(int account) {
-        this.account = account;
-        BetPanel.changeAccount(account);
-    }
+    public void setAccount(int account) { this.account = account; }
 
     public void setBet(int bet) {
         this.bet = bet;
