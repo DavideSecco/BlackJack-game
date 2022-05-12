@@ -1,12 +1,14 @@
 package Code.Panels.Menu.Login;
 
 import Code.MyDB;
+import Code.Panels.Menu.SelectPlayerPanel;
 import Code.Participant.Player;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static Code.MyDB.getDataFromDB;
+import static Code.Panels.MainPanel.selectPlayerPanel;
 
 public class Login {
 
@@ -24,6 +26,7 @@ public class Login {
         }
         Player p = new Player(user);
         MyDB.addPlayer(p);
+        selectPlayerPanel = new SelectPlayerPanel();
         return true;
     }
 }
