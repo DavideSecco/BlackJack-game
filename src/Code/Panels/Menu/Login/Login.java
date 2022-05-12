@@ -1,5 +1,8 @@
 package Code.Panels.Menu.Login;
 
+import Code.MyDB;
+import Code.Participant.Player;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -12,12 +15,15 @@ public class Login {
 
         ResultSet rs = getDataFromDB();
         while(rs.next()){
-            if(user.equals(rs.getString("FirstName")) && pass.equals(rs.getString("FirstName"))){
+            if(user.equals(rs.getString("FirstName")) && !pass.equals(rs.getString("FirstName"))){
+                return false;
+            } else if (user.equals(rs.getString("FirstName")) && !pass.equals(rs.getString("FirstName"))) {
                 account=rs.getInt("account");
                 return true;
             }
-
         }
-        return false;
+        Player p = new Player(user);
+        MyDB.addPlayer(p);
+        return true;
     }
 }
