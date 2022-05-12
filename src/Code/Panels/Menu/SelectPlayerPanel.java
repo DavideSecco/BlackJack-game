@@ -35,7 +35,7 @@ public class SelectPlayerPanel extends JPanel implements ActionListener{
         parteAlta.add(new JLabel("Ecco tutti i giocatori (sotto questa linea vorrei ci fosse i titoli delle colonne!)"));
         parteAlta.add(menu);
         add(BorderLayout.PAGE_START, parteAlta);
-        add(BorderLayout.CENTER, getTable("SELECT * FROM Players"));
+        add(new JScrollPane(getTable("SELECT * FROM Players")));
     }
 
     public JTable getTable(String query) throws SQLException {

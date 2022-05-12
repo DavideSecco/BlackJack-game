@@ -19,12 +19,13 @@ public class Login {
         while(rs.next()){
             if(user.equals(rs.getString("FirstName")) && !pass.equals(rs.getString("FirstName"))){
                 return false;
-            } else if (user.equals(rs.getString("FirstName")) && !pass.equals(rs.getString("FirstName"))) {
+            } else if (user.equals(rs.getString("FirstName")) && pass.equals(rs.getString("FirstName"))) {
                 account=rs.getInt("account");
                 return true;
             }
         }
         Player p = new Player(user);
+        account = p.getAccount();
         MyDB.addPlayer(p);
         selectPlayerPanel = new SelectPlayerPanel();
         return true;
