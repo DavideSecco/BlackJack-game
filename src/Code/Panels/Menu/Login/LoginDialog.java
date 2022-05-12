@@ -78,7 +78,7 @@ public class LoginDialog extends JDialog {
                         BetPanel.changeAccount(Login.account);
                     } else {
                         JOptionPane.showMessageDialog(LoginDialog.this,
-                                "Username o password errati",
+                                "Username o password invalidi",
                                 "Login",
                                 JOptionPane.ERROR_MESSAGE);
                         // azzera username and password

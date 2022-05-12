@@ -74,6 +74,7 @@ public class SelectPlayerPanel extends JPanel implements ActionListener{
         }
         t.setModel(dm);
         t.setGridColor(Color.BLACK);
+        t.getColumnModel().getColumn(3).setCellRenderer(new PasswordCellRenderer());
         return t;
     }
 

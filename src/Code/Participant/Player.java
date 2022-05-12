@@ -6,6 +6,8 @@ public class Player extends Participant {
     private String name;
     private int wins;
     private int account;     // potrebbe andare anche in participant ?
+
+    private String password;
     private int bet = 0;
 
     public Player(){
@@ -13,6 +15,7 @@ public class Player extends Participant {
         this.name = "Anonymous";
         this.wins = 0;
         this.account = 1000;
+        this.password = "123";
     }
 
     public Player(String name){
@@ -20,13 +23,31 @@ public class Player extends Participant {
         this.name = name;
         this.wins = 0;
         this.account = 1000;
+        this.password = "123";
     }
 
-    public Player(String name, int wins, int account){
+    public Player(String name, String password){
+        super();
+        this.name = name;
+        this.wins = 0;
+        this.account = 1000;
+        this.password = password;
+    }
+
+    public Player(String name, int wins, int account, String password){
         super();
         this.name = name;
         this.wins = wins;
         this.account = account;
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getBet() {

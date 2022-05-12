@@ -26,7 +26,8 @@ public class MyDB {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS " + table + " (" +
                                     "FirstName TEXT PRIMARY KEY," +
                                     "Wins INTEGER," +
-                                    "Account INTEGER" + ");");
+                                    "Account INTEGER," +
+                                    "Password TEXT" + ");");
     }
 
     // metodo che inizializza un db di prova, alla fine non servirá nemmeno piú
@@ -34,7 +35,7 @@ public class MyDB {
         MyDB.createDB();
         Player p1 = new Player();
         Player p2 = new Player("Davide");
-        Player p3 = new Player("Donato", 100, 10000);
+        Player p3 = new Player("Donato", 100, 10000, "Prova");
 
         MyDB.addPlayer(p1);
         MyDB.addPlayer(p2);
@@ -47,8 +48,8 @@ public class MyDB {
      */
     public static void addPlayer(Player player) throws SQLException {
         try {
-            statement.executeUpdate("INSERT INTO " + table + " (FirstName, Wins, Account) VALUES('" +
-                                        player.getName() + "'," + player.getWins() + "," + player.getAccount() + ");");
+            statement.executeUpdate("INSERT INTO " + table + " (FirstName, Wins, Account, Password) VALUES('" +
+                                        player.getName() + "'," + player.getWins() + "," + player.getAccount() + ",'" + player.getPassword() + "');");
         }catch(SQLiteException e){
             System.out.println("Hai provato a inserire un utente che esiste giá nel db");
         }
