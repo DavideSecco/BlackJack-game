@@ -19,8 +19,8 @@ import static Code.Panels.MainPanel.gamePanel;
 import static Code.Panels.MainPanel.menuPanel;
 
 public class OptionsPanel extends JPanel implements ActionListener{
-    public JButton menu;
-    public JButton newGame;
+    public static JButton menu;
+    public static JButton newGame;
 
     private List<ActionListener> actionListener;
 
@@ -61,6 +61,7 @@ public class OptionsPanel extends JPanel implements ActionListener{
         }
         if(e.getSource() == menu){
             newGame.doClick();
+            TestApp.player.setBet(0);
             mainPanel.changePanel(menuPanel);
         }
 

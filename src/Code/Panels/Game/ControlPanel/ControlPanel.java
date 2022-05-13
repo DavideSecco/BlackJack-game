@@ -1,6 +1,7 @@
 package Code.Panels.Game.ControlPanel;
 
 import Code.GameElements.Fiche;
+import Code.Panels.Game.DisplayPanel.OptionsPanel;
 import Code.TestApp;
 
 import javax.swing.*;
@@ -71,6 +72,7 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
             TestApp.dealer.play(TestApp.cardsDeck);
             TestApp.dispenserMoney();
             TestApp.managePlayerWins();
+            OptionsPanel.menu.setEnabled(true);
             actionPanel.enablePanel(false);
         }
         if(e.getSource() == FichesPanel.ficheButton[0]){
@@ -97,6 +99,7 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
         if(e.getSource() == FichesPanel.confirm){
             System.out.println("Conferma: sono stato premuto");
             TestApp.inizio();
+            OptionsPanel.menu.setEnabled(false);
             actionPanel.enablePanel(true);
             fichesPanel.enablePanel(false);
             checkEnableDouble();
