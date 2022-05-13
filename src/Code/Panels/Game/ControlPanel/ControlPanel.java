@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 public class ControlPanel extends JPanel implements ActionListener, MyPanel {
-    private static FichesPanel fichesPanel;
+    public static FichesPanel fichesPanel;
     public static ActionPanel actionPanel;
 
     private List<ActionListener> actionListener;
@@ -76,16 +76,22 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
             actionPanel.enablePanel(false);
         }
         if(e.getSource() == FichesPanel.ficheButton[0]){
+            if(TestApp.player.getAccount() - FichesPanel.ficheButton[0].getValue() < 10)
+                fichesPanel.enablePanel(false);
             FichesPanel.confirm.setEnabled(true);
             System.out.println("FICHE 100: sono stato premuto");
             TestApp.player.bet(FichesPanel.ficheButton[0].getValue());
         }
         if(e.getSource() == FichesPanel.ficheButton[1]){
+            if(TestApp.player.getAccount() - FichesPanel.ficheButton[1].getValue() < 10)
+                fichesPanel.enablePanel(false);
             FichesPanel.confirm.setEnabled(true);
             System.out.println("FICHE 50: sono stato premuto");
             TestApp.player.bet(FichesPanel.ficheButton[1].getValue());
         }
         if(e.getSource() == FichesPanel.ficheButton[2]){
+            if(TestApp.player.getAccount() - FichesPanel.ficheButton[2].getValue() < 10)
+                fichesPanel.enablePanel(false);
             FichesPanel.confirm.setEnabled(true);
             System.out.println("FICHE 10: sono stato premuto");
             TestApp.player.bet(FichesPanel.ficheButton[2].getValue());

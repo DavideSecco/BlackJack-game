@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
 import static Code.Panels.MainFrame.mainPanel;
 import static Code.Panels.MainPanel.menuPanel;
 
@@ -58,10 +59,14 @@ public class OptionsPanel extends JPanel implements ActionListener{
             GamePanel.controlPanel.inizialize();
 
             newGame.setEnabled(false);
+            if(TestApp.player.getAccount() < 10)
+                fichesPanel.enablePanel(false);
         }
         if(e.getSource() == menu){
             newGame.doClick();
             TestApp.player.setBet(0);
+            fichesPanel.enablePanel(true);
+            fichesPanel.confirm.setEnabled(false);
             mainPanel.changePanel(menuPanel);
         }
 

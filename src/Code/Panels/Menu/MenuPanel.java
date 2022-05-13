@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
+import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
 import static Code.Panels.MainFrame.*;
 import static Code.Panels.MainPanel.*;
 import static Code.TestApp.mainFrame;
@@ -40,13 +41,15 @@ public class MenuPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == playButton){
+        if(e.getSource() == playButton) {
             LoginDialog loginDlg = new LoginDialog(mainFrame);
             loginDlg.setVisible(true);
-            if(loginDlg.isSucceeded())
+            if (loginDlg.isSucceeded()) {
                 mainPanel.changePanel(gamePanel);   //cambia il panel se il login è andato a buon fine
+                if(TestApp.player.getAccount() < 10)
+                    fichesPanel.enablePanel(false);
+            }
         }
-
         if(e.getSource() == selectPlayer){
             try {
                 selectPlayerPanel=new SelectPlayerPanel();
