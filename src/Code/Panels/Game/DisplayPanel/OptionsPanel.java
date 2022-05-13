@@ -60,6 +60,7 @@ public class OptionsPanel extends JPanel implements ActionListener{
             newGame.setEnabled(false);
         }
         if(e.getSource() == menu){
+            newGame.doClick();
             mainPanel.changePanel(menuPanel);
         }
 

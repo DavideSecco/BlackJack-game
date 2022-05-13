@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import static Code.Panels.MainFrame.*;
 import static Code.Panels.MainPanel.*;
@@ -47,6 +48,11 @@ public class MenuPanel extends JPanel implements ActionListener {
         }
 
         if(e.getSource() == selectPlayer){
+            try {
+                selectPlayerPanel=new SelectPlayerPanel();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
             mainPanel.changePanel(selectPlayerPanel);
         }
 

@@ -27,7 +27,7 @@ public class SelectPlayerPanel extends JPanel implements ActionListener{
 
         parteAlta = new JPanel();
         parteAlta.setLayout(new GridLayout(1,2));
-        parteAlta.add(new JLabel("Ecco tutti i giocatori (sotto questa linea vorrei ci fosse i titoli delle colonne!)"));
+        parteAlta.add(new JLabel("Ecco tutti i giocatori"));
         parteAlta.add(menu);
 
         add(BorderLayout.PAGE_START, parteAlta);

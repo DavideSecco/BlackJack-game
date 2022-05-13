@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static Code.TestApp.player;
+
 public class MyDB {
     public static Statement statement;
     public static String table = "Players";
@@ -83,4 +85,12 @@ public class MyDB {
                 rs.getInt("wins"),
                 rs.getInt("account"));
     }
+    public static void updateAccountDB() throws SQLException{
+        statement.executeUpdate("UPDATE " + table + " SET account = " + player.getAccount() + " WHERE FirstName = '" + player.getName() + "' ;");
+    }
+
+    public static void updateWinsDB() throws SQLException{
+        statement.executeUpdate("UPDATE " + table + " SET wins = " + player.getWins() + " WHERE FirstName = '" + player.getName() + "' ;");
+    }
+
 }

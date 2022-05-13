@@ -90,4 +90,10 @@ public class Player extends Participant {
         this.bet = 0;
     }
 
+    public void incrementWins() {
+        System.out.println(wins);
+
+        this.wins++;
+        System.out.println(wins);
+    }
 }
