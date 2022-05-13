@@ -91,9 +91,10 @@ public class Player extends Participant {
     }
 
     public void incrementWins() {
-        System.out.println(wins);
-
         this.wins++;
-        System.out.println(wins);
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
     }
 }

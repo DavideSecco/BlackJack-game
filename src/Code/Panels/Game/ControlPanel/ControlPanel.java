@@ -70,6 +70,7 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
             System.out.println("STAND BUTTON: sono stato premuto");
             TestApp.dealer.play(TestApp.cardsDeck);
             TestApp.dispenserMoney();
+            TestApp.managePlayerWins();
             actionPanel.enablePanel(false);
         }
         if(e.getSource() == FichesPanel.ficheButton[0]){

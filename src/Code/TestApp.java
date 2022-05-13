@@ -9,6 +9,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static Code.MyDB.updateAccountDB;
+import static Code.MyDB.updateWinsDB;
+
 public class TestApp {
     public static Player player = new Player();
     public static Dealer dealer = new Dealer();
@@ -46,12 +49,23 @@ public class TestApp {
      * -1 --> dealer ha vinto
      */
 
+
+    public static void managePlayerWins(){
+        if(dealer.isBust() || (player.getValueCards() > dealer.getValueCards() && !player.isBust())){
+            player.incrementWins();
+            try {
+                updateWinsDB();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     public static int whoWon(){
         if(player.isBust())                                     // se il player ha sballato --> banco vince
             return -1;
         if(dealer.isBust())                                     // se il player non ha sballato, e il banco si --> player vince
             return 1;
-
         // penso sia autoesplicativo
         if(player.getValueCards() > dealer.getValueCards())
             return 1;
@@ -84,6 +98,15 @@ public class TestApp {
             player.addToAccount(player.getBet());
         else                                                // player ha perso
             player.addToAccount(0);
+
+
+        //ovviamente deve mettere i soldi anche nel db
+
+        try {
+            updateAccountDB();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

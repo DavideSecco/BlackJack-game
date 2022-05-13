@@ -7,6 +7,7 @@ import org.sqlite.SQLiteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 
 import static Code.TestApp.player;
 
@@ -77,6 +78,24 @@ public class MyDB {
     }
     public static ResultSet getDataFromDB() throws SQLException{
         return statement.executeQuery("SELECT * FROM " + table + " LIMIT 100");
+    }
+
+    /**
+     * cambia il player corrente in quello specificato dal playerName, con tutti i suoi dati
+     * @param playerName
+     * @throws SQLException
+     */
+
+    public static void changePlayerFromDB(String playerName) throws SQLException{
+        ResultSet rs = getDataFromDB();
+        while(rs.next()){
+            if(Objects.equals(playerName, rs.getString("FirstName"))){
+                player.setName(rs.getString("FirstName"));
+                player.setPassword(rs.getString("password"));
+                player.setAccount(rs.getInt("account"));
+                player.setWins(rs.getInt("wins"));
+            }
+        }
     }
 
     public static String rowToString(ResultSet rs) throws SQLException {

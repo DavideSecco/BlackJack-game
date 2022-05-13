@@ -6,6 +6,8 @@ import Code.Participant.Player;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import static Code.MyDB.changePlayerFromDB;
 import static Code.TestApp.*;
 
 import static Code.MyDB.getDataFromDB;
@@ -25,17 +27,15 @@ public class Login {
                 return false;
             } else if (user.equals(rs.getString("FirstName")) && pass.equals(rs.getString("Password"))) {
                 account=rs.getInt("account");
-                player.setName(user);
-                player.setPassword(pass);
+                changePlayerFromDB(user);
                 return true;
             }
         }
-
-        //Player p = new Player(user,pass);
         player.setName(user);
         player.setPassword(pass);
         account = 1000;
         MyDB.addPlayer(player);
+        changePlayerFromDB(user);
         selectPlayerPanel = new SelectPlayerPanel();
         return true;
     }
