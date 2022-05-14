@@ -44,12 +44,12 @@ public class GamePanel extends JPanel {
         totalPanel.add(BorderLayout.PAGE_END,controlPanel);
 
         controlPanel.addActionListener(tablePanel);
-        controlPanel.addActionListener(displayPanel);
-        controlPanel.addActionListener(DisplayPanel.betPanel);
+        controlPanel.addActionListener(displayPanel.labelPanel);
+        controlPanel.addActionListener(displayPanel.betPanel);
 
         DisplayPanel.optionsPanel.addActionListener(tablePanel);
-        DisplayPanel.optionsPanel.addActionListener(displayPanel);
-        DisplayPanel.optionsPanel.addActionListener(DisplayPanel.betPanel);
+        DisplayPanel.optionsPanel.addActionListener(displayPanel.labelPanel);
+        DisplayPanel.optionsPanel.addActionListener(displayPanel.betPanel);
 
         this.add(totalPanel);
     }

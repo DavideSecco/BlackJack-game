@@ -39,6 +39,8 @@ public class MyDB {
         Player p1 = new Player();
         Player p2 = new Player("Davide");
         Player p3 = new Player("Donato", 100, 10000, "Prova");
+        Player p4 = new Player("1", "1");
+        Player p5 = new Player("Marti", "pepotto36");
 
         MyDB.addPlayer(p1);
         MyDB.addPlayer(p2);

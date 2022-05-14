@@ -13,7 +13,7 @@ import static Code.Panels.MainFrame.mainPanel;
 import static Code.Panels.MainPanel.gamePanel;
 import static Code.TestApp.*;
 
-public class LoginDialog extends JDialog {
+public class LoginDialog extends JDialog implements ActionListener {
     private JTextField tfUsername;
     private JPasswordField pfPassword;
     private JLabel lbUsername;
@@ -61,43 +61,11 @@ public class LoginDialog extends JDialog {
         panel.setBorder(new LineBorder(Color.GRAY));
 
         btnLogin = new JButton("Login");
+        btnLogin.addActionListener(this);
 
-        btnLogin.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if (Login.authenticate(getUsername(), getPassword())) {
-                        JOptionPane.showMessageDialog(LoginDialog.this,
-                                "Benvenuto " + getUsername() + "!",
-                                "Login",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        succeeded = true;
-                        dispose();
-                        setPlayer();
-                        BetPanel.changeAccount(Login.account);
-                    } else {
-                        JOptionPane.showMessageDialog(LoginDialog.this,
-                                "Username o password invalidi",
-                                "Login",
-                                JOptionPane.ERROR_MESSAGE);
-                        // azzera username and password
-                        tfUsername.setText("");
-                        pfPassword.setText("");
-                        succeeded = false;
-
-                    }
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
         btnCancel = new JButton("Cancel");
-        btnCancel.addActionListener(new ActionListener() {
+        btnCancel.addActionListener(this::actionPerformed);
 
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
         JPanel bp = new JPanel();
         bp.add(btnLogin);
         bp.add(btnCancel);
@@ -108,6 +76,38 @@ public class LoginDialog extends JDialog {
         pack();
         setResizable(false);
         setLocationRelativeTo(parent);
+    }
+
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == btnLogin) {
+            try {
+                if (Login.authenticate(getUsername(), getPassword())) {
+                    JOptionPane.showMessageDialog(LoginDialog.this,
+                            "Benvenuto " + getUsername() + "!",
+                            "Login",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    succeeded = true;
+                    dispose();
+                    setPlayer();
+                    BetPanel.changeAccount(Login.account);
+                } else {
+                    JOptionPane.showMessageDialog(LoginDialog.this,
+                            "Username o password invalidi",
+                            "Login",
+                            JOptionPane.ERROR_MESSAGE);
+                    // azzera username and password
+                    tfUsername.setText("");
+                    pfPassword.setText("");
+                    succeeded = false;
+                }
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+
+        if(e.getSource() == btnCancel){
+            dispose();
+        }
     }
 
     public String getUsername() {
