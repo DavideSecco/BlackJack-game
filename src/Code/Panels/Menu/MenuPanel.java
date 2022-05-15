@@ -21,6 +21,8 @@ public class MenuPanel extends JPanel implements ActionListener {
     public JButton selectPlayer;
     public JButton viewRules;
 
+    public static LoginDialog loginDlg;
+
     public MenuPanel() {
         super();
         setPreferredSize(TestApp.menuDimension);
@@ -42,7 +44,7 @@ public class MenuPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == playButton) {
-            LoginDialog loginDlg = new LoginDialog(mainFrame);
+            loginDlg = new LoginDialog(mainFrame);
             loginDlg.setVisible(true);
             if (loginDlg.isSucceeded()) {
                 mainPanel.changePanel(gamePanel);   //cambia il panel se il login è andato a buon fine

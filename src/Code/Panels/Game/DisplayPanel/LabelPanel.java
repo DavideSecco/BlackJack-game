@@ -1,5 +1,6 @@
 package Code.Panels.Game.DisplayPanel;
 
+import Code.Panels.Menu.MenuPanel;
 import Code.TestApp;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class LabelPanel extends JPanel implements ActionListener {
     private JLabel message;
 
     public LabelPanel(){
+        super();
         setPreferredSize(new Dimension(TestApp.gameDimension.width/4, TestApp.gameDimension.height/10));
 
         name = new JLabel(player.getName());
@@ -30,6 +32,7 @@ public class LabelPanel extends JPanel implements ActionListener {
     }
 
     public void inizialize(){
+        name.setText(player.getName());
         message.setText("Punta");
         message.setHorizontalAlignment(JLabel.CENTER);
     }
@@ -59,6 +62,11 @@ public class LabelPanel extends JPanel implements ActionListener {
 
         if(e.getSource() == confirm){
             message.setText("Fai la tua giocata");
+        }
+
+        if(e.getSource() == MenuPanel.loginDlg.btnLogin){
+            name.setText(player.getName());
+            System.out.println("HO sentito che devo cambiare il player");
         }
     }
 }

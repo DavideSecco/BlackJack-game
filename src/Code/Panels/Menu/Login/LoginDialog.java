@@ -5,9 +5,12 @@ import Code.Panels.Game.DisplayPanel.BetPanel;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import static Code.Panels.Game.DisplayPanel.DisplayPanel.labelPanel;
 import static Code.TestApp.*;
 
 public class LoginDialog extends JDialog implements ActionListener, KeyListener {
@@ -15,10 +18,9 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
     private JPasswordField pfPassword;
     private JLabel lbUsername;
     private JLabel lbPassword;
-    private JButton btnLogin;
+    public JButton btnLogin;
     private JButton btnCancel;
     private boolean succeeded;
-
     /**
      * ho visto da google come creare correttamente un jdialog per login:
      *
@@ -65,7 +67,6 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
         btnCancel = new JButton("Cancel");
         btnCancel.addActionListener(this);
 
-
         JPanel bp = new JPanel();
         bp.add(btnLogin);
         bp.add(btnCancel);
@@ -79,8 +80,10 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
     }
 
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() == btnLogin)
+        if(e.getSource() == btnLogin){
+            labelPanel.inizialize();
             check();
+        }
 
         if(e.getSource() == btnCancel)
             dispose();
@@ -96,10 +99,13 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
 
     public boolean isSucceeded() { return succeeded; }
 
-    @Override
+   @Override
     public void keyPressed(KeyEvent ke) {
-        if(ke.getKeyCode() == 10)
+        if(ke.getKeyCode() == 10){
             check();
+            labelPanel.inizialize();
+        }
+
     }
 
     public void check(){
@@ -112,6 +118,7 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
                 succeeded = true;
                 dispose();
                 player.setAccount(Login.account);
+                System.out.println("Il giocatore attuale è: " + player.getName());
                 BetPanel.changeAccount(Login.account);
             } else {
                 JOptionPane.showMessageDialog(LoginDialog.this,
