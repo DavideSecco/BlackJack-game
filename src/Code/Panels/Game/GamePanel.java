@@ -23,8 +23,6 @@ import java.io.IOException;
  */
 
 public class GamePanel extends JPanel {
-    JPanel totalPanel;
-
     public static DisplayPanel displayPanel;
     TablePanel tablePanel;
     public static ControlPanel controlPanel;
@@ -32,16 +30,15 @@ public class GamePanel extends JPanel {
     public GamePanel() throws IOException {
         super();
         setPreferredSize(TestApp.gameDimension);
-        totalPanel = new JPanel(new BorderLayout());
 
         displayPanel = new DisplayPanel();
-        totalPanel.add(BorderLayout.PAGE_START, displayPanel);
+        add(BorderLayout.PAGE_START, displayPanel);
 
         tablePanel = new TablePanel();
-        totalPanel.add(BorderLayout.CENTER, tablePanel);
+        add(BorderLayout.CENTER, tablePanel);
 
         controlPanel = new ControlPanel();
-        totalPanel.add(BorderLayout.PAGE_END,controlPanel);
+        add(BorderLayout.PAGE_END,controlPanel);
 
         controlPanel.addActionListener(tablePanel);
         controlPanel.addActionListener(displayPanel.labelPanel);
@@ -50,7 +47,5 @@ public class GamePanel extends JPanel {
         DisplayPanel.optionsPanel.addActionListener(tablePanel);
         DisplayPanel.optionsPanel.addActionListener(displayPanel.labelPanel);
         DisplayPanel.optionsPanel.addActionListener(displayPanel.betPanel);
-
-        this.add(totalPanel);
     }
 }

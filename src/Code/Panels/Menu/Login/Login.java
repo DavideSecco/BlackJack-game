@@ -2,7 +2,6 @@ package Code.Panels.Menu.Login;
 
 import Code.MyDB;
 import Code.Panels.Menu.SelectPlayerPanel;
-import Code.Participant.Player;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

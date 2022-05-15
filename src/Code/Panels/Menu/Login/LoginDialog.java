@@ -43,7 +43,7 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
         cs.gridy = 0;
         cs.gridwidth = 2;
         panel.add(tfUsername, cs);
-        tfUsername.addKeyListener(this);
+        tfUsername.addKeyListener((KeyListener) this);
 
         lbPassword = new JLabel("Password: ");
         cs.gridx = 0;
@@ -57,7 +57,7 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
         cs.gridwidth = 2;
         panel.add(pfPassword, cs);
         panel.setBorder(new LineBorder(Color.GRAY));
-        pfPassword.addKeyListener(this);
+        pfPassword.addKeyListener((KeyListener) this);
 
         btnLogin = new JButton("Login");
         btnLogin.addActionListener(this);
@@ -73,21 +73,17 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
         getContentPane().add(panel, BorderLayout.CENTER);
         getContentPane().add(bp, BorderLayout.PAGE_END);
 
-
-
         pack();
         setResizable(false);
         setLocationRelativeTo(parent);
     }
 
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() == btnLogin) {
+        if(e.getSource() == btnLogin)
             check();
-        }
 
-        if(e.getSource() == btnCancel){
+        if(e.getSource() == btnCancel)
             dispose();
-        }
     }
 
     public String getUsername() {
@@ -100,22 +96,11 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
 
     public boolean isSucceeded() { return succeeded; }
 
-    public void setPlayer(){
-        player.setAccount(Login.account);
-    }
-
-    @Override
-    public void keyTyped(KeyEvent ke) {}
-
     @Override
     public void keyPressed(KeyEvent ke) {
-        // Se viene premuto invio comportati come se venisse premuto login
         if(ke.getKeyCode() == 10)
             check();
     }
-
-    @Override
-    public void keyReleased(KeyEvent e) {}
 
     public void check(){
         try {
@@ -126,7 +111,7 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
                         JOptionPane.INFORMATION_MESSAGE);
                 succeeded = true;
                 dispose();
-                setPlayer();
+                player.setAccount(Login.account);
                 BetPanel.changeAccount(Login.account);
             } else {
                 JOptionPane.showMessageDialog(LoginDialog.this,
@@ -142,4 +127,10 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
             throw new RuntimeException(ex);
         }
     }
+
+    @Override
+    public void keyReleased(KeyEvent e) {}
+
+    @Override
+    public void keyTyped(KeyEvent ke) {}
 }

@@ -13,7 +13,7 @@ import static Code.MyDB.updateAccountDB;
 import static Code.MyDB.updateWinsDB;
 
 public class TestApp {
-    public static Player player = new Player();
+    public static Player player;
     public static Dealer dealer = new Dealer();
     public static CardsDeck cardsDeck = new CardsDeck();
 
@@ -25,15 +25,13 @@ public class TestApp {
     public static MainFrame mainFrame;
 
     public static void main(String[] args) throws IOException, SQLException {
-        System.out.println(player.getValueCards());
-
         player = new Player();
         dealer = new Dealer();
         cardsDeck = new CardsDeck();
 
         // DBTEST:
         MyDB.setUpDB();
-        System.out.println(MyDB.getPlayersFromDB());
+        // System.out.println(MyDB.getPlayersFromDB());
         //DBManager.close();
 
         mainFrame = new MainFrame();
