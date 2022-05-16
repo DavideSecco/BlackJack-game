@@ -1,7 +1,6 @@
 package Code.Panels.Menu.Login;
 
 import Code.MyDB;
-import Code.Panels.Menu.SelectPlayerPanel;
 import Code.Participant.Player;
 
 import java.sql.ResultSet;
@@ -11,7 +10,6 @@ import static Code.MyDB.changePlayerFromDB;
 import static Code.TestApp.*;
 
 import static Code.MyDB.getDataFromDB;
-import static Code.Panels.MainPanel.selectPlayerPanel;
 
 public class Login {
     public static boolean authenticate(String user, String pass) throws SQLException {
@@ -30,7 +28,6 @@ public class Login {
         }
         player = new Player(user, pass);
         MyDB.addPlayer(player);
-        selectPlayerPanel = new SelectPlayerPanel();
         return true;
     }
 }

@@ -66,8 +66,11 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
             TestApp.player.addKnownCard();
             fichesPanel.enablePanel(false);
 
-            if(TestApp.player.isBust())
+            if(TestApp.player.isBust()){
+                OptionsPanel.menu.setEnabled(true);
                 actionPanel.enablePanel(false);
+                TestApp.dispenserMoney();
+            }
         }
         if(e.getSource() == ActionPanel.standButton){
             System.out.println("STAND BUTTON: sono stato premuto");
