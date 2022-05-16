@@ -5,12 +5,19 @@ import Code.TestApp;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FichesPanel extends JPanel implements MyPanel{
+import static Code.Panels.Game.ControlPanel.ControlPanel.actionPanel;
+import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
+import static Code.Panels.Game.DisplayPanel.OptionsPanel.menu;
+import static Code.TestApp.incrementPlayerGames;
+import static Code.TestApp.player;
+
+public class FichesPanel extends JPanel implements ActionListener{
     private String[] files;
     private int[] values;
 
@@ -22,7 +29,7 @@ public class FichesPanel extends JPanel implements MyPanel{
     public FichesPanel() throws IOException {
         super();
         files = new String[]{"fiche100.jpg", "fiche50.png", "fiche10.png", "ficheAI.jpg"};
-        values = new int[] {100, 50, 10, 0};
+        values = new int[] {100, 50, 10, -1};
         ficheButton = new Fiche[files.length];
         confirm = new JButton("Conferma");
 
@@ -34,8 +41,10 @@ public class FichesPanel extends JPanel implements MyPanel{
         for(int i = 0; i < ficheButton.length; i++) {
             ficheButton[i] = new Fiche(values[i], files[i]);
             add(ficheButton[i]);
+            ficheButton[i].addActionListener(this);
         }
         add(confirm);
+        confirm.addActionListener(this);
 
         initialize();
     }
@@ -65,10 +74,64 @@ public class FichesPanel extends JPanel implements MyPanel{
         }
     }
 
-    public void addActionListener(ActionListener actionListener) {
-        for(Fiche fiche : ficheButton)
-            fiche.addActionListener(actionListener);
+     public void addActionListener(ActionListener actionListener) {
+         this.actionListener.add(actionListener);
+     }
 
-        confirm.addActionListener(actionListener);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        checkEnableFiche(ficheButton);              // <----        per comodità lo scrivo qui, ma potrei anche metterlo semplicemente nei pulsanti delle fiche
+
+        /**
+         * Se premo uno qualsiasi dei pulsanti delle fiches
+         * caso particolare: All in --> lo abbiamo mappato a valore -1 va ovviamente puntato tutto quello
+         */
+        if(e.getSource().getClass() == Fiche.class){
+            Fiche fiche = (Fiche) e.getSource();
+            System.out.println(fiche.toString() + "sono stato premuto, la scommessa vale: " + fiche.getValue() );
+
+            if(fiche.getValue() == -1 )     // se il tasto é All in
+                player.bet(player.getAccount());
+            else
+                player.bet(fiche.getValue());
+
+            fichesPanel.confirm.setEnabled(true);
+        }
+
+        if (e.getSource() == confirm) {
+            System.out.println("Conferma: sono stato premuto");
+
+            TestApp.inizio();
+            incrementPlayerGames();         // non la metterei qui
+            menu.setEnabled(false);
+            actionPanel.enablePanel(true);
+            fichesPanel.enablePanel(false);
+            checkEnableDouble();
+
+            if(player.hasBlackJack())
+                actionPanel.standButton.doClick();
+        }
+
+        sendToActionListeners(e);
+    }
+
+    /** Serve a disabilitare una fiche nel caso non si abbiano abbastanza "soldi" nel conto
+     * Es: Account = 90 --> La fiche da 100 sarà disabilitata  */
+    public void checkEnableFiche(Fiche[] fiches){
+        for(Fiche fiche : fiches){
+            if(player.getAccount() < 2*fiche.getValue())
+                fiche.setEnabled(false);
+        }
+    }
+
+    public void sendToActionListeners(ActionEvent e){
+        for(ActionListener actionListener : actionListener){
+            actionListener.actionPerformed(e);
+        }
+    }
+
+    public void checkEnableDouble(){
+        if(player.getBet() > player.getAccount())
+            ActionPanel.doubleButton.setEnabled(false);
     }
 }

@@ -117,7 +117,12 @@ public class MyDB {
     }
 
     public static void updateGamesDB() throws SQLException{
-        statement.executeUpdate("UPDATE " + table + " SET games = " + player.getGames() + " WHERE FirstName = '" + player.getName() + "' ;");
+        try {
+            statement.executeUpdate("UPDATE " + table + " SET games = " + player.getGames() + " WHERE FirstName = '" + player.getName() + "' ;");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public static boolean authenticate(String user, String pass) throws SQLException {

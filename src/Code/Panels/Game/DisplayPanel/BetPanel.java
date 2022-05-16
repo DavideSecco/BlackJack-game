@@ -1,17 +1,19 @@
 package Code.Panels.Game.DisplayPanel;
 
+import Code.GameElements.Fiche;
 import Code.TestApp;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
 
 import static Code.TestApp.*;
 
 public class BetPanel extends JPanel implements ActionListener {
     private JTextArea bet;
-    private static JTextArea account;
+    private JTextArea account;
     private JLabel betLabel;
     private JLabel accountLabel;
 
@@ -46,24 +48,23 @@ public class BetPanel extends JPanel implements ActionListener {
         bet.setEditable(false);
         account.setEditable(false);
 
-        this.add(betLabel);
-        this.add(accountLabel);
-        this.add(bet);
-        this.add(account);
+        add(betLabel);
+        add(accountLabel);
+        add(bet);
+        add(account);
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource().getClass() == Fiche.class){
+            System.out.println("Sono il betPanel, ho sentito: " + e.getSource().toString() + "Per me la scommessa vale " + Integer.toString(player.getBet()));
 
-        //non c'è la selezione dei bottoni qui perchè
-        //a prescindere dalla fiche che si clicca bisogna
-        //sempre fare queste due funzioni
+            bet.setText(Integer.toString(player.getBet()));
+            account.setText(Integer.toString(player.getAccount()));
 
-        System.out.println("BetPanel");
-        bet.setText(Integer.toString(player.getBet()));
-        account.setText(Integer.toString(player.getAccount()));
-
+            System.out.println("Ho risritto il valore");
+        }
     }
 
     public void initialize(){

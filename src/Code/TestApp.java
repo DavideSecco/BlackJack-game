@@ -91,11 +91,10 @@ public class TestApp {
     public static void dispenserMoney(){
         if(whoWon() == 1) {                                   // player ha vinto
             player.addToAccount(2 * player.getBet());
-
-            if (checkBlackjack())                               //se ha fatto blackjack si aggiunge la metà della bet
+            if (player.hasBlackJack())                               //se ha fatto hasBlackJack si aggiunge la metà della bet
                 player.addToAccount(player.getBet() / 2);
-
-        }else if(whoWon() == 0)                              // player ha pareggiato
+        }
+        else if(whoWon() == 0)                              // player ha pareggiato
             player.addToAccount(player.getBet());
         else                                                // player ha perso
             player.addToAccount(0);
@@ -119,13 +118,5 @@ public class TestApp {
         player.addKnownCard();
         dealer.addUnkonwCard(cardsDeck);
         dealer.addKnownCard();
-    }
-
-    /**
-     * Dice se il giocatore ha un blackjack
-     * @return
-     */
-    public static boolean checkBlackjack(){
-        return player.blackjack();
     }
 }

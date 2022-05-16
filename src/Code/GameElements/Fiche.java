@@ -29,4 +29,9 @@ public class Fiche extends JButton {
     public Image getImg() {
         return img;
     }
+
+    @Override
+    public String toString() {
+        return "Fiche{" + "value=" + value + "}";
+    }
 }

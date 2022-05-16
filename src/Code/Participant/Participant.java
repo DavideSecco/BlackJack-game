@@ -41,9 +41,9 @@ public abstract class Participant {
         return totalValue;
     }
 
-    /**  Dice se la mano è un blackjack  */
-    public boolean blackjack(){
-        return cards.size() == 2 && getValueCards() == 21;                              //se con due carte ho il valore 21 sarà sicuramente blackjack
+    /**  Dice se la mano è un BlackJack  */
+    public boolean hasBlackJack(){
+        return cards.size() == 2 && getValueCards() == 21;                              //se con due carte ho il valore 21 sarà sicuramente BlackJack
     }
 
     private int isThereAce() {

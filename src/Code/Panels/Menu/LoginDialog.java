@@ -38,7 +38,7 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
         cs.gridwidth = 1;
         panel.add(lbUsername, cs);
 
-        tfUsername = new JTextField(20);
+        tfUsername = new JTextField("1", 20);
         cs.gridx = 1;
         cs.gridy = 0;
         cs.gridwidth = 2;
@@ -51,7 +51,7 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
         cs.gridwidth = 1;
         panel.add(lbPassword, cs);
 
-        pfPassword = new JPasswordField(20);
+        pfPassword = new JPasswordField("1", 20);
         cs.gridx = 1;
         cs.gridy = 1;
         cs.gridwidth = 2;

@@ -1,10 +1,19 @@
 package Code.Panels.Game.ControlPanel;
 
+import Code.TestApp;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+
+import static Code.Panels.Game.ControlPanel.ControlPanel.actionPanel;
+import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
+import static Code.Panels.Game.DisplayPanel.OptionsPanel.menu;
+import static Code.TestApp.dealer;
+import static Code.TestApp.player;
 
 
 /**
@@ -14,7 +23,7 @@ import java.util.List;
  * - pulsante per fare il double: "double"
  * - pulsante per fare lo split: "split"
  */
-public class ActionPanel extends JPanel implements MyPanel{
+public class ActionPanel extends JPanel implements MyPanel, ActionListener{
     public static JButton hitButton;
     public static JButton standButton;
     public static JButton splitButton;
@@ -38,6 +47,8 @@ public class ActionPanel extends JPanel implements MyPanel{
         add(doubleButton);
         add(splitButton);
 
+        addActionListener(this);
+
         initialize();
     }
 
@@ -57,5 +68,46 @@ public class ActionPanel extends JPanel implements MyPanel{
 
     public void initialize(){
         enablePanel(false);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == actionPanel.hitButton){
+            System.out.println("PULSANTE HIT: sono stato premuto");
+            player.addKnownCard();
+            fichesPanel.enablePanel(false);
+
+            if(player.isBust()){
+                menu.setEnabled(true);
+                enablePanel(false);
+                TestApp.dispenserMoney();
+            }
+        }
+        if(e.getSource() == actionPanel.standButton){
+            System.out.println("STAND BUTTON: sono stato premuto");
+            dealer.play(TestApp.cardsDeck);
+            TestApp.dispenserMoney();
+            TestApp.managePlayerWins();
+            menu.setEnabled(true);
+            enablePanel(false);
+        }
+
+        if(e.getSource() == actionPanel.doubleButton){
+            System.out.println("Double: sono stato premuto");
+            player.bet(player.getBet());
+            hitButton.doClick();
+            standButton.doClick();
+        }
+        if(e.getSource() == actionPanel.splitButton){
+            System.out.println("Split: sono stato premuto");
+        }
+
+        sendToActionListeners(e);
+    }
+
+    public void sendToActionListeners(ActionEvent e){
+        for(ActionListener actionListener : actionListener){
+            actionListener.actionPerformed(e);
+        }
     }
 }

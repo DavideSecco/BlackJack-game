@@ -41,9 +41,10 @@ public class GamePanel extends JPanel {
         controlPanel = new ControlPanel();
         add(BorderLayout.PAGE_END,controlPanel);
 
-        controlPanel.addActionListener(tablePanel);
-        controlPanel.addActionListener(displayPanel.labelPanel);
-        controlPanel.addActionListener(displayPanel.betPanel);
+        controlPanel.fichesPanel.addActionListener(displayPanel.betPanel);
+        controlPanel.actionPanel.addActionListener(displayPanel.betPanel);
+        controlPanel.fichesPanel.addActionListener(displayPanel.labelPanel);
+        controlPanel.actionPanel.addActionListener(displayPanel.labelPanel);
 
         displayPanel.optionsPanel.addActionListener(tablePanel);
         displayPanel.optionsPanel.addActionListener(displayPanel.labelPanel);
