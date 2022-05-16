@@ -5,6 +5,8 @@ import Code.Panels.Game.DisplayPanel.BetPanel;
 public class Player extends Participant {
     private String name;
     private int wins;
+
+    private int games;
     private int account;     // potrebbe andare anche in participant ?
 
     private String password;
@@ -16,6 +18,7 @@ public class Player extends Participant {
         this.wins = 0;
         this.account = 1000;
         this.password = "123";
+        this.games = 0;
     }
 
     public Player(String name){
@@ -24,6 +27,7 @@ public class Player extends Participant {
         this.wins = 0;
         this.account = 1000;
         this.password = "123";
+        this.games = 0;
     }
 
     public Player(String name, String password){
@@ -32,14 +36,24 @@ public class Player extends Participant {
         this.wins = 0;
         this.account = 1000;
         this.password = password;
+        this.games = 0;
     }
 
-    public Player(String name, int wins, int account, String password){
+    public Player(String name, int wins, int account, String password, int games){
         super();
         this.name = name;
         this.wins = wins;
         this.account = account;
         this.password = password;
+        this.games = games;
+    }
+
+    public int getGames() {
+        return games;
+    }
+
+    public void setGames(int games) {
+        this.games = games;
     }
 
     public String getPassword() {

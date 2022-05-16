@@ -67,7 +67,7 @@ public class SelectPlayerPanel extends JPanel implements ActionListener{
         t.setGridColor(Color.BLACK);
 
         // Rendere la colonna delle password non leggibile
-        t.getColumnModel().getColumn(3).setCellRenderer(new PasswordCellRenderer());
+        t.getColumnModel().getColumn(4).setCellRenderer(new PasswordCellRenderer());
         return t;
     }
 

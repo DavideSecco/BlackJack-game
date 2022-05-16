@@ -28,6 +28,7 @@ public class MyDB {
         statement.executeUpdate("DROP TABLE " + table + ";");
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS " + table + " (" +
                                     "FirstName TEXT PRIMARY KEY," +
+                                    "Games INTEGER," +
                                     "Wins INTEGER," +
                                     "Account INTEGER," +
                                     "Password TEXT" + ");");
@@ -38,7 +39,7 @@ public class MyDB {
         MyDB.createDB();
         // Player p1 = new Player();
         Player p2 = new Player("Davide");
-        Player p3 = new Player("Donato", 100, 10000, "Prova");
+        Player p3 = new Player("Donato", 100, 10000, "Prova",0);
         Player p4 = new Player("1", "1");
         Player p5 = new Player("Marti", "pepotto36");
 
@@ -53,8 +54,8 @@ public class MyDB {
      */
     public static void addPlayer(Player player) throws SQLException {
         try {
-            statement.executeUpdate("INSERT INTO " + table + " (FirstName, Wins, Account, Password) VALUES('" +
-                                        player.getName() + "'," + player.getWins() + "," + player.getAccount() + ",'" + player.getPassword() + "');");
+            statement.executeUpdate("INSERT INTO " + table + " (FirstName, Games, Wins, Account, Password) VALUES('" +
+                                        player.getName() + "'," + player.getGames() + "," + player.getWins() + "," + player.getAccount() + ",'" + player.getPassword() + "');");
         }catch(SQLiteException e){
             System.out.println("Hai provato a inserire un utente che esiste giá nel db");
         }
@@ -93,6 +94,7 @@ public class MyDB {
         while(rs.next()){
             if(Objects.equals(playerName, rs.getString("FirstName"))){
                 player.setName(rs.getString("FirstName"));
+                player.setGames(rs.getInt("games"));
                 player.setPassword(rs.getString("password"));
                 player.setAccount(rs.getInt("account"));
                 player.setWins(rs.getInt("wins"));
@@ -112,6 +114,10 @@ public class MyDB {
 
     public static void updateWinsDB() throws SQLException{
         statement.executeUpdate("UPDATE " + table + " SET wins = " + player.getWins() + " WHERE FirstName = '" + player.getName() + "' ;");
+    }
+
+    public static void updateGamesDB() throws SQLException{
+        statement.executeUpdate("UPDATE " + table + " SET games = " + player.getGames() + " WHERE FirstName = '" + player.getName() + "' ;");
     }
 
 }

@@ -117,9 +117,8 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
                         JOptionPane.INFORMATION_MESSAGE);
                 succeeded = true;
                 dispose();
-                player.setAccount(Login.account);
                 System.out.println("Il giocatore attuale è: " + player.getName());
-                BetPanel.changeAccount(Login.account);
+                BetPanel.inizialize();
             } else {
                 JOptionPane.showMessageDialog(LoginDialog.this,
                         "Username o password invalidi",

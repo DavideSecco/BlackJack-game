@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Code.TestApp.incrementPlayerGames;
+
 /**
  * E' il pannello dei pulsanti e dei controlli, nella mia testa ci va:
  * - tutti i pulsanti di azione di gioco (dell'ActionPanel)
@@ -105,6 +107,7 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
         if(e.getSource() == FichesPanel.confirm){
             System.out.println("Conferma: sono stato premuto");
             TestApp.inizio();
+            incrementPlayerGames();
             OptionsPanel.menu.setEnabled(false);
             actionPanel.enablePanel(true);
             fichesPanel.enablePanel(false);

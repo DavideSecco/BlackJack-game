@@ -9,8 +9,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static Code.MyDB.updateAccountDB;
-import static Code.MyDB.updateWinsDB;
+import static Code.MyDB.*;
 
 public class TestApp {
     public static Player player;
@@ -56,6 +55,15 @@ public class TestApp {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    public static void incrementPlayerGames(){
+        player.setGames(player.getGames()+1);
+        try {
+            updateGamesDB();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
