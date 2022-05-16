@@ -1,16 +1,14 @@
-package Code.Panels.Menu.Login;
+package Code.Panels.Menu;
 
-import Code.Panels.Game.DisplayPanel.BetPanel;
+import Code.MyDB;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import static Code.Panels.Game.DisplayPanel.DisplayPanel.labelPanel;
+import static Code.Panels.MainPanel.gamePanel;
 import static Code.TestApp.*;
 
 public class LoginDialog extends JDialog implements ActionListener, KeyListener {
@@ -81,8 +79,8 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == btnLogin){
-            labelPanel.inizialize();
             check();
+            gamePanel.initialize();
         }
 
         if(e.getSource() == btnCancel)
@@ -103,14 +101,13 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
     public void keyPressed(KeyEvent ke) {
         if(ke.getKeyCode() == 10){
             check();
-            labelPanel.inizialize();
+            gamePanel.initialize();
         }
-
     }
 
     public void check(){
         try {
-            if (Login.authenticate(getUsername(), getPassword())) {
+            if (MyDB.authenticate(getUsername(), getPassword())) {
                 JOptionPane.showMessageDialog(LoginDialog.this,
                         "Benvenuto " + getUsername() + "!",
                         "Login",
@@ -118,16 +115,15 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
                 succeeded = true;
                 dispose();
                 System.out.println("Il giocatore attuale è: " + player.getName());
-                BetPanel.inizialize();
             } else {
                 JOptionPane.showMessageDialog(LoginDialog.this,
                         "Username o password invalidi",
                         "Login",
                         JOptionPane.ERROR_MESSAGE);
                 // azzera username and password
+                succeeded = false;
                 tfUsername.setText("");
                 pfPassword.setText("");
-                succeeded = false;
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);

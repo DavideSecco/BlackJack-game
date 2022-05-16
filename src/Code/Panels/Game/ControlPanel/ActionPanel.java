@@ -38,7 +38,7 @@ public class ActionPanel extends JPanel implements MyPanel{
         add(doubleButton);
         add(splitButton);
 
-        enablePanel(false);
+        initialize();
     }
 
     public void enablePanel(boolean bool){
@@ -53,5 +53,9 @@ public class ActionPanel extends JPanel implements MyPanel{
         standButton.addActionListener(actionListener);
         splitButton.addActionListener(actionListener);
         doubleButton.addActionListener(actionListener);
+    }
+
+    public void initialize(){
+        enablePanel(false);
     }
 }

@@ -1,7 +1,5 @@
 package Code.Panels.Menu;
 
-import Code.Panels.MainFrame;
-import Code.Panels.Menu.Login.LoginDialog;
 import Code.TestApp;
 
 import javax.swing.*;
@@ -36,9 +34,9 @@ public class MenuPanel extends JPanel implements ActionListener {
         selectPlayer.addActionListener(this);
         viewRules.addActionListener(this);
 
-        this.add(playButton);
-        this.add(selectPlayer);
-        this.add(viewRules);
+        add(playButton);
+        add(selectPlayer);
+        add(viewRules);
     }
 
     @Override
@@ -46,8 +44,11 @@ public class MenuPanel extends JPanel implements ActionListener {
         if(e.getSource() == playButton) {
             loginDlg = new LoginDialog(mainFrame);
             loginDlg.setVisible(true);
+
             if (loginDlg.isSucceeded()) {
+                gamePanel.initialize();
                 mainPanel.changePanel(gamePanel);   //cambia il panel se il login è andato a buon fine
+
                 if(TestApp.player.getAccount() < 10)
                     fichesPanel.enablePanel(false);
             }

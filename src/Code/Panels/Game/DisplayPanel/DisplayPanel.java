@@ -23,4 +23,10 @@ public class DisplayPanel extends JPanel{
         this.add(BorderLayout.CENTER, betPanel);
         this.add(BorderLayout.LINE_END, optionsPanel);
     }
+
+    public void initialize(){
+        labelPanel.initialize();
+        betPanel.initialize();
+        optionsPanel.initialize();
+    }
 }

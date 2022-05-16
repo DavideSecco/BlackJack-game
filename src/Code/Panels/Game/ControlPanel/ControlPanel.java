@@ -12,7 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Code.Panels.Game.DisplayPanel.OptionsPanel.menu;
 import static Code.TestApp.incrementPlayerGames;
+import static Code.TestApp.player;
 
 /**
  * E' il pannello dei pulsanti e dei controlli, nella mia testa ci va:
@@ -48,9 +50,9 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
         actionPanel.enablePanel(bool);
     }
 
-    public void inizialize(){
+    public void initialize(){
         actionPanel.enablePanel(false);
-        fichesPanel.inizialize();
+        fichesPanel.initialize();
     }
 
     public void addActionListener(ActionListener actionListener) {
@@ -63,11 +65,11 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
 
         if(e.getSource() == ActionPanel.hitButton){
             System.out.println("PULSANTE HIT: sono stato premuto");
-            TestApp.player.addKnownCard();
+            player.addKnownCard();
             fichesPanel.enablePanel(false);
 
-            if(TestApp.player.isBust()){
-                OptionsPanel.menu.setEnabled(true);
+            if(player.isBust()){
+                menu.setEnabled(true);
                 actionPanel.enablePanel(false);
                 TestApp.dispenserMoney();
             }
@@ -77,41 +79,41 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
             TestApp.dealer.play(TestApp.cardsDeck);
             TestApp.dispenserMoney();
             TestApp.managePlayerWins();
-            OptionsPanel.menu.setEnabled(true);
+            menu.setEnabled(true);
             actionPanel.enablePanel(false);
         }
         if(e.getSource() == FichesPanel.ficheButton[0]){
-            if(TestApp.player.getAccount() - FichesPanel.ficheButton[0].getValue() < 10)
+            if(player.getAccount() - FichesPanel.ficheButton[0].getValue() < 10)
                 fichesPanel.enablePanel(false);
-            FichesPanel.confirm.setEnabled(true);
+            fichesPanel.confirm.setEnabled(true);
             System.out.println("FICHE 100: sono stato premuto");
-            TestApp.player.bet(FichesPanel.ficheButton[0].getValue());
+            player.bet(FichesPanel.ficheButton[0].getValue());
         }
         if(e.getSource() == FichesPanel.ficheButton[1]){
-            if(TestApp.player.getAccount() - FichesPanel.ficheButton[1].getValue() < 10)
+            if(player.getAccount() - FichesPanel.ficheButton[1].getValue() < 10)
                 fichesPanel.enablePanel(false);
-            FichesPanel.confirm.setEnabled(true);
+            fichesPanel.confirm.setEnabled(true);
             System.out.println("FICHE 50: sono stato premuto");
-            TestApp.player.bet(FichesPanel.ficheButton[1].getValue());
+            player.bet(FichesPanel.ficheButton[1].getValue());
         }
         if(e.getSource() == FichesPanel.ficheButton[2]){
-            if(TestApp.player.getAccount() - FichesPanel.ficheButton[2].getValue() < 10)
+            if(player.getAccount() - FichesPanel.ficheButton[2].getValue() < 10)
                 fichesPanel.enablePanel(false);
-            FichesPanel.confirm.setEnabled(true);
+            fichesPanel.confirm.setEnabled(true);
             System.out.println("FICHE 10: sono stato premuto");
-            TestApp.player.bet(FichesPanel.ficheButton[2].getValue());
+            player.bet(FichesPanel.ficheButton[2].getValue());
         }
         if(e.getSource() == FichesPanel.ficheButton[3]){
             fichesPanel.enablePanel(false);
-            FichesPanel.confirm.setEnabled(true);
+            fichesPanel.confirm.setEnabled(true);
             System.out.println("ALL-IN: sono stato premuto");
-            TestApp.player.bet(TestApp.player.getAccount());
+            player.bet(player.getAccount());
         }
         if(e.getSource() == FichesPanel.confirm){
             System.out.println("Conferma: sono stato premuto");
             TestApp.inizio();
             incrementPlayerGames();
-            OptionsPanel.menu.setEnabled(false);
+            menu.setEnabled(false);
             actionPanel.enablePanel(true);
             fichesPanel.enablePanel(false);
             checkEnableDouble();
@@ -121,9 +123,9 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
         }
         if(e.getSource() == ActionPanel.doubleButton){
             System.out.println("Double: sono stato premuto");
-            TestApp.player.bet(TestApp.player.getBet());
-            ActionPanel.hitButton.doClick();
-            ActionPanel.standButton.doClick();
+            player.bet(player.getBet());
+            actionPanel.hitButton.doClick();
+            actionPanel.standButton.doClick();
         }
         if(e.getSource() == ActionPanel.splitButton){
             System.out.println("Split: sono stato premuto");
@@ -142,13 +144,13 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
      * Es: Account = 90 --> La fiche da 100 sarà disabilitata  */
     public void checkEnableFiche(Fiche[] fiches){
         for(Fiche fiche : fiches){
-            if(TestApp.player.getAccount() < 2*fiche.getValue())
+            if(player.getAccount() < 2*fiche.getValue())
                 fiche.setEnabled(false);
         }
     }
 
     public void checkEnableDouble(){
-        if(TestApp.player.getBet() > TestApp.player.getAccount())
+        if(player.getBet() > player.getAccount())
             ActionPanel.doubleButton.setEnabled(false);
     }
 }

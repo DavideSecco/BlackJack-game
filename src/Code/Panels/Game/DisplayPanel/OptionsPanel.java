@@ -1,7 +1,6 @@
 package Code.Panels.Game.DisplayPanel;
 
 import Code.Panels.Game.GamePanel;
-import Code.Panels.MainPanel;
 import Code.TestApp;
 
 import javax.swing.*;
@@ -13,10 +12,6 @@ import java.util.List;
 
 import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
 import static Code.Panels.MainFrame.mainPanel;
-import static Code.Panels.MainPanel.menuPanel;
-
-import static Code.Panels.MainFrame.mainPanel;
-import static Code.Panels.MainPanel.gamePanel;
 import static Code.Panels.MainPanel.menuPanel;
 
 public class OptionsPanel extends JPanel implements ActionListener{
@@ -37,11 +32,10 @@ public class OptionsPanel extends JPanel implements ActionListener{
         menu.addActionListener(this);
         newGame.addActionListener(this);
 
-        newGame.setEnabled(false);
-        menu.setEnabled(true);
+        initialize();
 
-        this.add(newGame);
-        this.add(menu);
+        add(newGame);
+        add(menu);
     }
 
     public void addActionListener(ActionListener actionListener) {
@@ -55,8 +49,8 @@ public class OptionsPanel extends JPanel implements ActionListener{
             TestApp.dealer.clear();
             TestApp.cardsDeck.inizialize();
 
-            GamePanel.displayPanel.labelPanel.inizialize();
-            GamePanel.controlPanel.inizialize();
+            GamePanel.displayPanel.labelPanel.initialize();
+            GamePanel.controlPanel.initialize();
 
             newGame.setEnabled(false);
             if(TestApp.player.getAccount() < 10)
@@ -77,5 +71,10 @@ public class OptionsPanel extends JPanel implements ActionListener{
         for(ActionListener actionListener : actionListener){
             actionListener.actionPerformed(e);
         }
+    }
+
+    public void initialize(){
+        newGame.setEnabled(false);
+        menu.setEnabled(true);
     }
 }

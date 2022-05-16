@@ -66,7 +66,8 @@ public class BetPanel extends JPanel implements ActionListener {
 
     }
 
-    public static void inizialize(){
+    public void initialize(){
+        bet.setText("0");
         account.setText(Integer.toString(player.getAccount()));
     }
 }

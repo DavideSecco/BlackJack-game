@@ -1,4 +1,4 @@
-package Code.Panels.Game;
+package Code.Panels.Game.TablePanel;
 
 import Code.GameElements.Card;
 import Code.TestApp;
@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.time.format.TextStyle;
 import java.util.ArrayList;
 
 public class TablePanel extends JPanel implements ActionListener {
@@ -66,7 +65,12 @@ public class TablePanel extends JPanel implements ActionListener {
         if(e.getSource() == ActionPanel.standButton || TestApp.player.isBust())
             TestApp.dealer.discoverAll();   //scopro la carta scoperta
 
-        this.revalidate();
-        this.repaint();
+        revalidate();
+        repaint();
+    }
+
+    public void initialize() {
+        revalidate();
+        repaint();
     }
 }

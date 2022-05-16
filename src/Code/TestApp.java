@@ -28,14 +28,9 @@ public class TestApp {
         dealer = new Dealer();
         cardsDeck = new CardsDeck();
 
-        // DBTEST:
         MyDB.setUpDB();
-        // System.out.println(MyDB.getPlayersFromDB());
-        //DBManager.close();
 
         mainFrame = new MainFrame();
-
-
     }
 
     //------------------------------------PARTE LOGICA------------------------------------//

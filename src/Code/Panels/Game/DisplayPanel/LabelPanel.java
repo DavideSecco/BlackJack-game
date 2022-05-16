@@ -28,11 +28,11 @@ public class LabelPanel extends JPanel implements ActionListener {
         message = new JLabel();
         add(message);
 
-        inizialize();
+        initialize();
     }
 
-    public void inizialize(){
-        name.setText(player.getName());
+    public void initialize(){
+        name.setText(player.getName() + ": ");
         message.setText("Punta");
         message.setHorizontalAlignment(JLabel.CENTER);
     }

@@ -31,18 +31,16 @@ public class FichesPanel extends JPanel implements MyPanel{
         setPreferredSize(new Dimension(TestApp.gameDimension.width/12, TestApp.gameDimension.height/9));
         setLayout(new GridLayout(1,4));
 
-
-
         for(int i = 0; i < ficheButton.length; i++) {
             ficheButton[i] = new Fiche(values[i], files[i]);
             add(ficheButton[i]);
         }
         add(confirm);
 
-        inizialize();
+        initialize();
     }
 
-    public void inizialize(){
+    public void initialize(){
         for(int i = 0; i < ficheButton.length; i++){
             ficheButton[i].setEnabled(true);
         }

@@ -2,7 +2,7 @@ package Code.Panels.Game;
 
 import Code.Panels.Game.ControlPanel.ControlPanel;
 import Code.Panels.Game.DisplayPanel.DisplayPanel;
-import Code.Panels.Menu.MenuPanel;
+import Code.Panels.Game.TablePanel.TablePanel;
 import Code.TestApp;
 
 import javax.swing.*;
@@ -48,7 +48,11 @@ public class GamePanel extends JPanel {
         displayPanel.optionsPanel.addActionListener(tablePanel);
         displayPanel.optionsPanel.addActionListener(displayPanel.labelPanel);
         displayPanel.optionsPanel.addActionListener(displayPanel.betPanel);
+    }
 
-
+    public void initialize(){
+        displayPanel.initialize();
+        tablePanel.initialize();
+        controlPanel.initialize();
     }
 }

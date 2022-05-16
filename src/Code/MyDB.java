@@ -56,7 +56,7 @@ public class MyDB {
         try {
             statement.executeUpdate("INSERT INTO " + table + " (FirstName, Games, Wins, Account, Password) VALUES('" +
                                         player.getName() + "'," + player.getGames() + "," + player.getWins() + "," + player.getAccount() + ",'" + player.getPassword() + "');");
-        }catch(SQLiteException e){
+        } catch(SQLiteException e){
             System.out.println("Hai provato a inserire un utente che esiste giá nel db");
         }
     }
@@ -118,6 +118,25 @@ public class MyDB {
 
     public static void updateGamesDB() throws SQLException{
         statement.executeUpdate("UPDATE " + table + " SET games = " + player.getGames() + " WHERE FirstName = '" + player.getName() + "' ;");
+    }
+
+    public static boolean authenticate(String user, String pass) throws SQLException {
+        if(user.equals("") || pass.equals(""))
+            return false;
+
+        ResultSet rs = getDataFromDB();
+
+        while(rs.next()){
+            if(user.equals(rs.getString("FirstName")) && !pass.equals(rs.getString("Password"))){
+                return false;
+            } else if (user.equals(rs.getString("FirstName")) && pass.equals(rs.getString("Password"))) {
+                changePlayerFromDB(user);
+                return true;
+            }
+        }
+        player = new Player(user, pass);
+        MyDB.addPlayer(player);
+        return true;
     }
 
 }
