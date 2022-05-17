@@ -11,8 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
+import static Code.Panels.Game.GamePanel.controlPanel;
+import static Code.Panels.Game.GamePanel.displayPanel;
 import static Code.Panels.MainFrame.mainPanel;
+import static Code.Panels.MainPanel.gamePanel;
 import static Code.Panels.MainPanel.menuPanel;
+import static Code.TestApp.*;
 
 public class OptionsPanel extends JPanel implements ActionListener{
     public static JButton menu;
@@ -38,30 +42,27 @@ public class OptionsPanel extends JPanel implements ActionListener{
         add(menu);
     }
 
+    public void initialize(){
+        newGame.setEnabled(false);
+        menu.setEnabled(true);
+    }
+
     public void addActionListener(ActionListener actionListener) {
         this.actionListener.add(actionListener);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == newGame){
-            TestApp.player.clear();
-            TestApp.dealer.clear();
-            TestApp.cardsDeck.inizialize();
+        if(e.getSource() == newGame || e.getSource() == menu){
+            player.clear();
+            dealer.clear();
+            cardsDeck.inizialize();
 
-            GamePanel.displayPanel.labelPanel.initialize();
-            GamePanel.controlPanel.initialize();
+            displayPanel.initialize();
+            controlPanel.initialize();
 
-            newGame.setEnabled(false);
-            if(TestApp.player.getAccount() < 10)
-                fichesPanel.enablePanel(false);
-        }
-        if(e.getSource() == menu){
-            newGame.doClick();
-            TestApp.player.setBet(0);
-            fichesPanel.enablePanel(true);
-            fichesPanel.confirm.setEnabled(false);
-            mainPanel.changePanel(menuPanel);
+            if(e.getSource() == menu)
+                mainPanel.changePanel(menuPanel);
         }
 
         sendToActionListeners(e);
@@ -71,10 +72,5 @@ public class OptionsPanel extends JPanel implements ActionListener{
         for(ActionListener actionListener : actionListener){
             actionListener.actionPerformed(e);
         }
-    }
-
-    public void initialize(){
-        newGame.setEnabled(false);
-        menu.setEnabled(true);
     }
 }

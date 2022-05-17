@@ -44,4 +44,9 @@ public class ControlPanel extends JPanel {
         actionPanel.enablePanel(false);
         fichesPanel.initialize();
     }
+
+    public void addActionListener(ActionListener actionListener){
+        fichesPanel.addActionListener(actionListener);
+        actionPanel.addActionListener(actionListener);
+    }
 }

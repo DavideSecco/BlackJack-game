@@ -3,6 +3,8 @@ package Code.Participant;
 import Code.GameElements.Card;
 import Code.GameElements.CardsDeck;
 
+import static Code.TestApp.cardsDeck;
+
 public class Dealer extends Participant {
     public Dealer(){
         super();
@@ -14,7 +16,7 @@ public class Dealer extends Participant {
         }
     }
 
-    public void addUnkonwCard(CardsDeck cardsDeck) {
+    public void addUnkonwCard() {
         Card card = cardsDeck.pickCard();
         card.setKnown(false);
         cards.add(card);

@@ -12,8 +12,7 @@ import java.util.List;
 import static Code.Panels.Game.ControlPanel.ControlPanel.actionPanel;
 import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
 import static Code.Panels.Game.DisplayPanel.OptionsPanel.menu;
-import static Code.TestApp.dealer;
-import static Code.TestApp.player;
+import static Code.TestApp.*;
 
 
 /**
@@ -47,9 +46,16 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
         add(doubleButton);
         add(splitButton);
 
-        addActionListener(this);
+        hitButton.addActionListener(this);
+        standButton.addActionListener(this);
+        splitButton.addActionListener(this);
+        doubleButton.addActionListener(this);
 
         initialize();
+    }
+
+    public void initialize(){
+        enablePanel(false);
     }
 
     public void enablePanel(boolean bool){
@@ -59,46 +65,41 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
         doubleButton.setEnabled(bool);
     }
 
-    public void addActionListener(ActionListener actionListener) {
-        hitButton.addActionListener(actionListener);
-        standButton.addActionListener(actionListener);
-        splitButton.addActionListener(actionListener);
-        doubleButton.addActionListener(actionListener);
-    }
-
-    public void initialize(){
-        enablePanel(false);
+    public void addActionListener(ActionListener actionListener){
+        this.actionListener.add(actionListener);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == actionPanel.hitButton){
+        if(e.getSource() == hitButton){
             System.out.println("PULSANTE HIT: sono stato premuto");
             player.addKnownCard();
-            fichesPanel.enablePanel(false);
 
             if(player.isBust()){
                 menu.setEnabled(true);
-                enablePanel(false);
+                this.enablePanel(false);
                 TestApp.dispenserMoney();
             }
         }
-        if(e.getSource() == actionPanel.standButton){
+        if(e.getSource() == standButton){
             System.out.println("STAND BUTTON: sono stato premuto");
-            dealer.play(TestApp.cardsDeck);
+            dealer.play(cardsDeck);
+
             TestApp.dispenserMoney();
             TestApp.managePlayerWins();
+
             menu.setEnabled(true);
-            enablePanel(false);
+            this.enablePanel(false);
         }
 
-        if(e.getSource() == actionPanel.doubleButton){
+        if(e.getSource() == doubleButton){
             System.out.println("Double: sono stato premuto");
+
             player.bet(player.getBet());
             hitButton.doClick();
             standButton.doClick();
         }
-        if(e.getSource() == actionPanel.splitButton){
+        if(e.getSource() == splitButton){
             System.out.println("Split: sono stato premuto");
         }
 

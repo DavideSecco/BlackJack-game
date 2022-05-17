@@ -116,7 +116,8 @@ public class TestApp {
     public static void inizio(){
         player.addKnownCard();
         player.addKnownCard();
-        dealer.addUnkonwCard(cardsDeck);
+
+        dealer.addUnkonwCard();
         dealer.addKnownCard();
     }
 }

@@ -46,6 +46,7 @@ public class MyDB {
         // MyDB.addPlayer(p1);
         MyDB.addPlayer(p2);
         MyDB.addPlayer(p3);
+        MyDB.addPlayer(p5);
     }
 
     /**
