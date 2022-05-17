@@ -109,15 +109,15 @@ public class MyDB {
         updateAccountDB();
     }
 
-    public static void updateAccountDB() throws SQLException{
+    private static void updateAccountDB() throws SQLException{
         statement.executeUpdate("UPDATE " + table + " SET account = " + player.getAccount() + " WHERE FirstName = '" + player.getName() + "' ;");
     }
 
-    public static void updateWinsDB() throws SQLException{
+    private static void updateWinsDB() throws SQLException{
         statement.executeUpdate("UPDATE " + table + " SET wins = " + player.getWins() + " WHERE FirstName = '" + player.getName() + "' ;");
     }
 
-    public static void updateGamesDB() throws SQLException{
+    private static void updateGamesDB() throws SQLException{
         statement.executeUpdate("UPDATE " + table + " SET games = " + player.getGames() + " WHERE FirstName = '" + player.getName() + "' ;");
     }
 

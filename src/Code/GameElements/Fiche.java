@@ -34,4 +34,8 @@ public class Fiche extends JButton {
     public String toString() {
         return "Fiche{" + "value=" + value + "}";
     }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 }

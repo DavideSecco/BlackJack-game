@@ -90,10 +90,10 @@ public class FichesPanel extends JPanel implements ActionListener{
             Fiche fiche = (Fiche) e.getSource();
             System.out.println(fiche.toString() + "sono stato premuto, la scommessa vale: " + fiche.getValue() );
 
-            if(fiche.getValue() == -1 )     // se il tasto é All in
-                player.bet(player.getAccount());
-            else
-                player.bet(fiche.getValue());
+            // risetto il valore della fiche all-in
+            ficheButton[files.length - 1].setValue(player.getAccount());
+
+            player.bet(fiche.getValue());
 
             fichesPanel.confirm.setEnabled(true);
         }

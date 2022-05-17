@@ -89,8 +89,6 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            // Gameplay.dispenserMoney();
-            // Gameplay.incrementPlayerWins();
 
             menu.setEnabled(true);
             this.enablePanel(false);
