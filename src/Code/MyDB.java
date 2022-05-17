@@ -25,7 +25,7 @@ public class MyDB {
         DBManager.showMetadata();
         statement = DBManager.connection.createStatement();
         /* Questa riga andrá sicuramente tolta in futuro! */
-        statement.executeUpdate("DROP TABLE " + table + ";");
+        // statement.executeUpdate("DROP TABLE " + table + ";");
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS " + table + " (" +
                                     "FirstName TEXT PRIMARY KEY," +
                                     "Games INTEGER," +
@@ -139,5 +139,4 @@ public class MyDB {
         MyDB.addPlayer(player);
         return true;
     }
-
 }
