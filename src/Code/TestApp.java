@@ -28,9 +28,9 @@ public class TestApp {
         dealer = new Dealer();
         cardsDeck = new CardsDeck();
 
-        MyDB.createDB();
+        // MyDB.createDB();
 
-        // MyDB.setUpDB();
+        MyDB.setUpDB();
 
         mainFrame = new MainFrame();
     }

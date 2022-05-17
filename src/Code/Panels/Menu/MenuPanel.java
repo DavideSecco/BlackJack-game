@@ -45,7 +45,7 @@ public class MenuPanel extends JPanel implements ActionListener {
             loginDlg = new LoginDialog(mainFrame);
             loginDlg.setVisible(true);
 
-            if (loginDlg.isSucceeded()) {
+            if (loginDlg.isSucceeded() || loginDlg.registerDlg.isSucceeded()) {
                 gamePanel.initialize();
                 mainPanel.changePanel(gamePanel);   //cambia il panel se il login è andato a buon fine
 

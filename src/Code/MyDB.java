@@ -14,9 +14,11 @@ import static Code.TestApp.player;
 public class MyDB {
     public static Statement statement;
     public static String table = "Players";
+
     /**
      * Crea il database di nome Blackjack.db usando sqlite, instaura una connessione
      * e crea la tabella dove verranno inseriti i dati di ogni giocatore
+     *
      * @throws SQLException
      */
     public static void createDB() throws SQLException {
@@ -25,13 +27,13 @@ public class MyDB {
         DBManager.showMetadata();
         statement = DBManager.connection.createStatement();
         /* Questa riga andrá sicuramente tolta in futuro! */
-        // statement.executeUpdate("DROP TABLE " + table + ";");
+        statement.executeUpdate("DROP TABLE " + table + ";");
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS " + table + " (" +
-                                    "FirstName TEXT PRIMARY KEY," +
-                                    "Games INTEGER," +
-                                    "Wins INTEGER," +
-                                    "Account INTEGER," +
-                                    "Password TEXT" + ");");
+                "FirstName TEXT PRIMARY KEY," +
+                "Games INTEGER," +
+                "Wins INTEGER," +
+                "Account INTEGER," +
+                "Password TEXT" + ");");
     }
 
     // metodo che inizializza un db di prova, alla fine non servirá nemmeno piú
@@ -39,7 +41,7 @@ public class MyDB {
         MyDB.createDB();
         // Player p1 = new Player();
         Player p2 = new Player("Davide");
-        Player p3 = new Player("Donato", 100, 10000, "Prova",0);
+        Player p3 = new Player("Donato", 100, 10000, "Prova", 0);
         Player p4 = new Player("1", "1");
         Player p5 = new Player("Marti", "pepotto36");
 
@@ -51,19 +53,21 @@ public class MyDB {
 
     /**
      * inserisce i dati dell'utente corrente nel database
+     *
      * @throws SQLException
      */
     public static void addPlayer(Player player) throws SQLException {
         try {
             statement.executeUpdate("INSERT INTO " + table + " (FirstName, Games, Wins, Account, Password) VALUES('" +
-                                        player.getName() + "'," + player.getGames() + "," + player.getWins() + "," + player.getAccount() + ",'" + player.getPassword() + "');");
-        } catch(SQLiteException e){
+                    player.getName() + "'," + player.getGames() + "," + player.getWins() + "," + player.getAccount() + ",'" + player.getPassword() + "');");
+        } catch (SQLiteException e) {
             System.out.println("Hai provato a inserire un utente che esiste giá nel db");
         }
     }
 
     /**
      * preleva dal database i dati del player corrente
+     *
      * @throws SQLException
      */
     public static String getPlayersFromDB() throws SQLException {
@@ -75,18 +79,20 @@ public class MyDB {
         }
         return sb.toString();
     }
-    public static ResultSet getDataFromDB() throws SQLException{
+
+    public static ResultSet getDataFromDB() throws SQLException {
         return statement.executeQuery("SELECT * FROM " + table + " LIMIT 100");
     }
 
     /**
      * cambia il player corrente in quello specificato dal playerName, con tutti i suoi dati
+     *
      * @param playerName
      */
-    public static void changePlayerFromDB(String playerName) throws SQLException{
+    public static void changePlayerFromDB(String playerName) throws SQLException {
         ResultSet rs = getDataFromDB();
-        while(rs.next()){
-            if(Objects.equals(playerName, rs.getString("FirstName"))){
+        while (rs.next()) {
+            if (Objects.equals(playerName, rs.getString("FirstName"))) {
                 player.setName(rs.getString("FirstName"));
                 player.setGames(rs.getInt("games"));
                 player.setPassword(rs.getString("password"));
@@ -109,34 +115,36 @@ public class MyDB {
         updateAccountDB();
     }
 
-    private static void updateAccountDB() throws SQLException{
+    private static void updateAccountDB() throws SQLException {
         statement.executeUpdate("UPDATE " + table + " SET account = " + player.getAccount() + " WHERE FirstName = '" + player.getName() + "' ;");
     }
 
-    private static void updateWinsDB() throws SQLException{
+    private static void updateWinsDB() throws SQLException {
         statement.executeUpdate("UPDATE " + table + " SET wins = " + player.getWins() + " WHERE FirstName = '" + player.getName() + "' ;");
     }
 
-    private static void updateGamesDB() throws SQLException{
+    private static void updateGamesDB() throws SQLException {
         statement.executeUpdate("UPDATE " + table + " SET games = " + player.getGames() + " WHERE FirstName = '" + player.getName() + "' ;");
     }
 
     public static boolean authenticate(String user, String pass) throws SQLException {
-        if(user.equals("") || pass.equals(""))
-            return false;
-
         ResultSet rs = getDataFromDB();
 
-        while(rs.next()){
-            if(user.equals(rs.getString("FirstName")) && !pass.equals(rs.getString("Password"))){
-                return false;
-            } else if (user.equals(rs.getString("FirstName")) && pass.equals(rs.getString("Password"))) {
+        while (rs.next()) {
+            if (user.equals(rs.getString("FirstName")) && pass.equals(rs.getString("Password"))) {
                 changePlayerFromDB(user);
                 return true;
             }
         }
-        player = new Player(user, pass);
-        MyDB.addPlayer(player);
-        return true;
+        return false;
+    }
+
+    public static boolean isUserinDB(String user) throws SQLException {
+        ResultSet rs = getDataFromDB();
+        while (rs.next()) {
+            if(user.equals(rs.getString("FirstName")))
+                return true;
+        }
+        return false;
     }
 }

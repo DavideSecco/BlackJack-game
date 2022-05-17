@@ -19,6 +19,12 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
     public JButton btnLogin;
     private JButton btnCancel;
     private boolean succeeded;
+
+    private JLabel oppure;
+
+    private JButton register;
+
+    public static RegisterDialog registerDlg;
     /**
      * ho visto da google come creare correttamente un jdialog per login:
      *
@@ -65,9 +71,16 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
         btnCancel = new JButton("Cancel");
         btnCancel.addActionListener(this);
 
+        oppure = new JLabel("Oppure");
+        register = new JButton("Registrati");
+        register.addActionListener(this);
+
         JPanel bp = new JPanel();
         bp.add(btnLogin);
         bp.add(btnCancel);
+
+        bp.add(oppure);
+        bp.add(register);
 
         getContentPane().add(panel, BorderLayout.CENTER);
         getContentPane().add(bp, BorderLayout.PAGE_END);
@@ -85,6 +98,11 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
 
         if(e.getSource() == btnCancel)
             dispose();
+        if(e.getSource() == register){
+            registerDlg = new RegisterDialog(mainFrame);
+            registerDlg.setVisible(true);
+            dispose();
+        }
     }
 
     public String getUsername() {
@@ -109,7 +127,7 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
         try {
             if (MyDB.authenticate(getUsername(), getPassword())) {
                 JOptionPane.showMessageDialog(LoginDialog.this,
-                        "Benvenuto " + getUsername() + "!",
+                        "Bentornato " + getUsername() + "!",
                         "Login",
                         JOptionPane.INFORMATION_MESSAGE);
                 succeeded = true;
@@ -117,7 +135,7 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
                 System.out.println("Il giocatore attuale è: " + player.getName());
             } else {
                 JOptionPane.showMessageDialog(LoginDialog.this,
-                        "Username o password invalidi",
+                        "Username o password errati",
                         "Login",
                         JOptionPane.ERROR_MESSAGE);
                 // azzera username and password
