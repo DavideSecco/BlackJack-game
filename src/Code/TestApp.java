@@ -32,6 +32,8 @@ public class TestApp {
 
         MyDB.setUpDB();
 
+        System.out.println(MyDB.getPlayersFromDB());
+
         mainFrame = new MainFrame();
     }
 }

@@ -94,7 +94,6 @@ public class RegisterDialog extends JDialog implements ActionListener, KeyListen
         setLocationRelativeTo(parent);
     }
 
-
     public void registry(){
         try {
 
