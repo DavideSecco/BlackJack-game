@@ -9,8 +9,8 @@ public class Dealer extends Participant {
     }
 
     public void play(CardsDeck cardsDeck){
-        while(this.getValueCards()<17){          //il dealer non pesca se ha un valore maggiore di 16
-            this.addKnownCard();
+        while(this.getValueCards(this.getCards())<17){          //il dealer non pesca se ha un valore maggiore di 16
+            this.addKnownCard(this.getCards());
         }
     }
 

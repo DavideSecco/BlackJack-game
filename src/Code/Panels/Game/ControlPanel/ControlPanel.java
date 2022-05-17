@@ -1,7 +1,9 @@
 package Code.Panels.Game.ControlPanel;
 
+import Code.GameElements.Card;
 import Code.GameElements.Fiche;
 import Code.Panels.Game.DisplayPanel.OptionsPanel;
+import Code.Participant.Player;
 import Code.TestApp;
 
 import javax.swing.*;
@@ -12,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Code.TestApp.incrementPlayerGames;
+import static Code.TestApp.*;
 
 /**
  * E' il pannello dei pulsanti e dei controlli, nella mia testa ci va:
@@ -24,6 +26,9 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
     public static FichesPanel fichesPanel;
     public static ActionPanel actionPanel;
 
+    private int countSplit = 0;
+
+    private ArrayList<Card> temp;
     private List<ActionListener> actionListener;
 
     public ControlPanel() throws IOException {
@@ -61,24 +66,53 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
     public void actionPerformed(ActionEvent e) {
         checkEnableFiche(FichesPanel.ficheButton);              // <----        per comodità lo scrivo qui, ma potrei anche metterlo semplicemente nei pulsanti delle fiche
 
-        if(e.getSource() == ActionPanel.hitButton){
+        if (e.getSource() == ActionPanel.hitButton) {
             System.out.println("PULSANTE HIT: sono stato premuto");
-            TestApp.player.addKnownCard();
+            TestApp.player.addKnownCard(player.getCards());
             fichesPanel.enablePanel(false);
 
-            if(TestApp.player.isBust()){
+            if (TestApp.player.isBust()) {
                 OptionsPanel.menu.setEnabled(true);
                 actionPanel.enablePanel(false);
                 TestApp.dispenserMoney();
             }
         }
-        if(e.getSource() == ActionPanel.standButton){
+        if (e.getSource() == ActionPanel.standButton) {
+
             System.out.println("STAND BUTTON: sono stato premuto");
-            TestApp.dealer.play(TestApp.cardsDeck);
-            TestApp.dispenserMoney();
-            TestApp.managePlayerWins();
-            OptionsPanel.menu.setEnabled(true);
-            actionPanel.enablePanel(false);
+
+            System.out.println(player.getSplittedCards().size());
+            if (countSplit == 0) {
+
+                TestApp.dealer.play(TestApp.cardsDeck);
+                TestApp.dispenserMoney();
+                TestApp.managePlayerWins();
+                OptionsPanel.menu.setEnabled(true);
+                actionPanel.enablePanel(false);
+
+            }
+            if (countSplit == 1) {
+                countSplit++;
+                temp = player.getCards();
+                player.setCards(player.getSplittedCards());
+                player.setSplittedCards(temp);
+                inizialize();
+
+            }
+            if (countSplit == 2) {
+                countSplit++;
+                TestApp.dealer.play(TestApp.cardsDeck);
+                TestApp.dispenserMoney();
+                TestApp.managePlayerWins();
+                player.setSplittedCards(player.getCards());
+                player.setCards(temp);
+                TestApp.dispenserMoney();
+                TestApp.managePlayerWins();
+                OptionsPanel.menu.setEnabled(true);
+                actionPanel.enablePanel(false);
+
+            }
+
         }
         if(e.getSource() == FichesPanel.ficheButton[0]){
             if(TestApp.player.getAccount() - FichesPanel.ficheButton[0].getValue() < 10)
@@ -115,6 +149,7 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
             actionPanel.enablePanel(true);
             fichesPanel.enablePanel(false);
             checkEnableDouble();
+            checkSplit();
 
             if(TestApp.checkBlackjack())
                 ActionPanel.standButton.doClick();
@@ -127,6 +162,9 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
         }
         if(e.getSource() == ActionPanel.splitButton){
             System.out.println("Split: sono stato premuto");
+            countSplit++;
+            splitFunction();
+            ActionPanel.splitButton.setEnabled(false);
         }
 
         sendToActionListeners(e);
@@ -150,5 +188,19 @@ public class ControlPanel extends JPanel implements ActionListener, MyPanel {
     public void checkEnableDouble(){
         if(TestApp.player.getBet() > TestApp.player.getAccount())
             ActionPanel.doubleButton.setEnabled(false);
+    }
+
+    public void splitFunction(){
+        player.takeCard(player.getSplittedCards(), player.getCards().get(1));
+        player.removeCard(player.getCards(),1);
+        player.addKnownCard(player.getCards());
+        player.addKnownCard(player.getSplittedCards());
+        System.out.println(player.getValueCards(player.getSplittedCards())+ " "+player.getSplittedCards());
+        System.out.println(player.getValueCards(player.getCards())+" "+player.getCards());
+    }
+
+    public void checkSplit(){
+        if(player.getCards().get(0).getValue() != player.getCards().get(1).getValue())
+            ActionPanel.splitButton.setEnabled(false);
     }
 }

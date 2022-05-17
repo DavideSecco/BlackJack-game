@@ -48,6 +48,13 @@ public class TablePanel extends JPanel implements ActionListener {
             cardPlayerPos.x = cardPlayerPos.x + 110;
             g.drawImage(card.getImg(), cardPlayerPos.x, cardPlayerPos.y, cardDimension.x, cardDimension.y, this);
         }
+        playerCards = TestApp.player.getSplittedCards();
+        cardPlayerPos.x = cardPlayerPos.x + 55;
+
+        for (Card card : playerCards){
+            cardPlayerPos.x = cardPlayerPos.x + 110;
+            g.drawImage(card.getImg(), cardPlayerPos.x, cardPlayerPos.y, cardDimension.x, cardDimension.y, this);
+        }
 
         for (Card card : dealerCards){
             cardDealerPos.x = cardDealerPos.x + 110;

@@ -17,12 +17,20 @@ public abstract class Participant {
         return cards;
     }
 
-    public void addKnownCard(){
-        cards.add(TestApp.cardsDeck.pickCard());
+    public void addKnownCard(ArrayList<Card> hand){
+        hand.add(TestApp.cardsDeck.pickCard());
     }
 
     public boolean isBust(){
-        return this.getValueCards() > 21;
+        return this.getValueCards(cards) > 21;
+    }
+
+    public void takeCard(ArrayList<Card> hand, Card card){
+        hand.add(card);
+    }
+
+    public void removeCard(ArrayList<Card> hand, int index){
+        hand.remove(index);
     }
 
     /**
@@ -30,9 +38,9 @@ public abstract class Participant {
      * gestisce anche il valore degli assi
      * @return totalValue
      */
-    public int getValueCards(){
+    public int getValueCards(ArrayList<Card> hand){
         int totalValue = 0;
-        for(Card card : cards)
+        for(Card card : hand)
             totalValue = totalValue + card.getValue();
 
        for(int i=0; i < isThereAce() && totalValue > 21; i++)
@@ -41,9 +49,13 @@ public abstract class Participant {
         return totalValue;
     }
 
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
     /**  Dice se la mano è un blackjack  */
     public boolean blackjack(){
-        return cards.size() == 2 && getValueCards() == 21;                              //se con due carte ho il valore 21 sarà sicuramente blackjack
+        return cards.size() == 2 && getValueCards(cards) == 21;                              //se con due carte ho il valore 21 sarà sicuramente blackjack
     }
 
     private int isThereAce() {

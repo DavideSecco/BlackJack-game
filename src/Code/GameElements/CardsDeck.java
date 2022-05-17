@@ -22,7 +22,7 @@ public class CardsDeck {
             }
         }
         //Shuffle after the creation
-        Collections.shuffle(this.cards);
+        //Collections.shuffle(this.cards);
         iterator = cards.iterator();
     }
 

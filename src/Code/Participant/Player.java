@@ -1,11 +1,14 @@
 package Code.Participant;
 
-import Code.Panels.Game.DisplayPanel.BetPanel;
+import Code.GameElements.Card;
+
+import java.util.ArrayList;
 
 public class Player extends Participant {
     private String name;
     private int wins;
 
+    private ArrayList<Card> splittedCards = new ArrayList<Card>();
     private int games;
     private int account;     // potrebbe andare anche in participant ?
 
@@ -51,6 +54,12 @@ public class Player extends Participant {
     public int getGames() {
         return games;
     }
+
+    public ArrayList<Card> getSplittedCards() {
+        return splittedCards;
+    }
+
+    public void setSplittedCards(ArrayList<Card> splittedCards) { this.splittedCards = splittedCards; }
 
     public void setGames(int games) {
         this.games = games;

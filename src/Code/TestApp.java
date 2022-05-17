@@ -48,7 +48,7 @@ public class TestApp {
 
 
     public static void managePlayerWins(){
-        if(dealer.isBust() || (player.getValueCards() > dealer.getValueCards() && !player.isBust())){
+        if(whoWon() == 1){
             player.incrementWins();
             try {
                 updateWinsDB();
@@ -73,9 +73,9 @@ public class TestApp {
         if(dealer.isBust())                                     // se il player non ha sballato, e il banco si --> player vince
             return 1;
         // penso sia autoesplicativo
-        if(player.getValueCards() > dealer.getValueCards())
+        if(player.getValueCards(player.getCards()) > dealer.getValueCards(dealer.getCards()))
             return 1;
-        else if (player.getValueCards() == dealer.getValueCards())
+        else if (player.getValueCards(player.getCards()) == dealer.getValueCards(dealer.getCards()))
             return 0;
         else
             return -1;
@@ -120,10 +120,10 @@ public class TestApp {
      */
 
     public static void inizio(){
-        player.addKnownCard();
-        player.addKnownCard();
+        player.addKnownCard(player.getCards());
+        player.addKnownCard(player.getCards());
         dealer.addUnkonwCard(cardsDeck);
-        dealer.addKnownCard();
+        dealer.addKnownCard(dealer.getCards());
     }
 
     /**
