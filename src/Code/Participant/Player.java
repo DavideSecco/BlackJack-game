@@ -12,6 +12,8 @@ public class Player extends Participant {
     private String password;
     private int bet = 0;
 
+    /** Constructors */
+
     public Player(){
         super();
         this.name = "Anonymous";
@@ -46,6 +48,36 @@ public class Player extends Participant {
         this.account = account;
         this.password = password;
         this.games = games;
+    }
+
+    /** My functions */
+
+    public void bet(int amount){
+        if(amount <= this.account){
+            this.bet = this.bet + amount;
+            this.account = this.account - amount;
+        }
+    }
+
+    public void addToAccount(int amount){
+        this.account = this.account + amount;
+    }
+
+    public void clear(){
+        this.cards.clear();
+        this.bet = 0;
+    }
+
+    public void incrementWins() {
+        this.wins++;
+    }
+
+    public void incrementGames() {this.games++;}
+
+    /** Getter & Setter */
+
+    public void setWins(int wins) {
+        this.wins = wins;
     }
 
     public int getGames() {
@@ -87,28 +119,4 @@ public class Player extends Participant {
     }
 
     public void setName(String name) { this.name = name; }
-
-    public void bet(int amount){
-        if(amount <= this.account){
-            this.bet = this.bet + amount;
-            this.account = this.account - amount;
-        }
-    }
-
-    public void addToAccount(int amount){
-        this.account = this.account + amount;
-    }
-
-    public void clear(){
-        this.cards.clear();
-        this.bet = 0;
-    }
-
-    public void incrementWins() {
-        this.wins++;
-    }
-
-    public void setWins(int wins) {
-        this.wins = wins;
-    }
 }

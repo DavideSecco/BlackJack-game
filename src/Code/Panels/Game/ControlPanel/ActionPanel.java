@@ -1,16 +1,15 @@
 package Code.Panels.Game.ControlPanel;
 
-import Code.TestApp;
+import Code.Gameplay;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Code.Panels.Game.ControlPanel.ControlPanel.actionPanel;
-import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
 import static Code.Panels.Game.DisplayPanel.OptionsPanel.menu;
 import static Code.TestApp.*;
 
@@ -78,15 +77,20 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
             if(player.isBust()){
                 menu.setEnabled(true);
                 this.enablePanel(false);
-                TestApp.dispenserMoney();
+                Gameplay.dispenserMoney();
             }
         }
         if(e.getSource() == standButton){
             System.out.println("STAND BUTTON: sono stato premuto");
             dealer.play(cardsDeck);
 
-            TestApp.dispenserMoney();
-            TestApp.managePlayerWins();
+            try {
+                Gameplay.endGame();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            // Gameplay.dispenserMoney();
+            // Gameplay.incrementPlayerWins();
 
             menu.setEnabled(true);
             this.enablePanel(false);

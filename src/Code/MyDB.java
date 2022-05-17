@@ -67,11 +67,6 @@ public class MyDB {
      * @throws SQLException
      */
     public static String getPlayersFromDB() throws SQLException {
-        /**
-        return statement.executeQuery("SELECT * FROM Persons").getString("FirstName") + " " +
-                statement.executeQuery("SELECT * FROM Persons").getString("Wins") + " " +
-                statement.executeQuery("SELECT * FROM Persons").getString("Account");
-         */
         ResultSet rs = statement.executeQuery("SELECT * FROM " + table + " LIMIT 100");
         System.out.println("Table " + table);
         StringBuffer sb = new StringBuffer();
@@ -87,9 +82,7 @@ public class MyDB {
     /**
      * cambia il player corrente in quello specificato dal playerName, con tutti i suoi dati
      * @param playerName
-     * @throws SQLException
      */
-
     public static void changePlayerFromDB(String playerName) throws SQLException{
         ResultSet rs = getDataFromDB();
         while(rs.next()){
@@ -109,6 +102,13 @@ public class MyDB {
                 rs.getInt("wins"),
                 rs.getInt("account"));
     }
+
+    public static void updatePlayerDB() throws SQLException {
+        updateGamesDB();
+        updateWinsDB();
+        updateAccountDB();
+    }
+
     public static void updateAccountDB() throws SQLException{
         statement.executeUpdate("UPDATE " + table + " SET account = " + player.getAccount() + " WHERE FirstName = '" + player.getName() + "' ;");
     }
@@ -118,12 +118,7 @@ public class MyDB {
     }
 
     public static void updateGamesDB() throws SQLException{
-        try {
-            statement.executeUpdate("UPDATE " + table + " SET games = " + player.getGames() + " WHERE FirstName = '" + player.getName() + "' ;");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
+        statement.executeUpdate("UPDATE " + table + " SET games = " + player.getGames() + " WHERE FirstName = '" + player.getName() + "' ;");
     }
 
     public static boolean authenticate(String user, String pass) throws SQLException {

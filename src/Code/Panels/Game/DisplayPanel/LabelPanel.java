@@ -1,5 +1,6 @@
 package Code.Panels.Game.DisplayPanel;
 
+import Code.Gameplay;
 import Code.Panels.Menu.MenuPanel;
 import Code.TestApp;
 
@@ -40,14 +41,14 @@ public class LabelPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == standButton){
             optionsPanel.newGame.setEnabled(true);
-            if(TestApp.whoWon() == 1){
+            if(Gameplay.whoWon() == 1){
                 if(player.hasBlackJack())
                     message.setText("Complimenti, hai fatto BlackJack");
                 else
                     message.setText("Hai vinto");
             }
 
-            else if(TestApp.whoWon() == 0)
+            else if(Gameplay.whoWon() == 0)
                 message.setText("Pareggio");
             else
                 message.setText("Hai perso");

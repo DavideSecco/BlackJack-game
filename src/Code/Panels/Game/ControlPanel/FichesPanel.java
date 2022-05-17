@@ -1,6 +1,7 @@
 package Code.Panels.Game.ControlPanel;
 
 import Code.GameElements.Fiche;
+import Code.Gameplay;
 import Code.TestApp;
 
 import javax.swing.*;
@@ -14,7 +15,6 @@ import java.util.List;
 import static Code.Panels.Game.ControlPanel.ControlPanel.actionPanel;
 import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
 import static Code.Panels.Game.DisplayPanel.OptionsPanel.menu;
-import static Code.TestApp.incrementPlayerGames;
 import static Code.TestApp.player;
 
 public class FichesPanel extends JPanel implements ActionListener{
@@ -101,8 +101,8 @@ public class FichesPanel extends JPanel implements ActionListener{
         if (e.getSource() == confirm) {
             System.out.println("Conferma: sono stato premuto");
 
-            TestApp.inizio();
-            incrementPlayerGames();         // non la metterei qui
+            Gameplay.inizio();
+
             menu.setEnabled(false);
             actionPanel.enablePanel(true);
             fichesPanel.enablePanel(false);
