@@ -102,21 +102,20 @@ public class RegisterDialog extends JDialog implements ActionListener, KeyListen
                         "Username già esistente",
                         "Registrazione",
                         JOptionPane.ERROR_MESSAGE);
-                // azzera username and password
-                succeeded = false;
-                tfUsername.setText("");
-                pfPassword.setText("");
+
             }else if(getUsername()=="" || getPassword()=="") {
                 JOptionPane.showMessageDialog(RegisterDialog.this,
                         "Username o Password non validi",
                         "Registrazione",
                         JOptionPane.ERROR_MESSAGE);
-                // azzera username and password
-                succeeded = false;
-                tfUsername.setText("");
-                pfPassword.setText("");
+
+            }else if(getAccount() < 10 || getAccount() > 1000000){
+                JOptionPane.showMessageDialog(RegisterDialog.this,
+                        "Importo inserito non valido (minimo 10 e massimo 1000000)",
+                        "Registrazione",
+                        JOptionPane.ERROR_MESSAGE);
             }else {
-                Player p = new Player(getUsername(), 0 ,Integer.parseInt(getAccount()), getPassword(), 0);
+                Player p = new Player(getUsername(), 0 , getAccount(), getPassword(), 0);
                 MyDB.addPlayer(p);
                 MyDB.changePlayerFromDB(getUsername());
                 JOptionPane.showMessageDialog(RegisterDialog.this,
@@ -127,6 +126,10 @@ public class RegisterDialog extends JDialog implements ActionListener, KeyListen
                 dispose();
                 System.out.println("Il giocatore attuale è: " + player.getName());
             }
+            // azzera username and password
+            succeeded = false;
+            tfUsername.setText("");
+            pfPassword.setText("");
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
@@ -140,8 +143,8 @@ public class RegisterDialog extends JDialog implements ActionListener, KeyListen
         return new String(pfPassword.getPassword());
     }
 
-    public String getAccount() {
-        return tfAccount.getText().trim();
+    public int getAccount() {
+        return Integer.parseInt(tfAccount.getText().trim());
     }
 
     public boolean isSucceeded() { return succeeded; }
