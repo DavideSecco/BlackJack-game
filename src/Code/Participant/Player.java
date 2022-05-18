@@ -1,8 +1,15 @@
 package Code.Participant;
 
+import Code.GameElements.Card;
 import Code.Panels.Game.DisplayPanel.BetPanel;
 
+import java.util.ArrayList;
+
 public class Player extends Participant {
+
+    private ArrayList<Card> splittedCards = new ArrayList<Card>();
+
+    private int splittedBet;
     private String name;
     private int wins;
 
@@ -65,6 +72,8 @@ public class Player extends Participant {
 
     public void clear(){
         this.cards.clear();
+        this.splittedCards.clear();
+        this.splittedBet = 0;
         this.bet = 0;
     }
 
@@ -119,4 +128,29 @@ public class Player extends Participant {
     }
 
     public void setName(String name) { this.name = name; }
+
+    public void swapSplittedElements(){
+        ArrayList<Card> tmpList = new ArrayList<Card>(cards);
+        int tmp;
+        cards.clear();
+        cards.addAll(splittedCards);
+        splittedCards.clear();
+        splittedCards.addAll(tmpList);
+        tmp = bet;
+        bet = splittedBet;
+        splittedBet = tmp;
+    }
+
+    public void createSplitHand(){
+        splittedCards.add(cards.get(1));
+        cards.remove(1);
+        addKnownCard();
+        swapSplittedElements();
+        addKnownCard();
+        swapSplittedElements();
+    }
+
+    public ArrayList<Card> getSplittedCards() {
+        return splittedCards;
+    }
 }

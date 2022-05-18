@@ -14,6 +14,7 @@ import java.sql.SQLException;
 
 import static Code.Panels.MainPanel.gamePanel;
 import static Code.TestApp.player;
+import static Code.Panels.Menu.LoginDialog.succeeded;
 
 public class RegisterDialog extends JDialog implements ActionListener, KeyListener {
 
@@ -101,18 +102,31 @@ public class RegisterDialog extends JDialog implements ActionListener, KeyListen
                         "Username già esistente",
                         "Registrazione",
                         JOptionPane.ERROR_MESSAGE);
+                // azzera username and password
+                succeeded = false;
+                tfUsername.setText("");
+                pfPassword.setText("");
 
             }else if(getUsername()=="" || getPassword()=="") {
                 JOptionPane.showMessageDialog(RegisterDialog.this,
                         "Username o Password non validi",
                         "Registrazione",
                         JOptionPane.ERROR_MESSAGE);
+                // azzera username and password
+                succeeded = false;
+                tfUsername.setText("");
+                pfPassword.setText("");
 
             }else if(getAccount() < 10 || getAccount() > 1000000){
                 JOptionPane.showMessageDialog(RegisterDialog.this,
                         "Importo inserito non valido (minimo 10 e massimo 1000000)",
                         "Registrazione",
                         JOptionPane.ERROR_MESSAGE);
+                // azzera username and password
+                succeeded = false;
+                tfUsername.setText("");
+                pfPassword.setText("");
+
             }else {
                 Player p = new Player(getUsername(), 0 , getAccount(), getPassword(), 0);
                 MyDB.addPlayer(p);
@@ -121,14 +135,11 @@ public class RegisterDialog extends JDialog implements ActionListener, KeyListen
                         "Benvenuto " + getUsername() + "!",
                         "Registrazione",
                         JOptionPane.INFORMATION_MESSAGE);
-                LoginDialog.succeeded = true;
+                succeeded = true;
                 dispose();
                 System.out.println("Il giocatore attuale è: " + player.getName());
             }
-            // azzera username and password
-            LoginDialog.succeeded = false;
-            tfUsername.setText("");
-            pfPassword.setText("");
+
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }

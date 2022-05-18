@@ -41,7 +41,7 @@ public class ControlPanel extends JPanel {
     }
 
     public void initialize(){
-        actionPanel.enablePanel(false);
+        actionPanel.initialize();
         fichesPanel.initialize();
     }
 

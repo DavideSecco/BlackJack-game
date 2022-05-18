@@ -17,7 +17,6 @@ import static Code.Panels.MainPanel.menuPanel;
 public class RulesPanel extends JPanel implements ActionListener {
 
     private JLabel label;
-
     private JButton menu;
     public RulesPanel() {
         super();
@@ -37,8 +36,8 @@ public class RulesPanel extends JPanel implements ActionListener {
         JScrollPane scroller = new JScrollPane(label);
 
         scroller.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        Dimension scrollerDimension = new Dimension(1150,600); //uso un'altra dimension perchè voglio che la dimensione del
-        scroller.setPreferredSize(scrollerDimension);                      //sia un po' più piccola della finestra
+        Dimension scrollerDimension = new Dimension(1150,600); //uso un'altra dimension perchè voglio che la dimensione
+        scroller.setPreferredSize(scrollerDimension);                      //del pannello che scrolla sia un po' più piccola della finestra
         add(scroller);
     }
 

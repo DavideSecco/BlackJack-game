@@ -25,7 +25,7 @@ import java.io.IOException;
 
 public class GamePanel extends JPanel {
     public static DisplayPanel displayPanel;
-    TablePanel tablePanel;
+    public static TablePanel tablePanel;
     public static ControlPanel controlPanel;
 
     public GamePanel() throws IOException {

@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Code.Panels.Game.ControlPanel.ActionPanel.*;
 import static Code.Panels.Game.ControlPanel.ControlPanel.actionPanel;
 import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
 import static Code.Panels.Game.DisplayPanel.OptionsPanel.menu;
@@ -100,11 +101,12 @@ public class FichesPanel extends JPanel implements ActionListener{
 
         if (e.getSource() == confirm) {
             System.out.println("Conferma: sono stato premuto");
-
-            Gameplay.inizio();
+            if(splitPressed == 0)
+                Gameplay.inizio();
 
             menu.setEnabled(false);
             actionPanel.enablePanel(true);
+            checkSplit();
             fichesPanel.enablePanel(false);
             checkEnableDouble();
 

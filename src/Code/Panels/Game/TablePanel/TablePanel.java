@@ -17,6 +17,8 @@ public class TablePanel extends JPanel implements ActionListener {
     private Image faceDownCard;
 
     private ArrayList<Card> playerCards;
+
+    private ArrayList<Card> playerSplittedCards;
     private ArrayList<Card> dealerCards;
 
     public TablePanel(){
@@ -41,9 +43,16 @@ public class TablePanel extends JPanel implements ActionListener {
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
 
         playerCards = TestApp.player.getCards();
+        playerSplittedCards = TestApp.player.getSplittedCards();
         dealerCards = TestApp.dealer.getCards();
 
         for (Card card : playerCards){
+            cardPlayerPos.x = cardPlayerPos.x + 110;
+            g.drawImage(card.getImg(), cardPlayerPos.x, cardPlayerPos.y, cardDimension.x, cardDimension.y, this);
+        }
+
+        cardPlayerPos.x = cardPlayerPos.x + 55;
+        for (Card card : playerSplittedCards){
             cardPlayerPos.x = cardPlayerPos.x + 110;
             g.drawImage(card.getImg(), cardPlayerPos.x, cardPlayerPos.y, cardDimension.x, cardDimension.y, this);
         }

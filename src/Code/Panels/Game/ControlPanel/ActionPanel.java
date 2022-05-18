@@ -10,8 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
 import static Code.Panels.Game.DisplayPanel.OptionsPanel.menu;
 import static Code.TestApp.*;
+import static Code.Panels.Game.GamePanel.tablePanel;
 
 
 /**
@@ -27,6 +29,7 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
     public static JButton splitButton;
     public static JButton doubleButton;
 
+    public static int splitPressed = 0;
     private List<ActionListener> actionListener;
 
     public ActionPanel() {
@@ -54,7 +57,8 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
     }
 
     public void initialize(){
-        enablePanel(false);
+        this.enablePanel(false);
+        splitPressed = 0;
     }
 
     public void enablePanel(boolean bool){
@@ -82,6 +86,14 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
         }
         if(e.getSource() == standButton){
             System.out.println("STAND BUTTON: sono stato premuto");
+            if(splitPressed==1){
+                splitPressed++;
+                player.swapSplittedElements();
+                tablePanel.initialize();
+                this.enablePanel(false);
+                fichesPanel.enablePanel(true);
+                return;
+            }
             dealer.play(cardsDeck);
 
             try {
@@ -103,6 +115,9 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
         }
         if(e.getSource() == splitButton){
             System.out.println("Split: sono stato premuto");
+            splitPressed++;
+            player.createSplitHand();
+            splitButton.setEnabled(false);
         }
 
         sendToActionListeners(e);
@@ -112,5 +127,10 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
         for(ActionListener actionListener : actionListener){
             actionListener.actionPerformed(e);
         }
+    }
+
+    public static void checkSplit(){
+        if(player.getCards().get(0).getValue() != player.getCards().get(1).getValue())
+            splitButton.setEnabled(false);
     }
 }
