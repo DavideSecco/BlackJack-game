@@ -28,7 +28,6 @@ public class RegisterDialog extends JDialog implements ActionListener, KeyListen
     public JButton rgsLogin;
     private JButton btnCancel;
 
-    private boolean succeeded;
     public RegisterDialog(Frame parent) {
         super(parent, "Registrazione", true);
         JPanel panel = new JPanel(new GridBagLayout());
@@ -122,12 +121,12 @@ public class RegisterDialog extends JDialog implements ActionListener, KeyListen
                         "Benvenuto " + getUsername() + "!",
                         "Registrazione",
                         JOptionPane.INFORMATION_MESSAGE);
-                succeeded = true;
+                LoginDialog.succeeded = true;
                 dispose();
                 System.out.println("Il giocatore attuale è: " + player.getName());
             }
             // azzera username and password
-            succeeded = false;
+            LoginDialog.succeeded = false;
             tfUsername.setText("");
             pfPassword.setText("");
         } catch (SQLException ex) {
@@ -146,8 +145,6 @@ public class RegisterDialog extends JDialog implements ActionListener, KeyListen
     public int getAccount() {
         return Integer.parseInt(tfAccount.getText().trim());
     }
-
-    public boolean isSucceeded() { return succeeded; }
 
 
     @Override

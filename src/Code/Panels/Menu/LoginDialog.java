@@ -18,7 +18,7 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
     private JLabel lbPassword;
     public JButton btnLogin;
     private JButton btnCancel;
-    private boolean succeeded;
+    public static boolean succeeded;
 
     private JLabel oppure;
 
