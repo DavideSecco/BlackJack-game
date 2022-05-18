@@ -1,0 +1,64 @@
+<html>
+
+<body>
+
+<h1> Storia </h1>
+<p>   Il blackjack è uno dei giochi di casinò più famosi e diffusi al mondo, le prime tracce di un gioco di carte simile al blackjack moderno arrivano dalla Francia del XVII secolo,<br>
+con il nome di Vingt-et-un (ossia "ventuno")<br>
+<br>
+   Una volta approdato negli Stati Uniti, quando nel 1931 il Nevada liberalizza il gioco d'azzardo, il gioco del ventuno venne denominato "black jack" (fante nero) con l'introduzione di una variante: <br>
+   qualora il giocatore facesse 21 con un asso e un jack di picche, veniva pagato con un bonus di dieci volte la posta. Anche se attualmente il bonus è stato abolito, il nome comunque è rimasto.
+<br><br>
+</p>
+<h1>Le carte</h1>
+<p>
+   Per il gioco del blackjack viene usato un sabot formato da 2 mazzi di carte francesi, per un totale di 104 carte ; vengono comunque fabbricate apposite carte per questo gioco, nelle quali, <br>
+   rispetto alle più tradizionali carte francesi, gli indici sono soltanto due (uno solo per ogni lato orizzontale) e stampati in caratteri più grossi del normale, con al centro di ciascuna carta un <br>
+   rettangolo verticale entro cui è collocata o la figura o il seme di ogni valore numerico. Inoltre per il gioco serve anche un apposito tappeto verde con i riquadri stampati a forma di carte e <br>
+   una casella rettangolare per collocarvi le puntate e l'eventuale assicurazione di ciascun giocatore. Nel gioco l'asso può valere 11, o 1, le figure valgono 10, mentre le altre carte da gioco <br>
+   valgono il loro valore nominale. I semi non hanno alcuna influenza, o valore. La somma dei punti, al fine del calcolo del punteggio, avviene per semplice calcolo aritmetico.
+<br><br>
+</p>
+   <h1>Svolgimento del gioco</h1>
+<p>
+   Una volta che i giocatori hanno fatto la loro puntata, il banchiere procedendo da sinistra verso destra assegna a ciascuno dei giocatori una carta scoperta in ogni postazione giocata, assegnando <br>
+   l'ultima al banco. Effettua poi un secondo giro di carte scoperte, senza però attribuirne una a se stesso. Avvenuta la distribuzione, il mazziere (in inglese dealer) legge in ordine il punteggio <br>di ciascun giocatore invitandoli a manifestare il loro gioco: essi potranno chiedere carta o stare, a loro discrezione. Se un giocatore supera il 21 perde e il mazziere incasserà la puntata. <br>
+   Una volta che i giocatori hanno definito i loro punteggi il mazziere sviluppa il suo gioco seguendo la "regola del banco": egli deve tirare carta con un punteggio inferiore a 17. Una volta <br>ottenuto o superato 17 si deve fermare. Se oltrepassa il 21 il banco "sballa" e deve pagare tutte le puntate rimaste sul tavolo. Una volta definiti tutti i punteggi, il mazziere confronta <br>
+   il proprio con quello degli altri giocatori, paga le combinazioni superiori alla sua, ritira quelle inferiori e lascia quelle in parità. Il pagamento delle puntate vincenti è alla pari.
+</p>
+<h2>Il black jack</h2>
+<p>
+   Il giocatore che fa 21 con le prime carte assegnategli dal mazziere, cioè riceve un Asso (11) e una figura, forma il cosiddetto "black jack", e ha diritto al pagamento di 3 a 2 (una volta e mezzo la <br>
+   posta, cioè, la somma scommessa x 1,5); se anche il mazziere realizza il black jack la mano è considerata alla pari, infatti questo è uno dei pochi giochi dove si gareggia per battere il "banco".<br>
+</p>
+   <h2>Il raddoppio della puntata (double down)</h2>
+<p>
+   I giocatori hanno una particolare opzione di giocata: se con le prime due carte hanno realizzato da 9 a 11 punti, possono raddoppiare la puntata al momento della chiamata ma impegnandosi a chiedere<br>
+   una sola carta, e dopo aver ricevuto questa carta il giocatore è obbligato a fermarsi.
+</p>
+   <h2>La divisione (split)</h2>
+<p>
+   Se nella prima distribuzione il giocatore riceve due carte dello stesso valore può effettuare lo split e cioè:<br><br>
+
+   separare le due carte e aggiungere un'uguale puntata sulla seconda;<br>
+   proseguire il gioco come se il giocatore avesse due prime carte;<br>
+   aggiungere una carta su ciascuna carta separata.<br>
+   Nel caso di due Assi il gioco doppio è consentito ma con diritto a una sola chiamata.<br>
+<br><br>
+</p>
+<h2>Strategia per lo split</h2>
+<p>
+   Gli "split" nella dimensione di gioco britannica non pongono limiti al numero delle divisioni delle carte uguali sebbene venga proibito al giocatore di "splittare" i quattro, i cinque e le figure, che <br>
+   l'istituto di regolamentazione del gioco in Gran Bretagna ha valutato statisticamente come scommesse svantaggiose nei confronti del giocatore.[senza fonte] Un buon giocatore di blackjack <br>
+   potrà all'occorrenza "splittare" i quattro e i cinque ma mai dovrebbe azzardare lo split di due figure.<br>
+</p>
+   <h2>L'assicurazione (insurance)</h2>
+<p>
+   Quando il mazziere si serve un Asso come carta scoperta, vi è la possibilità che faccia Black Jack con la seconda carta, quindi i giocatori possono ricorrere all'Assicurazione.<br>
+   La posta dell'Assicurazione equivale alla metà della puntata di base (quella sulla casella, per esempio: se il giocatore ha puntato 100 l'Assicurazione vale 50). Nel caso il banco realizzi Black Jack <br>
+   il giocatore perderà tutta la puntata iniziale, ma verrà risarcito con il doppio del valore dell'assicurazione (2:1): in pratica è come se la mano si concludesse con un "pari". Nel caso <br>
+   il banco non realizzi un Black Jack l'assicurazione viene comunque persa indipendentemente dal risultato della mano.<br>
+</p>
+  </body>
+
+</html>
