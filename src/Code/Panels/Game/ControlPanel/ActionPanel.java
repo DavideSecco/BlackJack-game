@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Code.Panels.Game.ControlPanel.ControlPanel.actionPanel;
 import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
 import static Code.Panels.Game.DisplayPanel.OptionsPanel.menu;
 import static Code.TestApp.*;
@@ -90,8 +91,8 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
                 splitPressed++;
                 player.swapSplittedElements();
                 tablePanel.initialize();
-                this.enablePanel(false);
-                fichesPanel.enablePanel(true);
+                if(player.hasBlackJack())
+                    actionPanel.standButton.doClick();
                 return;
             }
             dealer.play(cardsDeck);
@@ -108,16 +109,16 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
 
         if(e.getSource() == doubleButton){
             System.out.println("Double: sono stato premuto");
-
             player.bet(player.getBet());
             hitButton.doClick();
             standButton.doClick();
         }
         if(e.getSource() == splitButton){
             System.out.println("Split: sono stato premuto");
+            this.initialize();
             splitPressed++;
-            player.createSplitHand();
-            splitButton.setEnabled(false);
+            fichesPanel.enablePanel(true);
+            player.swapSplittedBet();
         }
 
         sendToActionListeners(e);
@@ -130,7 +131,7 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
     }
 
     public static void checkSplit(){
-        if(player.getCards().get(0).getValue() != player.getCards().get(1).getValue())
+        if((player.getCards().get(0).getValue() != player.getCards().get(1).getValue()) || splitPressed != 0)
             splitButton.setEnabled(false);
     }
 }

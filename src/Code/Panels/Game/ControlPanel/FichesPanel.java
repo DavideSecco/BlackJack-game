@@ -103,6 +103,11 @@ public class FichesPanel extends JPanel implements ActionListener{
             System.out.println("Conferma: sono stato premuto");
             if(splitPressed == 0)
                 Gameplay.inizio();
+            if(splitPressed == 1){
+                player.createSplitHand();
+                player.swapSplittedBet();
+            }
+
 
             menu.setEnabled(false);
             actionPanel.enablePanel(true);

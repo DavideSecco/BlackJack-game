@@ -14,15 +14,41 @@ public class CardsDeck {
     private static ArrayList<Card> cards;
     private static Iterator iterator;
 
-    public CardsDeck(){
+    public CardsDeck(int index){
         cards = new ArrayList<>();
-        for (int i = 0; i<ranks.length; i++) {
-            for(int j=0; j<suits.length; j++){
-                this.cards.add(new Card(suits[j],ranks[i], values[i]));
+        if(index == 0){
+            for (int i = 0; i<ranks.length; i++) {
+                for(int j=0; j<suits.length; j++){
+                    this.cards.add(new Card(suits[j],ranks[i], values[i]));
+                }
             }
+            //Shuffle after the creation
+            //Collections.shuffle(this.cards);
+
+        } else if (index == 1) {
+            Card AS = new Card("Spades","Ace",11);
+            Card KH = new Card("Hearts","King",10);
+            Card e = new Card("Spades","9",9);
+            Card w = new Card("Hearts","9",9);
+            cards.add(AS);
+            cards.add(KH);
+            cards.add(w);
+            cards.add(e);
+        } else if (index == 2) {
+            Card AS = new Card("Spades","Ace",11);
+            Card AH = new Card("Hearts","Ace",11);
+            Card e = new Card("Spades","9",9);
+            Card w = new Card("Hearts","9",9);
+            Card KH = new Card("Hearts","King",10);
+            Card KS = new Card("Spades","King",10);
+            cards.add(AS);
+            cards.add(AH);
+            cards.add(w);
+            cards.add(e);
+            cards.add(KS);
+            cards.add(KH);
         }
-        //Shuffle after the creation
-        Collections.shuffle(this.cards);
+
         iterator = cards.iterator();
     }
 

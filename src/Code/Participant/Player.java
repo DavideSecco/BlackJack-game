@@ -130,15 +130,22 @@ public class Player extends Participant {
     public void setName(String name) { this.name = name; }
 
     public void swapSplittedElements(){
-        ArrayList<Card> tmpList = new ArrayList<Card>(cards);
+        swapSplittedBet();
+        swapSplittedCards();
+    }
+    public void swapSplittedBet(){
         int tmp;
+        tmp = bet;
+        bet = splittedBet;
+        splittedBet = tmp;
+    }
+
+    public void swapSplittedCards(){
+        ArrayList<Card> tmpList = new ArrayList<Card>(cards);
         cards.clear();
         cards.addAll(splittedCards);
         splittedCards.clear();
         splittedCards.addAll(tmpList);
-        tmp = bet;
-        bet = splittedBet;
-        splittedBet = tmp;
     }
 
     public void createSplitHand(){

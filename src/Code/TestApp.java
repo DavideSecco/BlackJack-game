@@ -14,7 +14,7 @@ import static Code.MyDB.*;
 public class TestApp {
     public static Player player;
     public static Dealer dealer = new Dealer();
-    public static CardsDeck cardsDeck = new CardsDeck();
+    public static CardsDeck cardsDeck;
 
     public static Dimension gameDimension = new Dimension(1200, 700);
     public static Dimension menuDimension = new Dimension(400, 700);
@@ -26,8 +26,7 @@ public class TestApp {
     public static void main(String[] args) throws IOException, SQLException {
         player = new Player();
         dealer = new Dealer();
-        cardsDeck = new CardsDeck();
-
+        cardsDeck = new CardsDeck(0);
         // MyDB.createDB();
 
         MyDB.setUpDB();
