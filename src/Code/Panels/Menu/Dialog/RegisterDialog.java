@@ -1,10 +1,9 @@
-package Code.Panels.Menu;
+package Code.Panels.Menu.Dialog;
 
 import Code.MyDB;
 import Code.Participant.Player;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,73 +13,27 @@ import java.sql.SQLException;
 
 import static Code.Panels.MainPanel.gamePanel;
 import static Code.TestApp.player;
-import static Code.Panels.Menu.LoginDialog.succeeded;
+import static Code.Panels.Menu.Dialog.LoginDialog.succeeded;
 
-public class RegisterDialog extends JDialog implements ActionListener, KeyListener {
-
-    private JTextField tfUsername;
-    private JPasswordField pfPassword;
-
-    private JTextField tfAccount;
-    private JLabel lbUsername;
-    private JLabel lbPassword;
+public class RegisterDialog extends AbstractDialog implements ActionListener, KeyListener {
+    public JButton rgsLogin;
 
     private JLabel lbAccount;
-    public JButton rgsLogin;
-    private JButton btnCancel;
+    private JTextField tfAccount;
 
     public RegisterDialog(Frame parent) {
-        super(parent, "Registrazione", true);
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints cs = new GridBagConstraints();
-
-        cs.fill = GridBagConstraints.HORIZONTAL;
-
-        lbUsername = new JLabel("Username: ");
-        cs.gridx = 0;
-        cs.gridy = 0;
-        cs.gridwidth = 1;
-        panel.add(lbUsername, cs);
-
-        tfUsername = new JTextField("1", 20);
-        cs.gridx = 1;
-        cs.gridy = 0;
-        cs.gridwidth = 2;
-        panel.add(tfUsername, cs);
-        tfUsername.addKeyListener((KeyListener) this);
-
-        lbPassword = new JLabel("Password: ");
-        cs.gridx = 0;
-        cs.gridy = 1;
-        cs.gridwidth = 1;
-        panel.add(lbPassword, cs);
-
-        pfPassword = new JPasswordField("1", 20);
-        cs.gridx = 1;
-        cs.gridy = 1;
-        cs.gridwidth = 2;
-        panel.add(pfPassword, cs);
-        panel.setBorder(new LineBorder(Color.GRAY));
-        pfPassword.addKeyListener((KeyListener) this);
+        super(parent);
 
         lbAccount = new JLabel("Account: ");
-        cs.gridx = 0;
-        cs.gridy = 2;
-        cs.gridwidth = 1;
-        panel.add(lbAccount, cs);
+        add(lbAccount);
 
         tfAccount = new JTextField("1000", 20);
-        cs.gridx = 1;
-        cs.gridy = 2;
-        cs.gridwidth = 2;
-        panel.add(tfAccount, cs);
+        add(tfAccount);
+
         tfAccount.addKeyListener((KeyListener) this);
 
         rgsLogin = new JButton("Registrati");
         rgsLogin.addActionListener(this);
-
-        btnCancel = new JButton("Cancel");
-        btnCancel.addActionListener(this);
 
         JPanel bp = new JPanel();
         bp.add(rgsLogin);

@@ -1,5 +1,6 @@
 package Code.Panels.Menu;
 
+import Code.Panels.Menu.Dialog.LoginDialog;
 import Code.TestApp;
 
 import javax.swing.*;
@@ -46,6 +47,7 @@ public class MenuPanel extends JPanel implements ActionListener {
             loginDlg.setVisible(true);
 
             if (loginDlg.isSucceeded()) {
+                loginDlg = null;
                 gamePanel.initialize();
                 mainPanel.changePanel(gamePanel);   //cambia il panel se il login è andato a buon fine
 

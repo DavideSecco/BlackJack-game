@@ -13,6 +13,7 @@ import static Code.Panels.Game.ControlPanel.ActionPanel.hitButton;
 import static Code.Panels.Game.ControlPanel.ActionPanel.standButton;
 import static Code.Panels.Game.ControlPanel.FichesPanel.confirm;
 import static Code.Panels.Game.DisplayPanel.DisplayPanel.optionsPanel;
+import static Code.Panels.Menu.MenuPanel.loginDlg;
 import static Code.TestApp.player;
 
 public class LabelPanel extends JPanel implements ActionListener {
@@ -65,7 +66,7 @@ public class LabelPanel extends JPanel implements ActionListener {
             message.setText("Fai la tua giocata");
         }
 
-        if(e.getSource() == MenuPanel.loginDlg.btnLogin){
+        if(e.getSource() == loginDlg.btnLogin){
             name.setText(player.getName());
             System.out.println("HO sentito che devo cambiare il player");
         }

@@ -6,7 +6,6 @@ import Code.Panels.Game.DisplayPanel.BetPanel;
 import java.util.ArrayList;
 
 public class Player extends Participant {
-
     private ArrayList<Card> splittedCards = new ArrayList<Card>();
 
     private int splittedBet;

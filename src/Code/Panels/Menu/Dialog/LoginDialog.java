@@ -1,4 +1,4 @@
-package Code.Panels.Menu;
+package Code.Panels.Menu.Dialog;
 
 import Code.MyDB;
 
@@ -11,67 +11,24 @@ import javax.swing.border.*;
 import static Code.Panels.MainPanel.gamePanel;
 import static Code.TestApp.*;
 
-public class LoginDialog extends JDialog implements ActionListener, KeyListener {
-    private JTextField tfUsername;
-    private JPasswordField pfPassword;
-    private JLabel lbUsername;
-    private JLabel lbPassword;
-    public JButton btnLogin;
-    private JButton btnCancel;
-    public static boolean succeeded;
+/**
+ * ho visto da google come creare correttamente un jdialog per login:
+ * https://www.zentut.com/java-swing/simple-login-dialog/
+ */
 
-    private JLabel oppure;
+public class LoginDialog extends AbstractDialog implements ActionListener, KeyListener {
+    public static boolean succeeded;
 
     private JButton register;
 
     public static RegisterDialog registerDlg;
-    /**
-     * ho visto da google come creare correttamente un jdialog per login:
-     *
-     * https://www.zentut.com/java-swing/simple-login-dialog/
-     * @param parent
-     */
+
     public LoginDialog(Frame parent) {
-        super(parent, "Login", true);
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints cs = new GridBagConstraints();
-
-        cs.fill = GridBagConstraints.HORIZONTAL;
-
-        lbUsername = new JLabel("Username: ");
-        cs.gridx = 0;
-        cs.gridy = 0;
-        cs.gridwidth = 1;
-        panel.add(lbUsername, cs);
-
-        tfUsername = new JTextField("1", 20);
-        cs.gridx = 1;
-        cs.gridy = 0;
-        cs.gridwidth = 2;
-        panel.add(tfUsername, cs);
-        tfUsername.addKeyListener((KeyListener) this);
-
-        lbPassword = new JLabel("Password: ");
-        cs.gridx = 0;
-        cs.gridy = 1;
-        cs.gridwidth = 1;
-        panel.add(lbPassword, cs);
-
-        pfPassword = new JPasswordField("1", 20);
-        cs.gridx = 1;
-        cs.gridy = 1;
-        cs.gridwidth = 2;
-        panel.add(pfPassword, cs);
-        panel.setBorder(new LineBorder(Color.GRAY));
-        pfPassword.addKeyListener((KeyListener) this);
+        super(parent);
 
         btnLogin = new JButton("Login");
         btnLogin.addActionListener(this);
 
-        btnCancel = new JButton("Cancel");
-        btnCancel.addActionListener(this);
-
-        oppure = new JLabel("Oppure");
         register = new JButton("Registrati");
         register.addActionListener(this);
 
@@ -79,7 +36,7 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
         bp.add(btnLogin);
         bp.add(btnCancel);
 
-        bp.add(oppure);
+        bp.add(new JLabel("oppure"));
         bp.add(register);
 
         getContentPane().add(panel, BorderLayout.CENTER);
@@ -98,6 +55,7 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
 
         if(e.getSource() == btnCancel)
             dispose();
+
         if(e.getSource() == register){
             registerDlg = new RegisterDialog(mainFrame);
             registerDlg.setVisible(true);
