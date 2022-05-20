@@ -54,6 +54,7 @@ public class FichesPanel extends JPanel implements ActionListener{
         for(int i = 0; i < ficheButton.length; i++){
             ficheButton[i].setEnabled(true);
         }
+        checkEnableFiche(ficheButton);
         confirm.setEnabled(false);
     }
 
@@ -81,7 +82,6 @@ public class FichesPanel extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        checkEnableFiche(ficheButton);              // <----        per comodità lo scrivo qui, ma potrei anche metterlo semplicemente nei pulsanti delle fiche
 
         /**
          * Se premo uno qualsiasi dei pulsanti delle fiches
@@ -118,6 +118,7 @@ public class FichesPanel extends JPanel implements ActionListener{
             if(player.hasBlackJack())
                 actionPanel.standButton.doClick();
         }
+        checkEnableFiche(ficheButton);
 
         sendToActionListeners(e);
     }
@@ -126,7 +127,7 @@ public class FichesPanel extends JPanel implements ActionListener{
      * Es: Account = 90 --> La fiche da 100 sarà disabilitata  */
     public void checkEnableFiche(Fiche[] fiches){
         for(Fiche fiche : fiches){
-            if(player.getAccount() < 2*fiche.getValue())
+            if(player.getAccount() < fiche.getValue())
                 fiche.setEnabled(false);
         }
     }

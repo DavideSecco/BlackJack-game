@@ -23,7 +23,7 @@ public class CardsDeck {
                 }
             }
             //Shuffle after the creation
-            //Collections.shuffle(this.cards);
+            Collections.shuffle(this.cards);
 
         } else if (index == 1) {
             Card AS = new Card("Spades","Ace",11);
