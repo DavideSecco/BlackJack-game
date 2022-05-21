@@ -11,9 +11,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.SQLException;
 
+import static Code.Panels.MainFrame.mainPanel;
 import static Code.Panels.MainPanel.gamePanel;
 import static Code.TestApp.player;
-import static Code.Panels.Menu.Dialog.LoginDialog.succeeded;
 
 public class RegisterDialog extends AbstractDialog implements ActionListener, KeyListener {
     public JButton rgsLogin;
@@ -47,50 +47,81 @@ public class RegisterDialog extends AbstractDialog implements ActionListener, Ke
         setLocationRelativeTo(parent);
     }
 
-    public void registry(){
-        try {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == rgsLogin){
+            if(registryCheck()) {
+                gamePanel.initialize();
+                mainPanel.changePanel(gamePanel);
+            }
+            else {
+                tfUsername.setText("");
+                pfPassword.setText("");
+            }
+        }
 
+        if(e.getSource() == btnCancel)
+            dispose();
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ke) {
+        if(ke.getKeyCode() == 10){
+            if(registryCheck()) {
+                gamePanel.initialize();
+                mainPanel.changePanel(gamePanel);
+            }
+            else {
+                tfUsername.setText("");
+                pfPassword.setText("");
+            }
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {}
+
+    @Override
+    public void keyReleased(KeyEvent e) {}
+
+    public boolean registryCheck(){
+        try {
             if (MyDB.isUserinDB(getUsername())) {
                 JOptionPane.showMessageDialog(RegisterDialog.this,
                         "Username già esistente",
                         "Registrazione",
                         JOptionPane.ERROR_MESSAGE);
-                // azzera username and password
-                succeeded = false;
-                tfUsername.setText("");
-                pfPassword.setText("");
+                return false;
+            }
 
-            }else if(getUsername()=="" || getPassword()=="") {
+            else if (getUsername()=="" || getPassword()=="") {
                 JOptionPane.showMessageDialog(RegisterDialog.this,
                         "Username o Password non validi",
                         "Registrazione",
                         JOptionPane.ERROR_MESSAGE);
-                // azzera username and password
-                succeeded = false;
-                tfUsername.setText("");
-                pfPassword.setText("");
+                return false;
+            }
 
-            }else if(getAccount() < 10 || getAccount() > 1000000){
+            else if (getAccount() < 10 || getAccount() > 1000000){
                 JOptionPane.showMessageDialog(RegisterDialog.this,
                         "Importo inserito non valido (minimo 10 e massimo 1000000)",
                         "Registrazione",
                         JOptionPane.ERROR_MESSAGE);
-                // azzera username and password
-                succeeded = false;
-                tfUsername.setText("");
-                pfPassword.setText("");
+                return false;
+            }
 
-            }else {
-                Player p = new Player(getUsername(), 0 , getAccount(), getPassword(), 0);
-                MyDB.addPlayer(p);
+            else {
+                MyDB.addPlayer(new Player(getUsername(), 0 , getAccount(), getPassword(), 0));
                 MyDB.changePlayerFromDB(getUsername());
+
                 JOptionPane.showMessageDialog(RegisterDialog.this,
                         "Benvenuto " + getUsername() + "!",
                         "Registrazione",
                         JOptionPane.INFORMATION_MESSAGE);
-                succeeded = true;
+
                 dispose();
                 System.out.println("Il giocatore attuale è: " + player.getName());
+                return true;
             }
 
         } catch (SQLException ex) {
@@ -108,34 +139,5 @@ public class RegisterDialog extends AbstractDialog implements ActionListener, Ke
 
     public int getAccount() {
         return Integer.parseInt(tfAccount.getText().trim());
-    }
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == rgsLogin){
-            registry();
-            gamePanel.initialize();
-        }
-        if(e.getSource() == btnCancel)
-            dispose();
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent ke) {
-        if(ke.getKeyCode() == 10){
-            registry();
-            gamePanel.initialize();
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
     }
 }

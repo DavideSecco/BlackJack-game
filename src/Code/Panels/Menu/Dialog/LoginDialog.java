@@ -6,8 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
 import javax.swing.*;
-import javax.swing.border.*;
 
+import static Code.Panels.MainFrame.mainPanel;
 import static Code.Panels.MainPanel.gamePanel;
 import static Code.TestApp.*;
 
@@ -17,8 +17,6 @@ import static Code.TestApp.*;
  */
 
 public class LoginDialog extends AbstractDialog implements ActionListener, KeyListener {
-    public static boolean succeeded;
-
     private JButton register;
 
     public static RegisterDialog registerDlg;
@@ -49,8 +47,10 @@ public class LoginDialog extends AbstractDialog implements ActionListener, KeyLi
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == btnLogin){
-            check();
-            gamePanel.initialize();
+            if(loginCheck()) {
+                gamePanel.initialize();
+                mainPanel.changePanel(gamePanel);
+            }
         }
 
         if(e.getSource() == btnCancel)
@@ -71,35 +71,36 @@ public class LoginDialog extends AbstractDialog implements ActionListener, KeyLi
         return new String(pfPassword.getPassword());
     }
 
-    public boolean isSucceeded() { return succeeded; }
-
    @Override
     public void keyPressed(KeyEvent ke) {
         if(ke.getKeyCode() == 10){
-            check();
-            gamePanel.initialize();
+            if(loginCheck()) {
+                gamePanel.initialize();
+                mainPanel.changePanel(gamePanel);
+            }
         }
     }
 
-    public void check(){
+    public boolean loginCheck(){
         try {
             if (MyDB.authenticate(getUsername(), getPassword())) {
                 JOptionPane.showMessageDialog(LoginDialog.this,
                         "Bentornato " + getUsername() + "!",
                         "Login",
                         JOptionPane.INFORMATION_MESSAGE);
-                succeeded = true;
                 dispose();
                 System.out.println("Il giocatore attuale è: " + player.getName());
+                return true;
             } else {
                 JOptionPane.showMessageDialog(LoginDialog.this,
                         "Username o password errati",
                         "Login",
                         JOptionPane.ERROR_MESSAGE);
+
                 // azzera username and password
-                succeeded = false;
                 tfUsername.setText("");
                 pfPassword.setText("");
+                return false;
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);

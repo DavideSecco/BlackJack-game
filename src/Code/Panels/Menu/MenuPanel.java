@@ -46,6 +46,7 @@ public class MenuPanel extends JPanel implements ActionListener {
             loginDlg = new LoginDialog(mainFrame);
             loginDlg.setVisible(true);
 
+            /**
             if (loginDlg.isSucceeded()) {
                 loginDlg = null;
                 gamePanel.initialize();
@@ -54,6 +55,7 @@ public class MenuPanel extends JPanel implements ActionListener {
                 if(TestApp.player.getAccount() < 10)
                     fichesPanel.enablePanel(false);
             }
+             */
         }
         if(e.getSource() == selectPlayer){
             try {
