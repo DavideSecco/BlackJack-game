@@ -5,6 +5,8 @@ import Code.TestApp;
 import javax.swing.*;
 import java.awt.*;
 
+import static Code.Panels.MainFrame.gameDimension;
+
 public class DisplayPanel extends JPanel{
     public static LabelPanel labelPanel;
     public static BetPanel betPanel;
@@ -12,7 +14,7 @@ public class DisplayPanel extends JPanel{
 
     public DisplayPanel(){
         super();
-        setPreferredSize(new Dimension(TestApp.gameDimension.width, TestApp.gameDimension.height/10));
+        setPreferredSize(new Dimension(gameDimension.width, gameDimension.height/9));
         setLayout(new BorderLayout());
 
         labelPanel = new LabelPanel();

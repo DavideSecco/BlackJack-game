@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+import static Code.Panels.MainFrame.gameDimension;
+
 /**
  * GamePanel: è il pannello visualizzato durante la partita, ed è composto da 3 pannelli:
  * -------------------------------------------------------------------------------
@@ -30,7 +32,7 @@ public class GamePanel extends JPanel {
 
     public GamePanel() throws IOException {
         super();
-        setPreferredSize(TestApp.gameDimension);
+        setPreferredSize(gameDimension);
 
         displayPanel = new DisplayPanel();
         add(BorderLayout.PAGE_START, displayPanel);
@@ -44,7 +46,6 @@ public class GamePanel extends JPanel {
         controlPanel.addActionListener(displayPanel.betPanel);
         controlPanel.addActionListener(displayPanel.labelPanel);
         controlPanel.addActionListener(tablePanel);
-
 
         displayPanel.optionsPanel.addActionListener(tablePanel);
         displayPanel.optionsPanel.addActionListener(displayPanel.labelPanel);

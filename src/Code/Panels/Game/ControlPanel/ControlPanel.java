@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Code.Panels.Game.DisplayPanel.OptionsPanel.menu;
+import static Code.Panels.MainFrame.gameDimension;
 import static Code.TestApp.player;
 
 /**
@@ -25,7 +26,7 @@ public class ControlPanel extends JPanel {
 
     public ControlPanel() throws IOException {
         super();
-        setPreferredSize(new Dimension(TestApp.gameDimension.width, TestApp.gameDimension.height/9));
+        setPreferredSize(new Dimension(gameDimension.width, gameDimension.height/9));
         setLayout(new GridLayout(1,2));
 
         fichesPanel = new FichesPanel();

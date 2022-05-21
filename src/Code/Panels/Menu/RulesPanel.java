@@ -15,9 +15,9 @@ import static Code.Panels.MainFrame.mainPanel;
 import static Code.Panels.MainPanel.menuPanel;
 
 public class RulesPanel extends JPanel implements ActionListener {
-
     private JLabel label;
     private JButton menu;
+
     public RulesPanel() {
         super();
         String all;

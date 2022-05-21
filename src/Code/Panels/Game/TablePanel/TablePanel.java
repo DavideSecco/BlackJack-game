@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static Code.Panels.MainFrame.gameDimension;
+
 public class TablePanel extends JPanel implements ActionListener {
     private Image backgroundImage;
     private Image faceDownCard;
@@ -23,7 +25,7 @@ public class TablePanel extends JPanel implements ActionListener {
 
     public TablePanel(){
         super();
-        setPreferredSize(new Dimension(TestApp.gameDimension.width, (int) (TestApp.gameDimension.height/(1.4))));
+        setPreferredSize(new Dimension(gameDimension.width, (int) (((gameDimension.height)/(1.45)))));
         try{
             backgroundImage = ImageIO.read(getClass().getResource(TestApp.imagesPath + "background.png"));
             faceDownCard = ImageIO.read(getClass().getResource(TestApp.imagesPath + "CardsDeck1/BackHorizontal.png"));
@@ -35,10 +37,10 @@ public class TablePanel extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Point cardPlayerPos = new Point(TestApp.gameDimension.width/10, (int) (TestApp.gameDimension.height/2.2));
-        Point cardDealerPos = new Point(TestApp.gameDimension.width/10, TestApp.gameDimension.height/13);
+        Point cardPlayerPos = new Point(gameDimension.width/10, (int) (gameDimension.height/2.2));
+        Point cardDealerPos = new Point(gameDimension.width/10, gameDimension.height/13);
 
-        Point cardDimension = new Point(TestApp.gameDimension.width/13, TestApp.gameDimension.height/5);
+        Point cardDimension = new Point(gameDimension.width/13, gameDimension.height/5);
 
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
 

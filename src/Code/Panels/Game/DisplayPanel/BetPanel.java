@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.TimeUnit;
 
+import static Code.Panels.MainFrame.gameDimension;
 import static Code.TestApp.*;
 
 public class BetPanel extends JPanel implements ActionListener {
@@ -19,7 +20,7 @@ public class BetPanel extends JPanel implements ActionListener {
 
     public BetPanel() {
         super();
-        setPreferredSize(new Dimension(TestApp.gameDimension.width/12, TestApp.gameDimension.height/10));
+        setPreferredSize(new Dimension(gameDimension.width/12, gameDimension.height/10));
         setLayout(new GridLayout(2,2));
 
         bet = new JTextArea("0");                                        //Ho scelto delle textaree per estetica,

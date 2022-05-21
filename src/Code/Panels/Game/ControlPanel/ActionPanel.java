@@ -87,7 +87,8 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
         }
         if(e.getSource() == standButton){
             System.out.println("STAND BUTTON: sono stato premuto");
-            if(splitPressed==1){
+
+            if(splitPressed == 1){
                 splitPressed++;
                 player.swapSplittedElements();
                 tablePanel.initialize();
@@ -95,6 +96,7 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
                     actionPanel.standButton.doClick();
                 return;
             }
+
             dealer.play(cardsDeck);
 
             try {

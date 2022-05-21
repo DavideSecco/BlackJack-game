@@ -16,8 +16,7 @@ public class TestApp {
     public static Dealer dealer = new Dealer();
     public static CardsDeck cardsDeck;
 
-    public static Dimension gameDimension = new Dimension(1200, 700);
-    public static Dimension menuDimension = new Dimension(400, 700);
+
 
     public static final String imagesPath = "/Utils/Images/";
 

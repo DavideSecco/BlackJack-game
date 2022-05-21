@@ -24,7 +24,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 
     public MenuPanel() {
         super();
-        setPreferredSize(TestApp.menuDimension);
+        setPreferredSize(menuDimension);
         setLayout(new GridLayout(3,1));
 
         playButton = new JButton("Play");

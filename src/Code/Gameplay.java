@@ -1,7 +1,5 @@
 package Code;
 
-import Code.Panels.Game.GamePanel;
-
 import java.sql.SQLException;
 
 import static Code.MyDB.*;
@@ -14,6 +12,7 @@ public class Gameplay {
     public static void endGame() throws SQLException {
         player.incrementGames();
         Gameplay.dispenserMoney();
+
         if(splitPressed != 0){
             player.swapSplittedElements();
             Gameplay.dispenserMoney();

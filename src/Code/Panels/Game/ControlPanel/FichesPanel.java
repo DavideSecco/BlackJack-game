@@ -16,6 +16,7 @@ import static Code.Panels.Game.ControlPanel.ActionPanel.*;
 import static Code.Panels.Game.ControlPanel.ControlPanel.actionPanel;
 import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
 import static Code.Panels.Game.DisplayPanel.OptionsPanel.menu;
+import static Code.Panels.MainFrame.gameDimension;
 import static Code.TestApp.player;
 
 public class FichesPanel extends JPanel implements ActionListener{
@@ -36,7 +37,7 @@ public class FichesPanel extends JPanel implements ActionListener{
 
         actionListener = new ArrayList<ActionListener>();
 
-        setPreferredSize(new Dimension(TestApp.gameDimension.width/12, TestApp.gameDimension.height/9));
+        setPreferredSize(new Dimension(gameDimension.width/12, gameDimension.height/10));
         setLayout(new GridLayout(1,4));
 
         for(int i = 0; i < ficheButton.length; i++) {
@@ -71,8 +72,8 @@ public class FichesPanel extends JPanel implements ActionListener{
 
         for(Fiche fichebutton : ficheButton){
             fichebutton.setContentAreaFilled(false);
-            g.drawImage(fichebutton.getImg(), pos, 0, getWidth()/ficheButton.length+1, getHeight(), this);
-            pos += TestApp.gameDimension.width/10;
+            g.drawImage(fichebutton.getImg(), pos, 0, getWidth()/(ficheButton.length+1), (int) (getHeight()/(1.1)), this);
+            pos += gameDimension.width/10;
         }
     }
 

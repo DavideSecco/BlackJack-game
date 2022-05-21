@@ -16,7 +16,6 @@ import static Code.Panels.MainPanel.menuPanel;
 public class SelectPlayerPanel extends JPanel implements ActionListener{
     private JButton menu;
     private JPanel parteAlta;
-    // private List<ActionListener> actionListener;
 
     public SelectPlayerPanel() throws SQLException {
         super();
@@ -70,8 +69,6 @@ public class SelectPlayerPanel extends JPanel implements ActionListener{
         t.getColumnModel().getColumn(4).setCellRenderer(new PasswordCellRenderer());
         return t;
     }
-
-    // public void addActionListener(ActionListener actionListener) {        this.actionListener.add(actionListener);    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

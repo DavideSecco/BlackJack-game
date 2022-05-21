@@ -18,8 +18,6 @@ public class MyDB {
     /**
      * Crea il database di nome Blackjack.db usando sqlite, instaura una connessione
      * e crea la tabella dove verranno inseriti i dati di ogni giocatore
-     *
-     * @throws SQLException
      */
     public static void createDB() throws SQLException {
         DBManager.setConnection(DBManager.JDBC_Driver_SQLite, DBManager.JDBC_URL_SQLite);
@@ -27,7 +25,7 @@ public class MyDB {
         DBManager.showMetadata();
         statement = DBManager.connection.createStatement();
         /* Questa riga andrá sicuramente tolta in futuro! */
-        statement.executeUpdate("DROP TABLE " + table + ";");
+        // statement.executeUpdate("DROP TABLE " + table + ";");
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS " + table + " (" +
                 "FirstName TEXT PRIMARY KEY," +
                 "Games INTEGER," +
@@ -42,20 +40,15 @@ public class MyDB {
         // Player p1 = new Player();
         Player p2 = new Player("Davide");
         Player p3 = new Player("Donato", 100, 10000, "Prova", 0);
-        Player p4 = new Player("1", "1");
-        Player p5 = new Player("Marti", "pepotto36");
+        Player p4 = new Player("Marti", "pepotto36");
 
         // MyDB.addPlayer(p1);
         MyDB.addPlayer(p2);
         MyDB.addPlayer(p3);
-        MyDB.addPlayer(p5);
+        MyDB.addPlayer(p4);
     }
 
-    /**
-     * inserisce i dati dell'utente corrente nel database
-     *
-     * @throws SQLException
-     */
+    /** inserisce i dati dell'utente corrente nel database  */
     public static void addPlayer(Player player) throws SQLException {
         try {
             statement.executeUpdate("INSERT INTO " + table + " (FirstName, Games, Wins, Account, Password) VALUES('" +
@@ -65,11 +58,7 @@ public class MyDB {
         }
     }
 
-    /**
-     * preleva dal database i dati del player corrente
-     *
-     * @throws SQLException
-     */
+    /** preleva dal database i dati del player corrente */
     public static String getPlayersFromDB() throws SQLException {
         ResultSet rs = statement.executeQuery("SELECT * FROM " + table + " LIMIT 100");
         System.out.println("Table " + table);
@@ -86,8 +75,6 @@ public class MyDB {
 
     /**
      * cambia il player corrente in quello specificato dal playerName, con tutti i suoi dati
-     *
-     * @param playerName
      */
     public static void changePlayerFromDB(String playerName) throws SQLException {
         ResultSet rs = getDataFromDB();
@@ -110,21 +97,9 @@ public class MyDB {
     }
 
     public static void updatePlayerDB() throws SQLException {
-        updateGamesDB();
-        updateWinsDB();
-        updateAccountDB();
-    }
-
-    private static void updateAccountDB() throws SQLException {
-        statement.executeUpdate("UPDATE " + table + " SET account = " + player.getAccount() + " WHERE FirstName = '" + player.getName() + "' ;");
-    }
-
-    private static void updateWinsDB() throws SQLException {
-        statement.executeUpdate("UPDATE " + table + " SET wins = " + player.getWins() + " WHERE FirstName = '" + player.getName() + "' ;");
-    }
-
-    private static void updateGamesDB() throws SQLException {
         statement.executeUpdate("UPDATE " + table + " SET games = " + player.getGames() + " WHERE FirstName = '" + player.getName() + "' ;");
+        statement.executeUpdate("UPDATE " + table + " SET wins = " + player.getWins() + " WHERE FirstName = '" + player.getName() + "' ;");
+        statement.executeUpdate("UPDATE " + table + " SET account = " + player.getAccount() + " WHERE FirstName = '" + player.getName() + "' ;");
     }
 
     public static boolean authenticate(String user, String pass) throws SQLException {
@@ -139,7 +114,7 @@ public class MyDB {
         return false;
     }
 
-    public static boolean isUserinDB(String user) throws SQLException {
+    public static boolean isUserInDB(String user) throws SQLException {
         ResultSet rs = getDataFromDB();
         while (rs.next()) {
             if(user.equals(rs.getString("FirstName")))

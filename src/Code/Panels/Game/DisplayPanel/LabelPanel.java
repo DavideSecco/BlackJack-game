@@ -13,6 +13,7 @@ import static Code.Panels.Game.ControlPanel.ActionPanel.hitButton;
 import static Code.Panels.Game.ControlPanel.ActionPanel.standButton;
 import static Code.Panels.Game.ControlPanel.FichesPanel.confirm;
 import static Code.Panels.Game.DisplayPanel.DisplayPanel.optionsPanel;
+import static Code.Panels.MainFrame.gameDimension;
 import static Code.Panels.Menu.MenuPanel.loginDlg;
 import static Code.TestApp.player;
 
@@ -22,7 +23,7 @@ public class LabelPanel extends JPanel implements ActionListener {
 
     public LabelPanel(){
         super();
-        setPreferredSize(new Dimension(TestApp.gameDimension.width/4, TestApp.gameDimension.height/10));
+        setPreferredSize(new Dimension(gameDimension.width/4, gameDimension.height/10));
 
         name = new JLabel(player.getName());
         add(name);

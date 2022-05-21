@@ -86,7 +86,7 @@ public class RegisterDialog extends AbstractDialog implements ActionListener, Ke
 
     public boolean registryCheck(){
         try {
-            if (MyDB.isUserinDB(getUsername())) {
+            if (MyDB.isUserInDB(getUsername())) {
                 JOptionPane.showMessageDialog(RegisterDialog.this,
                         "Username già esistente",
                         "Registrazione",
@@ -128,6 +128,7 @@ public class RegisterDialog extends AbstractDialog implements ActionListener, Ke
             throw new RuntimeException(ex);
         }
     }
+
 
     public String getUsername() {
         return tfUsername.getText().trim();
