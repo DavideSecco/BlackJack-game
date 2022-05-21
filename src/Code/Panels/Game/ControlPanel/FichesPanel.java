@@ -109,15 +109,16 @@ public class FichesPanel extends JPanel implements ActionListener{
                 player.swapSplittedBet();
             }
 
-
             menu.setEnabled(false);
             actionPanel.enablePanel(true);
-            checkSplit();
             fichesPanel.enablePanel(false);
+
+            checkSplit();
             checkEnableDouble();
 
-            if(player.hasBlackJack())
-                actionPanel.standButton.doClick();
+            /** Ho commentato questo ultimo pezzo perchè all'atto pratico non fa funzionare correttamente il labelPanel  */
+            // if(player.hasBlackJack())
+                // actionPanel.standButton.doClick();
         }
         checkEnableFiche(ficheButton);
 

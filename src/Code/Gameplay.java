@@ -13,6 +13,9 @@ public class Gameplay {
         player.incrementGames();
         Gameplay.dispenserMoney();
 
+        System.out.println(player.toString());
+        System.out.println(dealer.toString());
+
         if(splitPressed != 0){
             player.swapSplittedElements();
             Gameplay.dispenserMoney();
@@ -46,7 +49,7 @@ public class Gameplay {
     public static void dispenserMoney(){
         if(whoWon() == 1) {                                          // player ha vinto
             player.addToAccount(2 * player.getBet());
-            if (player.hasBlackJack())                               //se ha fatto hasBlackJack si aggiunge la metà della bet
+            if (player.hasBlackJack())                               //se ha fatto hasBlackJack si aggiunge la metà della bet, EH?
                 player.addToAccount(player.getBet() / 2);
         }
         else if(whoWon() == 0)                                      // player ha pareggiato

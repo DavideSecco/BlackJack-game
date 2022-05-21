@@ -1,17 +1,29 @@
 package Code.Participant;
 
 import Code.GameElements.Card;
-import Code.GameElements.CardsDeck;
 
-import static Code.TestApp.cardsDeck;
+import static Code.TestApp.*;
 
 public class Dealer extends Participant {
     public Dealer(){
         super();
     }
 
-    public void play(CardsDeck cardsDeck){
-        while(this.getValueCards()<17){          //il dealer non pesca se ha un valore maggiore di 16
+    /**
+     * Logica di gioco del dealer, si ferma quando:
+     * 1) Ha superato/(pareggiato(?)) il player
+     * 2) il player ha sballato
+     *
+     * altrimenti deve pescare sempre (o sbaglio?)
+     */
+    public void play(){
+        while(true) {
+            if(player.getValueCards() <= dealer.getValueCards())
+                break;
+
+            if(player.isBust())
+                break;
+
             this.addKnownCard();
         }
     }

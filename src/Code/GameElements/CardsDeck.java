@@ -30,10 +30,12 @@ public class CardsDeck {
             Card KH = new Card("Hearts","King",10);
             Card e = new Card("Spades","9",9);
             Card w = new Card("Hearts","9",9);
+            Card r = new Card("Hearts", "4", 4);
             cards.add(AS);
             cards.add(KH);
             cards.add(w);
             cards.add(e);
+            cards.add(r);
         } else if (index == 2) {
             Card AS = new Card("Spades","Ace",11);
             Card AH = new Card("Hearts","Ace",11);

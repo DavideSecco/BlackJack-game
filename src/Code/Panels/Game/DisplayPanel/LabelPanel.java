@@ -43,6 +43,7 @@ public class LabelPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == standButton){
             optionsPanel.newGame.setEnabled(true);
+
             if(Gameplay.whoWon() == 1){
                 if(player.hasBlackJack())
                     message.setText("Complimenti, hai fatto BlackJack");

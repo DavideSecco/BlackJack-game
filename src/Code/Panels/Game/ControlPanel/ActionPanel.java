@@ -97,7 +97,7 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
                 return;
             }
 
-            dealer.play(cardsDeck);
+            dealer.play();
 
             try {
                 Gameplay.endGame();

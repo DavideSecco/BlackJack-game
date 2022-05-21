@@ -58,4 +58,10 @@ public abstract class Participant {
     public void clear(){
         cards.clear();
     }
+
+    public String toString() {
+        return this.getClass().getName() +"{" +
+                "valore carte=" + this.getValueCards() +
+                '}';
+    }
 }
