@@ -1,22 +1,19 @@
 package Code.Panels.Menu;
 
-import Code.TestApp;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
 import static Code.Panels.MainFrame.mainPanel;
 import static Code.Panels.MainPanel.menuPanel;
 
 public class RulesPanel extends JPanel implements ActionListener {
-    private JLabel label;
     private JButton menu;
+    private JTextPane textPane;
 
     public RulesPanel() {
         super();
@@ -31,11 +28,14 @@ public class RulesPanel extends JPanel implements ActionListener {
         menu.addActionListener(this);
         add(menu);
 
-        label = new JLabel();
-        label.setText(all);
-        JScrollPane scroller = new JScrollPane(label);
+        textPane = new JTextPane();
+        textPane.setContentType("text/html");
+        textPane.setText(all);
 
+        JScrollPane scroller = new JScrollPane(textPane);
         scroller.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scroller.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
         Dimension scrollerDimension = new Dimension(1150,600); //uso un'altra dimension perchè voglio che la dimensione
         scroller.setPreferredSize(scrollerDimension);                      //del pannello che scrolla sia un po' più piccola della finestra
         add(scroller);

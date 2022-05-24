@@ -1,9 +1,12 @@
 package Code;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 
 import static Code.MyDB.*;
 import static Code.Panels.Game.ControlPanel.ActionPanel.splitPressed;
+import static Code.Panels.Game.GamePanel.tablePanel;
 import static Code.TestApp.dealer;
 import static Code.TestApp.player;
 
@@ -59,11 +62,13 @@ public class Gameplay {
     }
 
     /** Crea l'inizio del gioco, ovvero distribuisce le carte iniziali del player e del dealer  */
-    public static void inizio(){
+    public static void inizio() {
         player.addKnownCard();
         player.addKnownCard();
 
         dealer.addUnkonwCard();
         dealer.addKnownCard();
     }
+
+
 }

@@ -18,6 +18,11 @@ public class Dealer extends Participant {
      */
     public void play(){
         while(true) {
+            /*
+            if(dealer.getValueCards() >= 17)
+                break;
+             */
+
             if(player.getValueCards() <= dealer.getValueCards())
                 break;
 

@@ -2,7 +2,6 @@ package Code.Panels.Game.TablePanel;
 
 import Code.GameElements.Card;
 import Code.TestApp;
-import Code.Panels.Game.ControlPanel.ActionPanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,7 +11,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static Code.Panels.Game.ControlPanel.ActionPanel.standButton;
 import static Code.Panels.MainFrame.gameDimension;
+import static Code.TestApp.dealer;
+import static Code.TestApp.player;
 
 public class TablePanel extends JPanel implements ActionListener {
     private Image backgroundImage;
@@ -32,10 +34,15 @@ public class TablePanel extends JPanel implements ActionListener {
         } catch (IOException e) {
             System.out.println("Can't read image file");
         }
+
+        // Timer timer = new Timer(500, this);
+        // timer.start();
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        System.out.println("Sono il TablePanel e sono nel paintComponent");
 
         Point cardPlayerPos = new Point(gameDimension.width/10, (int) (gameDimension.height/2.2));
         Point cardDealerPos = new Point(gameDimension.width/10, gameDimension.height/13);
@@ -44,9 +51,9 @@ public class TablePanel extends JPanel implements ActionListener {
 
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
 
-        playerCards = TestApp.player.getCards();
-        playerSplittedCards = TestApp.player.getSplittedCards();
-        dealerCards = TestApp.dealer.getCards();
+        playerCards = player.getCards();
+        playerSplittedCards = player.getSplittedCards();
+        dealerCards = dealer.getCards();
 
         for (Card card : playerCards){
             cardPlayerPos.x = cardPlayerPos.x + 110;
@@ -54,6 +61,7 @@ public class TablePanel extends JPanel implements ActionListener {
         }
 
         cardPlayerPos.x = cardPlayerPos.x + 55;
+
         for (Card card : playerSplittedCards){
             cardPlayerPos.x = cardPlayerPos.x + 110;
             g.drawImage(card.getImg(), cardPlayerPos.x, cardPlayerPos.y, cardDimension.x, cardDimension.y, this);
@@ -71,17 +79,16 @@ public class TablePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e != null || e.getSource() == standButton || player.isBust())
+            dealer.discoverAll();   //scopro la carta scoperta
+
         System.out.println("Sono il TablePanel e ho ricevuto l'ordine di ridisegnarmi");
-
-        if(e.getSource() == ActionPanel.standButton || TestApp.player.isBust())
-            TestApp.dealer.discoverAll();   //scopro la carta scoperta
-
-        revalidate();
         repaint();
     }
 
-    public void initialize() {
-        revalidate();
+
+    public void refresh() {
         repaint();
+        System.out.println("Sono il TablePanel e sono nel refresh");
     }
 }

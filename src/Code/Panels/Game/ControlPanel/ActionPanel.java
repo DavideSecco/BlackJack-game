@@ -91,7 +91,8 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
             if(splitPressed == 1){
                 splitPressed++;
                 player.swapSplittedElements();
-                tablePanel.initialize();
+                tablePanel.refresh();
+
                 if(player.hasBlackJack())
                     actionPanel.standButton.doClick();
                 return;

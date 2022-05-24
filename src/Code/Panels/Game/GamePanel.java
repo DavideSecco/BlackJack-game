@@ -54,7 +54,7 @@ public class GamePanel extends JPanel {
 
     public void initialize(){
         displayPanel.initialize();
-        tablePanel.initialize();
+        tablePanel.refresh();
         controlPanel.initialize();
     }
 }
