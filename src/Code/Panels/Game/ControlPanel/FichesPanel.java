@@ -120,8 +120,8 @@ public class FichesPanel extends JPanel implements ActionListener{
             checkEnableDouble();
 
             /** Ho commentato questo ultimo pezzo perchè all'atto pratico non fa funzionare correttamente il labelPanel  */
-             if(player.hasBlackJack())
-                 actionPanel.standButton.doClick();
+            if(player.hasBlackJack())
+                actionPanel.standButton.doClick();
         }
         checkEnableFiche(ficheButton);
 

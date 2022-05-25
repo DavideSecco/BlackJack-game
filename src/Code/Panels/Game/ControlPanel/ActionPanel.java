@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static Code.Panels.Game.ControlPanel.ControlPanel.actionPanel;
 import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
@@ -137,7 +138,7 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
     }
 
     public static void checkSplit(){
-        if((player.getCards().get(0).getValue() != player.getCards().get(1).getValue()) || splitPressed != 0)
+        if((!Objects.equals(player.getCards().get(0).getRank(), player.getCards().get(1).getRank())) || splitPressed != 0)
             splitButton.setEnabled(false);
     }
 }

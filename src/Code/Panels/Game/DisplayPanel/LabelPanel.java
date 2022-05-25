@@ -9,12 +9,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static Code.Panels.Game.ControlPanel.ActionPanel.hitButton;
-import static Code.Panels.Game.ControlPanel.ActionPanel.standButton;
+import static Code.Panels.Game.ControlPanel.ActionPanel.*;
 import static Code.Panels.Game.ControlPanel.FichesPanel.confirm;
 import static Code.Panels.Game.DisplayPanel.DisplayPanel.optionsPanel;
 import static Code.Panels.MainFrame.gameDimension;
 import static Code.Panels.Menu.MenuPanel.loginDlg;
+import static Code.TestApp.dealer;
 import static Code.TestApp.player;
 
 public class LabelPanel extends JPanel implements ActionListener {
@@ -44,17 +44,21 @@ public class LabelPanel extends JPanel implements ActionListener {
         if(e.getSource() == standButton){
             optionsPanel.newGame.setEnabled(true);
 
-            if(Gameplay.whoWon() == 1){
-                if(player.hasBlackJack())
-                    message.setText("Complimenti, hai fatto BlackJack");
-                else
-                    message.setText("Hai vinto");
-            }
-
+            if(Gameplay.whoWon() == 1)
+                message.setText("<html>Hai vinto");
             else if(Gameplay.whoWon() == 0)
-                message.setText("Pareggio");
+                message.setText("<html>Hai pareggiato");
             else
-                message.setText("Hai perso");
+                message.setText("<html>Hai perso");
+            if(splitPressed != 0){
+                player.swapSplittedElements();
+                if(Gameplay.whoWon() == 1)
+                    message.setText(message.getText() + " con la mano iniziale,<br>hai vinto con qulla splittata");
+                else if(Gameplay.whoWon() == 0)
+                    message.setText(message.getText() + " con la mano iniziale,<br>hai pareggiato con quella splittata");
+                else
+                    message.setText(message.getText() + " con la mano iniziale,<br>hai perso con quella splittata");
+            }
         }
 
         if(e.getSource() == hitButton){
@@ -71,6 +75,12 @@ public class LabelPanel extends JPanel implements ActionListener {
         if(e.getSource() == loginDlg.btnLogin){
             name.setText(player.getName());
             System.out.println("HO sentito che devo cambiare il player");
+        }
+
+        if(player.hasBlackJack()){
+            message.setText("<html>Complimenti, hai fatto BlackJack");
+            if(dealer.hasBlackJack())
+                message.setText(message.getText() + ", <br>peccato che lo abbia fatto anche il dealer");
         }
     }
 }
