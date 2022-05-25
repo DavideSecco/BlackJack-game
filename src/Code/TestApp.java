@@ -23,7 +23,7 @@ public class TestApp {
     public static void main(String[] args) throws IOException, SQLException {
         player = new Player();
         dealer = new Dealer();
-        cardsDeck = new CardsDeck(0);
+        cardsDeck = new CardsDeck(3);
         // MyDB.createDB();
 
         MyDB.setUpDB();

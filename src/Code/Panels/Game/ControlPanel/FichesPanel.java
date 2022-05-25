@@ -2,7 +2,7 @@ package Code.Panels.Game.ControlPanel;
 
 import Code.GameElements.Fiche;
 import Code.Gameplay;
-import Code.TestApp;
+import Code.Panels.Game.Dialog.InsuranceDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,13 +11,14 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static Code.Panels.Game.ControlPanel.ActionPanel.*;
 import static Code.Panels.Game.ControlPanel.ControlPanel.actionPanel;
 import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
 import static Code.Panels.Game.DisplayPanel.OptionsPanel.menu;
 import static Code.Panels.MainFrame.gameDimension;
-import static Code.TestApp.player;
+import static Code.TestApp.*;
 
 public class FichesPanel extends JPanel implements ActionListener{
     private String[] files;
@@ -119,12 +120,15 @@ public class FichesPanel extends JPanel implements ActionListener{
             checkEnableDouble();
 
             /** Ho commentato questo ultimo pezzo perchè all'atto pratico non fa funzionare correttamente il labelPanel  */
-            // if(player.hasBlackJack())
-                // actionPanel.standButton.doClick();
+             if(player.hasBlackJack())
+                 actionPanel.standButton.doClick();
         }
         checkEnableFiche(ficheButton);
 
         sendToActionListeners(e);
+        if(splitPressed == 0){
+            checkInsurance();
+        }
     }
 
     /** Serve a disabilitare una fiche nel caso non si abbiano abbastanza "soldi" nel conto
@@ -145,5 +149,14 @@ public class FichesPanel extends JPanel implements ActionListener{
     public void checkEnableDouble(){
         if(player.getBet() > player.getAccount())
             ActionPanel.doubleButton.setEnabled(false);
+    }
+
+    public void checkInsurance(){
+        if(dealer.getCards().size() != 0){
+            if(Objects.equals(dealer.getCards().get(1).getRank(), "Ace") && !player.hasBlackJack()){
+                InsuranceDialog insuranceDialog = new InsuranceDialog(mainFrame);
+                insuranceDialog.setVisible(true);
+            }
+        }
     }
 }

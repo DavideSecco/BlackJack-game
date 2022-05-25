@@ -50,6 +50,21 @@ public class CardsDeck {
             cards.add(KS);
             cards.add(KH);
         }
+        else if (index == 3) {
+            Card AS = new Card("Spades","Ace",11);
+            Card KS = new Card("Spades","King",10);
+            Card e = new Card("Spades","9",9);
+            Card KH = new Card("Hearts","King",10);
+            Card AH = new Card("Hearts","Ace",11);
+            Card w = new Card("Hearts","9",9);
+
+            cards.add(AS);
+            cards.add(KS);
+            cards.add(KH);
+            cards.add(AH);
+            cards.add(w);
+            cards.add(e);
+        }
 
         iterator = cards.iterator();
     }

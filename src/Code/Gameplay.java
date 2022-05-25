@@ -1,12 +1,10 @@
 package Code;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 
 import static Code.MyDB.*;
 import static Code.Panels.Game.ControlPanel.ActionPanel.splitPressed;
-import static Code.Panels.Game.GamePanel.tablePanel;
+import static Code.Panels.Game.Dialog.InsuranceDialog.siPressed;
 import static Code.TestApp.dealer;
 import static Code.TestApp.player;
 
@@ -23,6 +21,9 @@ public class Gameplay {
             player.swapSplittedElements();
             Gameplay.dispenserMoney();
         }
+
+        if(siPressed)
+            manageInsurance();
 
         if(whoWon() == 1)
             player.incrementWins();
@@ -51,14 +52,12 @@ public class Gameplay {
      */
     public static void dispenserMoney(){
         if(whoWon() == 1) {                                          // player ha vinto
-            player.addToAccount(2 * player.getBet());
-            if (player.hasBlackJack())                               //se ha fatto hasBlackJack si aggiunge la metà della bet, EH?
-                player.addToAccount(player.getBet() / 2);
+            vittoria();
         }
         else if(whoWon() == 0)                                      // player ha pareggiato
-            player.addToAccount(player.getBet());
+            pareggio();
         else                                                        // player ha perso
-            player.addToAccount(0);
+            sconfitta();
     }
 
     /** Crea l'inizio del gioco, ovvero distribuisce le carte iniziali del player e del dealer  */
@@ -68,6 +67,25 @@ public class Gameplay {
 
         dealer.addUnkonwCard();
         dealer.addKnownCard();
+    }
+
+    public static void manageInsurance(){
+        if(!dealer.hasBlackJack())
+            player.addToAccount(-player.getBet()/2);
+        else
+            pareggio();
+    }
+
+    public static void vittoria(){
+        player.addToAccount(2 * player.getBet());
+        if (player.hasBlackJack())                               //se ha fatto hasBlackJack si aggiunge la metà della bet
+            player.addToAccount(player.getBet() / 2);
+    }
+    public static void pareggio(){
+        player.addToAccount(player.getBet());
+    }
+    public static void sconfitta(){
+        player.addToAccount(0);
     }
 
 

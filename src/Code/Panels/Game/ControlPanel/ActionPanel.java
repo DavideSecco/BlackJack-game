@@ -79,6 +79,8 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
             System.out.println("PULSANTE HIT: sono stato premuto");
             player.addKnownCard();
 
+            splitButton.setEnabled(false);
+            doubleButton.setEnabled(false);
             if(player.isBust()){
                 menu.setEnabled(true);
                 this.enablePanel(false);
@@ -112,6 +114,7 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
 
         if(e.getSource() == doubleButton){
             System.out.println("Double: sono stato premuto");
+            splitButton.setEnabled(false);
             player.bet(player.getBet());
             hitButton.doClick();
             standButton.doClick();

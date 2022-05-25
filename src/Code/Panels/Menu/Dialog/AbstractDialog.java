@@ -16,7 +16,7 @@ public abstract class AbstractDialog extends JDialog {
     public JButton btnLogin;
     protected JButton btnCancel;
 
-    JPanel panel;
+    public JPanel panel;
 
     public AbstractDialog(Frame parent){
         super(parent);

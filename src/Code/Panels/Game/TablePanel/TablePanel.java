@@ -34,9 +34,6 @@ public class TablePanel extends JPanel implements ActionListener {
         } catch (IOException e) {
             System.out.println("Can't read image file");
         }
-
-        // Timer timer = new Timer(500, this);
-        // timer.start();
     }
 
     public void paintComponent(Graphics g) {
@@ -69,7 +66,7 @@ public class TablePanel extends JPanel implements ActionListener {
 
         for (Card card : dealerCards){
             cardDealerPos.x = cardDealerPos.x + 110;
-            if(card.isKnown() == true)
+            if(card.isKnown())
                 g.drawImage(card.getImg(), cardDealerPos.x, cardDealerPos.y, cardDimension.x, cardDimension.y, this);
             else{
                 g.drawImage(faceDownCard, cardDealerPos.x, cardDealerPos.y, cardDimension.x, cardDimension.y, this);
@@ -79,7 +76,7 @@ public class TablePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e != null || e.getSource() == standButton || player.isBust())
+        if(e.getSource() == standButton || player.isBust())
             dealer.discoverAll();   //scopro la carta scoperta
 
         System.out.println("Sono il TablePanel e ho ricevuto l'ordine di ridisegnarmi");
