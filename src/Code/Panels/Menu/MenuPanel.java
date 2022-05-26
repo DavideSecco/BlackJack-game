@@ -28,7 +28,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         setLayout(new GridLayout(3,1));
 
         playButton = new JButton("Play");
-        selectPlayer = new JButton("Select Player");
+        selectPlayer = new JButton("View Players");
         viewRules = new JButton("Read Rules");
 
         playButton.addActionListener(this);
@@ -59,7 +59,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         }
         if(e.getSource() == selectPlayer){
             try {
-                selectPlayerPanel=new SelectPlayerPanel();
+                selectPlayerPanel = new SelectPlayerPanel();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }

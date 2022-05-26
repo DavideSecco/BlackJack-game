@@ -22,15 +22,15 @@ public class RegisterDialog extends AbstractDialog implements ActionListener, Ke
     private JTextField tfAccount;
 
     public RegisterDialog(Frame parent) {
-        super(parent);
+        super(parent, "Create an Account");
 
         lbAccount = new JLabel("Account: ");
-        add(lbAccount);
+        panel.add(lbAccount);
 
         tfAccount = new JTextField("1000", 20);
-        add(tfAccount);
+        panel.add(tfAccount);
 
-        tfAccount.addKeyListener((KeyListener) this);
+        tfAccount.addKeyListener(this);
 
         rgsLogin = new JButton("Registrati");
         rgsLogin.addActionListener(this);
@@ -57,6 +57,7 @@ public class RegisterDialog extends AbstractDialog implements ActionListener, Ke
             else {
                 tfUsername.setText("");
                 pfPassword.setText("");
+                tfAccount.setText("");
             }
         }
 
@@ -77,12 +78,6 @@ public class RegisterDialog extends AbstractDialog implements ActionListener, Ke
             }
         }
     }
-
-    @Override
-    public void keyTyped(KeyEvent e) {}
-
-    @Override
-    public void keyReleased(KeyEvent e) {}
 
     public boolean registryCheck(){
         try {

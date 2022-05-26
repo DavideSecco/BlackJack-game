@@ -37,15 +37,22 @@ public class MyDB {
     // metodo che inizializza un db di prova, alla fine non servirá nemmeno piú
     public static void setUpDB() throws SQLException {
         MyDB.createDB();
-        // Player p1 = new Player();
-        Player p2 = new Player("Davide");
-        Player p3 = new Player("Donato", 100, 10000, "Prova", 0);
-        Player p4 = new Player("Marti", "pepotto36");
+        Player p1 = new Player("Davide");
+        Player p2 = new Player("Donato", 100, 10000, "Prova", 200);
+        Player p3 = new Player("Martina", "pepotto36");
 
-        // MyDB.addPlayer(p1);
+        MyDB.addPlayer(p1);
         MyDB.addPlayer(p2);
         MyDB.addPlayer(p3);
-        MyDB.addPlayer(p4);
+
+        // createPlayers();
+    }
+
+    private static void createPlayers() throws SQLException {
+        for(int i = 0; i < 100; i++) {
+            Player p = new Player("Utente Fittizio " + Integer.toString(i));
+            MyDB.addPlayer(p);
+        }
     }
 
     /** inserisce i dati dell'utente corrente nel database  */

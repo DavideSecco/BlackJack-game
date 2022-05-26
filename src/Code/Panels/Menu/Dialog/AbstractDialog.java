@@ -4,9 +4,10 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public abstract class AbstractDialog extends JDialog {
+public abstract class AbstractDialog extends JDialog implements KeyListener{
     protected JLabel lbUsername;
     protected JLabel lbPassword;
 
@@ -18,9 +19,9 @@ public abstract class AbstractDialog extends JDialog {
 
     public JPanel panel;
 
-    public AbstractDialog(Frame parent){
-        super(parent);
-        panel = new JPanel(new GridLayout(2,2));
+    public AbstractDialog(Frame parent, String nameDialog){
+        super(parent, nameDialog);
+        panel = new JPanel(new GridLayout(3,2));
 
         lbUsername = new JLabel("Username: ");
         panel.add(lbUsername);
@@ -41,4 +42,10 @@ public abstract class AbstractDialog extends JDialog {
 
         panel.setBorder(new LineBorder(Color.GRAY));
     }
+
+    @Override
+    public void keyReleased(KeyEvent e) {}
+
+    @Override
+    public void keyTyped(KeyEvent ke) {}
 }

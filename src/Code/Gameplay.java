@@ -1,5 +1,7 @@
 package Code;
 
+import Code.Participant.Player;
+
 import java.sql.SQLException;
 
 import static Code.MyDB.*;
@@ -81,12 +83,12 @@ public class Gameplay {
         if (player.hasBlackJack())                               //se ha fatto hasBlackJack si aggiunge la metà della bet
             player.addToAccount(player.getBet() / 2);
     }
+
     public static void pareggio(){
         player.addToAccount(player.getBet());
     }
+
     public static void sconfitta(){
         player.addToAccount(0);
     }
-
-
 }

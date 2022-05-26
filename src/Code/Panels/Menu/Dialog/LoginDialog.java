@@ -22,7 +22,7 @@ public class LoginDialog extends AbstractDialog implements ActionListener, KeyLi
     public static RegisterDialog registerDlg;
 
     public LoginDialog(Frame parent) {
-        super(parent);
+        super(parent, "Login");
 
         btnLogin = new JButton("Login");
         btnLogin.addActionListener(this);
@@ -33,7 +33,6 @@ public class LoginDialog extends AbstractDialog implements ActionListener, KeyLi
         JPanel bp = new JPanel();
         bp.add(btnLogin);
         bp.add(btnCancel);
-
         bp.add(new JLabel("oppure"));
         bp.add(register);
 
@@ -85,7 +84,7 @@ public class LoginDialog extends AbstractDialog implements ActionListener, KeyLi
         try {
             if (MyDB.authenticate(getUsername(), getPassword())) {
                 JOptionPane.showMessageDialog(LoginDialog.this,
-                        "Bentornato " + getUsername() + "!",
+                         "Bentornato " + getUsername() + "!",
                         "Login",
                         JOptionPane.INFORMATION_MESSAGE);
                 dispose();
@@ -106,10 +105,4 @@ public class LoginDialog extends AbstractDialog implements ActionListener, KeyLi
             throw new RuntimeException(ex);
         }
     }
-
-    @Override
-    public void keyReleased(KeyEvent e) {}
-
-    @Override
-    public void keyTyped(KeyEvent ke) {}
 }
