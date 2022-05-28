@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 import static Code.Panels.MainFrame.mainPanel;
 import static Code.Panels.MainPanel.gamePanel;
-import static Code.TestApp.player;
+import static Code.TestApp.*;
 
 public class RegisterDialog extends AbstractDialog implements ActionListener, KeyListener {
     public JButton rgsLogin;
@@ -49,10 +49,14 @@ public class RegisterDialog extends AbstractDialog implements ActionListener, Ke
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        click.play();
+
         if(e.getSource() == rgsLogin){
             if(registryCheck()) {
                 gamePanel.initialize();
                 mainPanel.changePanel(gamePanel);
+
+                song.increaseVolumeGradually();
             }
             else {
                 tfUsername.setText("");

@@ -45,10 +45,14 @@ public class LoginDialog extends AbstractDialog implements ActionListener, KeyLi
     }
 
     public void actionPerformed(ActionEvent e){
+        click.play();
+
         if(e.getSource() == btnLogin){
             if(loginCheck()) {
                 gamePanel.initialize();
                 mainPanel.changePanel(gamePanel);
+
+                song.increaseVolumeGradually();
             }
         }
 
@@ -76,6 +80,8 @@ public class LoginDialog extends AbstractDialog implements ActionListener, KeyLi
             if(loginCheck()) {
                 gamePanel.initialize();
                 mainPanel.changePanel(gamePanel);
+
+                song.increaseVolumeGradually();
             }
         }
     }

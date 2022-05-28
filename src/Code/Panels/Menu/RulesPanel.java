@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import static Code.Panels.MainFrame.mainPanel;
 import static Code.Panels.MainPanel.menuPanel;
+import static Code.TestApp.click;
 
 public class RulesPanel extends JPanel implements ActionListener {
     private JButton menu;
@@ -43,6 +44,8 @@ public class RulesPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        click.play();
+
         if(e.getSource() == menu){
             mainPanel.changePanel(menuPanel);
         }

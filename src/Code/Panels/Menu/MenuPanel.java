@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import static Code.Panels.Game.ControlPanel.ControlPanel.fichesPanel;
 import static Code.Panels.MainFrame.*;
 import static Code.Panels.MainPanel.*;
+import static Code.TestApp.click;
 import static Code.TestApp.mainFrame;
 
 public class MenuPanel extends JPanel implements ActionListener {
@@ -42,27 +43,15 @@ public class MenuPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        click.play();
+
         if(e.getSource() == playButton) {
             loginDlg = new LoginDialog(mainFrame);
             loginDlg.setVisible(true);
-
-            /**
-            if (loginDlg.isSucceeded()) {
-                loginDlg = null;
-                gamePanel.initialize();
-                mainPanel.changePanel(gamePanel);   //cambia il panel se il login è andato a buon fine
-
-                if(TestApp.player.getAccount() < 10)
-                    fichesPanel.enablePanel(false);
-            }
-             */
         }
+
         if(e.getSource() == selectPlayer){
-            try {
-                selectPlayerPanel = new SelectPlayerPanel();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            selectPlayerPanel = new SelectPlayerPanel();
             mainPanel.changePanel(selectPlayerPanel);
         }
 

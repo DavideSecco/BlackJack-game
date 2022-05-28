@@ -1,5 +1,6 @@
 package Code.Panels.Game.DisplayPanel;
 
+import Code.Gameplay;
 import Code.Panels.Game.GamePanel;
 import Code.TestApp;
 
@@ -53,16 +54,18 @@ public class OptionsPanel extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == newGame || e.getSource() == menu){
-            player.clear();
-            dealer.clear();
-            cardsDeck.inizialize();
+        click.play();
 
-            displayPanel.initialize();
-            controlPanel.initialize();
+        player.clear();
+        dealer.clear();
+        cardsDeck.inizialize();
 
-            if(e.getSource() == menu)
-                mainPanel.changePanel(menuPanel);
+        displayPanel.initialize();
+        controlPanel.initialize();
+
+        if(e.getSource() == menu) {
+            song.decreaseVolumeGradually();
+            mainPanel.changePanel(menuPanel);
         }
 
         sendToActionListeners(e);

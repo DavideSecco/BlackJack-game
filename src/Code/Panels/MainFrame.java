@@ -1,6 +1,6 @@
 package Code.Panels;
 
-import Code.TestApp;
+import Code.Gameplay;
 
 import javax.swing.*;
 
@@ -14,8 +14,8 @@ public class MainFrame extends JFrame {
     public static Dimension gameDimension = new Dimension(1200, 700);
     public static Dimension menuDimension = new Dimension(400, 700);
 
-    public MainFrame() throws IOException, SQLException {
-        JFrame frame = new JFrame("Pong");
+    public MainFrame() throws IOException, SQLException{
+        JFrame frame = new JFrame("Black Jack");
 
         mainPanel = new MainPanel();
 

@@ -10,6 +10,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static Code.TestApp.song;
+
 public class MainPanel extends JPanel {
     public static GamePanel gamePanel;
     public static MenuPanel menuPanel;
@@ -34,5 +36,7 @@ public class MainPanel extends JPanel {
 
         revalidate();
         repaint();
+
+
     }
 }

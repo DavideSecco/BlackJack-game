@@ -87,6 +87,7 @@ public class FichesPanel extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        click.play();
         /**
          * Se premo uno qualsiasi dei pulsanti delle fiches
          * caso particolare: All in --> lo abbiamo mappato a valore -1 va ovviamente puntato tutto quello

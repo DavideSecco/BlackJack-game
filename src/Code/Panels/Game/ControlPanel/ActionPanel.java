@@ -76,6 +76,8 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        click.play();
+
         if(e.getSource() == hitButton){
             System.out.println("PULSANTE HIT: sono stato premuto");
             player.addKnownCard();
@@ -88,6 +90,7 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
                 Gameplay.dispenserMoney();
             }
         }
+
         if(e.getSource() == standButton){
             System.out.println("STAND BUTTON: sono stato premuto");
 

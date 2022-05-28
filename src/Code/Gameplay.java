@@ -2,13 +2,16 @@ package Code;
 
 import Code.Participant.Player;
 
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 
 import static Code.MyDB.*;
 import static Code.Panels.Game.ControlPanel.ActionPanel.splitPressed;
 import static Code.Panels.Game.Dialog.InsuranceDialog.siPressed;
-import static Code.TestApp.dealer;
-import static Code.TestApp.player;
+import static Code.TestApp.*;
 
 public class Gameplay {
     /** 1 --> player ha vinto     0 --> pareggio      -1 --> dealer ha vinto    */
