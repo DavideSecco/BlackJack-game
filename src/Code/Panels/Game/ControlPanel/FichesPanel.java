@@ -56,7 +56,10 @@ public class FichesPanel extends JPanel implements ActionListener{
         for(int i = 0; i < ficheButton.length; i++){
             ficheButton[i].setEnabled(true);
         }
+        ficheButton[files.length - 1].setValue(player.getAccount());
+
         checkEnableFiche(ficheButton);
+
         confirm.setEnabled(false);
     }
 
@@ -84,7 +87,6 @@ public class FichesPanel extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         /**
          * Se premo uno qualsiasi dei pulsanti delle fiches
          * caso particolare: All in --> lo abbiamo mappato a valore -1 va ovviamente puntato tutto quello
@@ -93,10 +95,11 @@ public class FichesPanel extends JPanel implements ActionListener{
             Fiche fiche = (Fiche) e.getSource();
             System.out.println(fiche.toString() + "sono stato premuto, la scommessa vale: " + fiche.getValue() );
 
+            player.bet(fiche.getValue());
+
             // risetto il valore della fiche all-in
             ficheButton[files.length - 1].setValue(player.getAccount());
-
-            player.bet(fiche.getValue());
+            System.out.println("Sono il bottone all in " + ficheButton[files.length - 1] + " Ora valgo: " + ficheButton[files.length - 1].getValue());
 
             fichesPanel.confirm.setEnabled(true);
         }

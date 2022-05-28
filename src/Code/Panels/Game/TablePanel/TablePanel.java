@@ -39,8 +39,6 @@ public class TablePanel extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        System.out.println("Sono il TablePanel e sono nel paintComponent");
-
         Point cardPlayerPos = new Point(gameDimension.width/10, (int) (gameDimension.height/2.2));
         Point cardDealerPos = new Point(gameDimension.width/10, gameDimension.height/13);
 
@@ -86,6 +84,5 @@ public class TablePanel extends JPanel implements ActionListener {
 
     public void refresh() {
         repaint();
-        System.out.println("Sono il TablePanel e sono nel refresh");
     }
 }
