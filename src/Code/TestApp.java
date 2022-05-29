@@ -14,8 +14,8 @@ public class TestApp {
 
     public static final String imagesPath = "/Utils/Images/";
 
-    public static MusicManger song;
-    public static MusicManger click;
+    public static MusicManager song;
+    public static MusicManager click;
 
     public static MainFrame mainFrame;
 
@@ -24,8 +24,8 @@ public class TestApp {
         dealer = new Dealer();
         cardsDeck = new CardsDeck(0);
 
-        click = new MusicManger("ClickOn.wav");
-        song = new MusicManger("Song.wav");
+        click = new MusicManager("ClickOn.wav");
+        song = new MusicManager("Song.wav");
 
         MyDB.setUpDB();
 
