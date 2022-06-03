@@ -85,6 +85,10 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
             splitButton.setEnabled(false);
             doubleButton.setEnabled(false);
             if(player.isBust()){
+                if(splitPressed != 0){
+                    standButton.doClick();
+                    return;
+                }
                 menu.setEnabled(true);
                 this.enablePanel(false);
                 Gameplay.dispenserMoney();
@@ -98,6 +102,7 @@ public class ActionPanel extends JPanel implements MyPanel, ActionListener{
                 splitPressed++;
                 player.swapSplittedElements();
                 tablePanel.refresh();
+                doubleButton.setEnabled(true);
 
                 if(player.hasBlackJack())
                     actionPanel.standButton.doClick();
