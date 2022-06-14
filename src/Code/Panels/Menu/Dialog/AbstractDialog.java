@@ -26,14 +26,14 @@ public abstract class AbstractDialog extends JDialog implements KeyListener{
         lbUsername = new JLabel("Username: ");
         panel.add(lbUsername);
 
-        tfUsername = new JTextField("Davide", 20);
+        tfUsername = new JTextField("", 20);
         panel.add(tfUsername);
         tfUsername.addKeyListener((KeyListener) this);
 
         lbPassword = new JLabel("Password: ");
         panel.add(lbPassword);
 
-        pfPassword = new JPasswordField("123", 20);
+        pfPassword = new JPasswordField("", 20);
         panel.add(pfPassword);
         pfPassword.addKeyListener((KeyListener) this);
 
